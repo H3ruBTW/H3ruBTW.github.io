@@ -60,6 +60,30 @@ function disegnaCella(){
     for(let i=0; i<nMaty; i++){
         for(let j=0; j<nMatx; j++){
             switch(matrice[i][j]){
+                case -4:
+                    ctx.fillStyle = "orange"
+                    ctx.fillRect((j*pixelCasella), (i*pixelCasella), pixelCasella, pixelCasella)
+                    // Disegnare il palo della bandiera
+                    ctx.beginPath();
+                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+45);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = 'black';
+                    ctx.stroke();
+
+                    // Disegnare il triangolo della bandiera
+                    ctx.beginPath();
+                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+40, (i*pixelCasella)+20);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+30);
+                    ctx.closePath();
+                    ctx.fillStyle = 'red';
+                    ctx.fill();
+                    break
+
+                case -3:
+                    ctx.fillStyle = "green"
+                    ctx.fillRect((j*pixelCasella), (i*pixelCasella), pixelCasella, pixelCasella)
                 case -2:
                 case -1:
                     // Disegnare il palo della bandiera
@@ -414,6 +438,9 @@ function fineGioco(vittoria){
             for(let j=0; j<nMatx; j++){
                 if(matrice[i][j]==1)
                     matrice[i][j]+=3
+
+                if(matrice[i][j]==-2 || matrice[i][j]==-1)
+                    matrice[i][j]-=2
             }
         }
         disegnaTabella()
