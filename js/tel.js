@@ -231,7 +231,7 @@ function disegnaCella(){
 
 document.addEventListener("DOMContentLoaded", prePartita)
 
-let nBandiere = 18 //proporzionale al campo minato di google
+let nBandiere = 22 //proporzionale al campo minato di google
 
 function prePartita(){
     for(let i=0; i<nBandiere; i++){
