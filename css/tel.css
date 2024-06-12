@@ -115,7 +115,7 @@ output {
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
-    height: 100px; 
+    height: 160px; 
     background-color: white;
     border: 2px solid black;
     text-align: center;
@@ -138,5 +138,21 @@ table, tr, th {
     border: 4px solid black;
     padding: 0;
     background-color: white;
+}
+
+button {
+    height: 40px;
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid black;
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+button:active {
+    background-color: rgb(125, 125, 125);
 }
 
