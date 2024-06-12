@@ -60,12 +60,13 @@ canvas {
 h3{
     margin-top: 0;
     font-size: 25px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: "Times New Roman", Times, Georgia, serif;
 }
 
 p {
     font-size: 20px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-weight: bold;
 }
 
 output {
@@ -121,9 +122,9 @@ output {
 }
 
 #fineV h3, #fineS h3 {
-    font-size: 40px;
+    font-size: 32px;
     padding: auto;
-    margin-top: 23px;
+    margin-top: 28px;
 }
 
 /*TABLE*/
