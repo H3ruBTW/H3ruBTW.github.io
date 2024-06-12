@@ -142,3 +142,45 @@ output {
     font-size: 18px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+/* DIFFICOLTA */
+#scel {
+    position: absolute;
+    left: 5vmin;
+    top:100px;
+    background-color: white;
+    border: 2px solid black;
+    width: 125px;
+    height: 60px;
+}
+
+#scel h4{
+    padding: 5px;
+    margin: 0;
+}
+
+#diff {
+    position: absolute;
+    left: 5vmin;
+    top:160px;
+    background-color: white;
+    border: 2px solid black;
+    width: 125px;
+}
+
+button {
+    height: 40px;
+    width: 125px;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid black;
+}
+
+button:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+button:active {
+    background-color: rgb(125, 125, 125);
+}

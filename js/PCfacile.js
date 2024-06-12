@@ -33,9 +33,9 @@ function disegnaTabella(){
 }
 
 // INIZIALIZZAZIONE DI TUTTE LE VARIABILI UTILI PER DIMENSIONI, ECC.
-let X = 360
-let Y = 520
-let pixelCasella = 40
+let X = canvas.getAttribute("width")
+let Y = canvas.getAttribute("height")
+let pixelCasella = 60
 let nMatx = X/pixelCasella
 let nMaty = Y/pixelCasella
 let matrice = new Array()
@@ -64,17 +64,17 @@ function disegnaCella(){
                 case -1:
                     // Disegnare il palo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+40);
+                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+45);
                     ctx.lineWidth = 3;
                     ctx.strokeStyle = 'black';
                     ctx.stroke();
 
                     // Disegnare il triangolo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+35, (i*pixelCasella)+20);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+30);
+                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+40, (i*pixelCasella)+20);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+30);
                     ctx.closePath();
                     ctx.fillStyle = 'red';
                     ctx.fill();
@@ -84,7 +84,7 @@ function disegnaCella(){
                 case 1:
                     ctx.fillStyle = "lightgray"
 
-                    ctx.fillRect((j*pixelCasella)+5, (i*pixelCasella)+5, 30, 30)
+                    ctx.fillRect((j*pixelCasella)+7, (i*pixelCasella)+7, 46, 46)
 
                     ctx.lineWidth=4
 
@@ -109,7 +109,7 @@ function disegnaCella(){
                 case 4:
                     // Disegnare il corpo della bomba
                     ctx.beginPath();
-                    ctx.arc((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2), 12, 0, 2 * Math.PI);
+                    ctx.arc((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2), 17, 0, 2 * Math.PI);
                     ctx.fillStyle = 'black';
                     ctx.fill();
 
@@ -120,49 +120,49 @@ function disegnaCella(){
                     // Spikes - top
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+2);
+                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+3);
                     ctx.stroke();
                     
                     // Spikes - bottom
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+38);
+                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+57);
                     ctx.stroke();
                     
                     // Spikes - left
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+2, (i*pixelCasella)+(pixelCasella/2));
+                    ctx.lineTo((j*pixelCasella)+3, (i*pixelCasella)+(pixelCasella/2));
                     ctx.stroke();
                     
                     // Spikes - right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+38, (i*pixelCasella)+(pixelCasella/2));
+                    ctx.lineTo((j*pixelCasella)+57, (i*pixelCasella)+(pixelCasella/2));
                     ctx.stroke();
                     
                     // Spikes - top left
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+6, (i*pixelCasella)+6);
+                    ctx.lineTo((j*pixelCasella)+10, (i*pixelCasella)+10);
                     ctx.stroke();
                     
                     // Spikes - top right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+34, (i*pixelCasella)+6);
+                    ctx.lineTo((j*pixelCasella)+50, (i*pixelCasella)+10);
                     ctx.stroke();
                     
                     // Spikes - bottom left
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+6, (i*pixelCasella)+34);
+                    ctx.lineTo((j*pixelCasella)+10, (i*pixelCasella)+50);
                     ctx.stroke();
                     
                     // Spikes - bottom right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+34, (i*pixelCasella)+34);
+                    ctx.lineTo((j*pixelCasella)+50, (i*pixelCasella)+50);
                     ctx.stroke();
                     break
                 
@@ -174,51 +174,51 @@ function disegnaCella(){
                     if(bombe[i][j]!=0){
                         switch(bombe[i][j]){
                             case 1:
-                                ctx.font = "30px Arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "blue"
-                                ctx.fillText("1", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("1", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
 
                             case 2:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "green"
-                                ctx.fillText("2",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("2", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
                             
                             case 3:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "red"
-                                ctx.fillText("3",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("3", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
                             
                             case 4:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "#483D8B"
-                                ctx.fillText("4",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("4", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
                             
                             case 5:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "orange"
-                                ctx.fillText("5",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("5", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
 
                             case 6:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "yellow"
-                                ctx.fillText("6", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("6", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
 
                             case 7:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px arial"
                                 ctx.fillStyle = "#4682B4"
-                                ctx.fillText("7",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("7", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
 
                             case 8:
-                                ctx.font = "30px arial"
+                                ctx.font = "50px Arial"
                                 ctx.fillStyle = "black"
-                                ctx.fillText("8", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("8", (j*pixelCasella)+15, (i*pixelCasella)+47)
                                 break
                         }
                     }
@@ -231,7 +231,7 @@ function disegnaCella(){
 
 document.addEventListener("DOMContentLoaded", prePartita)
 
-let nBandiere = 18 //proporzionale al campo minato di google
+let nBandiere = 15 //proporzionale al campo minato di google
 
 function prePartita(){
     for(let i=0; i<nBandiere; i++){
@@ -329,31 +329,54 @@ function prePartita(){
     disegnaTabella()
 }
 
-canvas.addEventListener("touchend", touchend)
+canvas.addEventListener("click", click)
 
-let evento
-
-function touchend(event){
+function click(event){
     const canvasArea = canvas.getBoundingClientRect()
-    let eventX = Math.floor((event.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
-    let eventY = Math.floor((event.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
+    let eventX = Math.floor((event.clientX - canvasArea.left)/pixelCasella)
+    let eventY = Math.floor((event.clientY - canvasArea.top)/pixelCasella)
+
+    console.log("Il click è avvenuto a: " + eventX + "/" + eventY);
 
     if(matrice[eventY][eventX]<2){
-        console.log("Il touchend è avvenuto a: " + eventX + "/" + eventY);
+        if(event.button === 0 && matrice[eventY][eventX]>-1){
+            //click sinistro
+            matrice[eventY][eventX]+=2
+            console.log("Sinistro");
 
-        evento = event
+            if(matrice[eventY][eventX]==3)
+                fineGioco(false)
 
-        scelta.hidden = false
-        scelta.style.left = (eventX*40 + canvasArea.left) + "px"
-        scelta.style.top = (eventY*40 + canvasArea.top + 40) + "px"
+            if(bombe[eventY][eventX]==0 && matrice[eventY][eventX]==2)
+                espansione0(eventY, eventX)
+
+        } else if(event.button === 2){
+            //click destro
+            if(matrice[eventY][eventX]>=0){
+                if(nBandiere>0){
+                    matrice[eventY][eventX]-=2
+                    nBandiere--
+                    aggiornaBandiere()
+                }
+            } else {
+                matrice[eventY][eventX]+=2
+                nBandiere++
+                aggiornaBandiere()
+            }
+            console.log("destro");
+
+        }
     }
 
-    
+    disegnaTabella()
+
+    if(controlloDiGioco())
+        fineGioco(true)
 }
 
 canvas.addEventListener("contextmenu", function(event) {
     event.preventDefault(); // Previene la visualizzazione del menu contestuale
-    touchend(event)
+    click(event)
 })
 
 
@@ -383,7 +406,7 @@ vitt.hidden = true
 scon.hidden = true
 
 function fineGioco(vittoria){
-    canvas.removeEventListener("touchend", touchend)
+    canvas.removeEventListener("click", click)
     clearInterval(id)
 
     if(!vittoria){
@@ -395,7 +418,6 @@ function fineGioco(vittoria){
         }
         disegnaTabella()
     }
-        
 
     setTimeout(function (){
         
@@ -640,120 +662,18 @@ function espansione0(i, j){
     } catch (error) {}
 }
 
-/* CELLE TELEFONO */
-let scelta = document.getElementById("scelta")
-let c1 = document.getElementById("c1")
-let c2 = document.getElementById("c2")
-let c3 = document.getElementById("c3")
+// DIFFICOLTà
+let attivo = false
+let scel = document.getElementById("scel")
+let diff = document.getElementById("diff")
+diff.hidden = true
 
-let ctx1 = c1.getContext('2d')
-let ctx2 = c2.getContext('2d')
-let ctx3 = c3.getContext('2d')
-
-scelta.hidden = true
-
-// Disegnare il palo della bandiera
-ctx1.beginPath();
-ctx1.moveTo(15, 10);
-ctx1.lineTo(15, 40);
-ctx1.lineWidth = 3;
-ctx1.strokeStyle = 'black';
-ctx1.stroke();
-
-// Disegnare il triangolo della bandiera
-ctx1.beginPath();
-ctx1.moveTo(15, 10);
-ctx1.lineTo(35, 20);
-ctx1.lineTo(15, 30);
-ctx1.closePath();
-ctx1.fillStyle = 'red';
-ctx1.fill();
-
-ctx2.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-ctx2.beginPath();
-ctx2.arc(20, 20, 10, 0, Math.PI * 2); // Draw a circle with radius 10 at the center (20, 20)
-ctx2.fillStyle = 'rgba(0, 0, 255, 0.5)'; // Set color and transparency
-ctx2.fill();
-ctx2.closePath();
-
-// Draw the cross lines
-ctx2.beginPath();
-ctx2.moveTo(20, 0); // Vertical line
-ctx2.lineTo(20, 40);
-ctx2.moveTo(0, 20); // Horizontal line
-ctx2.lineTo(40, 20);
-ctx2.strokeStyle = 'black';
-ctx2.stroke();
-ctx2.closePath();
-
-ctx3.fillStyle = "red"
-ctx3.strokeStyle = "white"
-
-ctx3.fillRect(0, 0, 40, 40)
-
-ctx3.lineWidth = 4
-
-ctx3.beginPath()
-ctx3.moveTo(5, 5)
-ctx3.lineTo(35, 35)
-ctx3.stroke()
-
-ctx3.beginPath()
-ctx3.moveTo(35, 5)
-ctx3.lineTo(5, 35)
-ctx3.stroke()
-
-c1.addEventListener("touchend", function(){
-    const canvasArea = canvas.getBoundingClientRect()
-    let eventX = Math.floor((evento.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
-    let eventY = Math.floor((evento.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
-
-    if(matrice[eventY][eventX]>=0){
-        if(nBandiere>0){
-            matrice[eventY][eventX]-=2
-            nBandiere--
-            aggiornaBandiere()
-        }
+scel.addEventListener("click", function(){
+    if(attivo){
+        diff.hidden = true
+        attivo = false
     } else {
-        matrice[eventY][eventX]+=2
-        nBandiere++
-        aggiornaBandiere()
+        diff.hidden = false
+        attivo = true
     }
-    scelta.hidden = true
-    disegnaTabella()
-
-    if(controlloDiGioco())
-        fineGioco(true)
-
-})
-
-c2.addEventListener("touchend", function(){
-    const canvasArea = canvas.getBoundingClientRect()
-    let eventX = Math.floor((evento.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
-    let eventY = Math.floor((evento.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
-
-    if(matrice[eventY][eventX]>-1){
-
-        matrice[eventY][eventX]+=2
-
-        if(matrice[eventY][eventX]==3)
-            fineGioco(false)
-
-        if(bombe[eventY][eventX]==0 && matrice[eventY][eventX]==2)
-            espansione0(eventY, eventX)
-    } else {
-        matrice[eventY][eventX]+=2
-        nBandiere++
-        aggiornaBandiere()
-    }
-
-    scelta.hidden = true
-    disegnaTabella()
-
-    if(controlloDiGioco())
-        fineGioco(true)
-})
-
-c3.addEventListener("touchend", function(){
-    scelta.hidden = true
 })
