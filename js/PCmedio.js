@@ -65,17 +65,17 @@ function disegnaCella(){
                     ctx.fillRect((j*pixelCasella), (i*pixelCasella), pixelCasella, pixelCasella)
                     // Disegnare il palo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+45);
+                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+40);
                     ctx.lineWidth = 3;
                     ctx.strokeStyle = 'black';
                     ctx.stroke();
 
                     // Disegnare il triangolo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+20, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+40, (i*pixelCasella)+20);
-                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+30);
+                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+35, (i*pixelCasella)+20);
+                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+30);
                     ctx.closePath();
                     ctx.fillStyle = 'red';
                     ctx.fill();
