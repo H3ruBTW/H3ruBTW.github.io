@@ -141,8 +141,6 @@ table, tr, th {
 }
 
 button {
-    height: 40px;
-    width: 100px;
     padding: 0;
     margin: 0;
     background-color: white;
