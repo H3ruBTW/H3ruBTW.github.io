@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Campo Minato</title>
+        <link href="css/tab.css" rel="stylesheet">
+        <script src="js/tab.js" defer></script>
+    </head>
+    <body>
+        <div id="body">
+            <header>
+                <h1 id="title">CAMPO MINATO</h1>
+            </header>
+
+            <div id="stats">
+                <p>Tempo di Gioco: <output id="out1">NaN</output></p>
+                <p>Bandierine:     <output id="out2">NaN</output></p>
+            </div>
+
+            <div id="content">
+                <canvas id="canvas" width="720" height="420"></canvas>
+            </div>
+
+            <footer>
+                <h2>&copy; Buongallino Alessandro - Pascarella Luca - Solfanelli Simone</h2>
+            </footer>
+        </div>
+
+        <div id="fineV">
+            <h3>HAI VINTO!</h3>
+            <a href="tel.html"><button>Nuova Partita</button></a>
+        </div>
+
+        <div id="fineS">
+            <h3>HAI PERSO!</h3>
+            <a href="tel.html"><button>Riprova</button></a>
+        </div>
+
+        <div id="scelta">
+            <table>
+                <tr>
+                    <th><canvas id="c1" width="40" height="40"></canvas></th>
+                </tr>
+                <tr>
+                    <th><canvas id="c2" width="40" height="40"></canvas></th>
+                </tr>
+                <tr>
+                    <th><canvas id="c3" width="40" height="40"></canvas></th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

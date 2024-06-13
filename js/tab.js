@@ -33,9 +33,9 @@ function disegnaTabella(){
 }
 
 // INIZIALIZZAZIONE DI TUTTE LE VARIABILI UTILI PER DIMENSIONI, ECC.
-let X = 360
-let Y = 520
-let pixelCasella = 40
+let X = 720
+let Y = 420
+let pixelCasella = 30
 let nMatx = X/pixelCasella
 let nMaty = Y/pixelCasella
 let matrice = new Array()
@@ -64,19 +64,18 @@ function disegnaCella(){
                     ctx.fillStyle = "orange"
                     ctx.fillRect((j*pixelCasella), (i*pixelCasella), pixelCasella, pixelCasella)
                     // Disegnare il palo della bandiera
-                    // Disegnare il palo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+40);
+                    ctx.moveTo((j*pixelCasella)+7, (i*pixelCasella)+5);
+                    ctx.lineTo((j*pixelCasella)+7, (i*pixelCasella)+25);
                     ctx.lineWidth = 3;
                     ctx.strokeStyle = 'black';
                     ctx.stroke();
 
                     // Disegnare il triangolo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+35, (i*pixelCasella)+20);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+30);
+                    ctx.moveTo((j*pixelCasella)+7, (i*pixelCasella)+5);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+7, (i*pixelCasella)+15);
                     ctx.closePath();
                     ctx.fillStyle = 'red';
                     ctx.fill();
@@ -89,17 +88,17 @@ function disegnaCella(){
                 case -1:
                     // Disegnare il palo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+40);
+                    ctx.moveTo((j*pixelCasella)+7, (i*pixelCasella)+5);
+                    ctx.lineTo((j*pixelCasella)+7, (i*pixelCasella)+25);
                     ctx.lineWidth = 3;
                     ctx.strokeStyle = 'black';
                     ctx.stroke();
 
                     // Disegnare il triangolo della bandiera
                     ctx.beginPath();
-                    ctx.moveTo((j*pixelCasella)+15, (i*pixelCasella)+10);
-                    ctx.lineTo((j*pixelCasella)+35, (i*pixelCasella)+20);
-                    ctx.lineTo((j*pixelCasella)+15, (i*pixelCasella)+30);
+                    ctx.moveTo((j*pixelCasella)+7, (i*pixelCasella)+5);
+                    ctx.lineTo((j*pixelCasella)+20, (i*pixelCasella)+10);
+                    ctx.lineTo((j*pixelCasella)+7, (i*pixelCasella)+15);
                     ctx.closePath();
                     ctx.fillStyle = 'red';
                     ctx.fill();
@@ -109,7 +108,7 @@ function disegnaCella(){
                 case 1:
                     ctx.fillStyle = "lightgray"
 
-                    ctx.fillRect((j*pixelCasella)+5, (i*pixelCasella)+5, 30, 30)
+                    ctx.fillRect((j*pixelCasella)+5, (i*pixelCasella)+5, 20, 20)
 
                     ctx.lineWidth=4
 
@@ -134,7 +133,7 @@ function disegnaCella(){
                 case 4:
                     // Disegnare il corpo della bomba
                     ctx.beginPath();
-                    ctx.arc((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2), 12, 0, 2 * Math.PI);
+                    ctx.arc((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2), 8, 0, 2 * Math.PI);
                     ctx.fillStyle = 'black';
                     ctx.fill();
 
@@ -151,7 +150,7 @@ function disegnaCella(){
                     // Spikes - bottom
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+38);
+                    ctx.lineTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+28);
                     ctx.stroke();
                     
                     // Spikes - left
@@ -163,7 +162,7 @@ function disegnaCella(){
                     // Spikes - right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+38, (i*pixelCasella)+(pixelCasella/2));
+                    ctx.lineTo((j*pixelCasella)+28, (i*pixelCasella)+(pixelCasella/2));
                     ctx.stroke();
                     
                     // Spikes - top left
@@ -175,19 +174,19 @@ function disegnaCella(){
                     // Spikes - top right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+34, (i*pixelCasella)+6);
+                    ctx.lineTo((j*pixelCasella)+24, (i*pixelCasella)+6);
                     ctx.stroke();
                     
                     // Spikes - bottom left
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+6, (i*pixelCasella)+34);
+                    ctx.lineTo((j*pixelCasella)+6, (i*pixelCasella)+24);
                     ctx.stroke();
                     
                     // Spikes - bottom right
                     ctx.beginPath();
                     ctx.moveTo((j*pixelCasella)+(pixelCasella/2), (i*pixelCasella)+(pixelCasella/2));
-                    ctx.lineTo((j*pixelCasella)+34, (i*pixelCasella)+34);
+                    ctx.lineTo((j*pixelCasella)+24, (i*pixelCasella)+24);
                     ctx.stroke();
                     break
                 
@@ -199,51 +198,51 @@ function disegnaCella(){
                     if(bombe[i][j]!=0){
                         switch(bombe[i][j]){
                             case 1:
-                                ctx.font = "30px Arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "blue"
-                                ctx.fillText("1", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("1", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
 
                             case 2:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "green"
-                                ctx.fillText("2",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("2", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
                             
                             case 3:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "red"
-                                ctx.fillText("3",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("3", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
                             
                             case 4:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "#483D8B"
-                                ctx.fillText("4",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("4", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
                             
                             case 5:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "orange"
-                                ctx.fillText("5",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("5", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
 
                             case 6:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "yellow"
-                                ctx.fillText("6", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("6", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
 
                             case 7:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "#4682B4"
-                                ctx.fillText("7",  (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("7", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
 
                             case 8:
-                                ctx.font = "30px arial"
+                                ctx.font = "20px Arial"
                                 ctx.fillStyle = "black"
-                                ctx.fillText("8", (j*pixelCasella)+11, (i*pixelCasella)+30)
+                                ctx.fillText("8", (j*pixelCasella)+9, (i*pixelCasella)+22)
                                 break
                         }
                     }
@@ -256,7 +255,7 @@ function disegnaCella(){
 
 document.addEventListener("DOMContentLoaded", prePartita)
 
-let nBandiere = 18 //proporzionale al campo minato di google
+let nBandiere = 60 //proporzionale al campo minato di google
 
 function prePartita(){
     for(let i=0; i<nBandiere; i++){
