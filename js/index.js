@@ -32,17 +32,23 @@ if (/android/i.test(userAgent)) {
     window.location.href = 'PCmedio.html';
 }*/
 
-const userAgent = window.navigator.userAgent;
+const userAgent = navigator.userAgent || window.opera;
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const platform = navigator.platform;
 
-if (/Mobi|Android|iPad|iPhone/i.test(userAgent)) {
-    if (window.innerWidth > 800) {
-        // Tablet
-        window.location.href = "tab.html";
-    } else {
+console.log("User Agent: ", userAgent);
+console.log("Platform: ", platform);
+console.log("Is Touch Device: ", isTouchDevice);
+
+if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
+    console.log("Redirecting to PCmedio.html");
+    window.location.href = 'PCmedio.html';
+} else {
+    if (/Mobi|Android|iPhone/i.test(userAgent) && window.innerWidth < 800){
         // Telefono
         window.location.href = "tel.html";
+    } else {
+        // Tablet
+        window.location.href = "tab.html";
     }
-} else {
-    // Desktop PC
-    window.location.href = "PCmedio.html";
 }
