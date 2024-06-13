@@ -145,6 +145,7 @@ button {
     margin: 0;
     background-color: white;
     border: 1px solid black;
+    color: black;
     font-family: "Times New Roman", Times, Georgia, serif;
     font-weight: bold;
     font-size: 25px;
