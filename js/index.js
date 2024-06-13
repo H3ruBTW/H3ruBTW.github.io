@@ -34,7 +34,7 @@ if (/android/i.test(userAgent)) {
 
 const userAgent = window.navigator.userAgent;
 
-if (/Mobi|Android/i.test(userAgent)) {
+if (/Mobi|Android|iPad|iPhone/i.test(userAgent)) {
     if (window.innerWidth > 800) {
         // Tablet
         window.location.href = "tab.html";
