@@ -32,15 +32,17 @@ if (/android/i.test(userAgent)) {
     window.location.href = 'PCmedio.html';
 }*/
 
-/* FUNZIONI DI device.js */
-if(device.mobile()){
-    window.location.href = 'tel.html';
-}
+const userAgent = window.navigator.userAgent;
 
-if(device.tablet()){
-    window.location.href = 'tab.html';
-}
-
-if(device.desktop()){
-    window.location.href = 'PCmedio.html';
+if (/Mobi|Android/i.test(userAgent)) {
+    if (window.innerWidth > 800) {
+        // Tablet
+        window.location.href = "tab.html";
+    } else {
+        // Telefono
+        window.location.href = "tel.html";
+    }
+} else {
+    // Desktop PC
+    window.location.href = "PCmedio.html";
 }
