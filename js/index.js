@@ -1,4 +1,4 @@
-const userAgent = navigator.userAgent || window.opera;
+/*const userAgent = navigator.userAgent || window.opera;
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 const platform = navigator.platform;
 const maxTouchPoints = navigator.maxTouchPoints || 0;
@@ -29,5 +29,18 @@ if (/android/i.test(userAgent)) {
     window.location.href = 'tab.html';
 } else {
     console.log("Redirecting to PCmedio.html");
+    window.location.href = 'PCmedio.html';
+}*/
+
+/* FUNZIONI DI device.js */
+if(device.mobile()){
+    window.location.href = 'tel.html';
+}
+
+if(device.tablet()){
+    window.location.href = 'tab.html';
+}
+
+if(device.desktop()){
     window.location.href = 'PCmedio.html';
 }
