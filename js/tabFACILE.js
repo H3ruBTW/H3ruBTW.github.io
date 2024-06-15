@@ -33,8 +33,8 @@ function disegnaTabella(){
 }
 
 // INIZIALIZZAZIONE DI TUTTE LE VARIABILI UTILI PER DIMENSIONI, ECC.
-let X = canvas.getAttribute("width")
-let Y = canvas.getAttribute("height")
+let X = 700
+let Y = 400
 let pixelCasella = 50
 let nMatx = X/pixelCasella
 let nMaty = Y/pixelCasella
@@ -255,7 +255,7 @@ function disegnaCella(){
 
 document.addEventListener("DOMContentLoaded", prePartita)
 
-let nBandiere = 30 //proporzionale al campo minato di google
+let nBandiere = 15 //proporzionale al campo minato di google
 
 function prePartita(){
     for(let i=0; i<nBandiere; i++){
@@ -353,54 +353,31 @@ function prePartita(){
     disegnaTabella()
 }
 
-canvas.addEventListener("click", click)
+canvas.addEventListener("touchend", touchend)
 
-function click(event){
+let evento
+
+function touchend(event){
     const canvasArea = canvas.getBoundingClientRect()
-    let eventX = Math.floor((event.clientX - canvasArea.left)/pixelCasella)
-    let eventY = Math.floor((event.clientY - canvasArea.top)/pixelCasella)
-
-    console.log("Il click è avvenuto a: " + eventX + "/" + eventY);
+    let eventX = Math.floor((event.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
+    let eventY = Math.floor((event.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
 
     if(matrice[eventY][eventX]<2){
-        if(event.button === 0 && matrice[eventY][eventX]>-1){
-            //click sinistro
-            matrice[eventY][eventX]+=2
-            console.log("Sinistro");
+        console.log("Il touchend è avvenuto a: " + eventX + "/" + eventY);
 
-            if(matrice[eventY][eventX]==3)
-                fineGioco(false)
+        evento = event
 
-            if(bombe[eventY][eventX]==0 && matrice[eventY][eventX]==2)
-                espansione0(eventY, eventX)
-
-        } else if(event.button === 2){
-            //click destro
-            if(matrice[eventY][eventX]>=0){
-                if(nBandiere>0){
-                    matrice[eventY][eventX]-=2
-                    nBandiere--
-                    aggiornaBandiere()
-                }
-            } else {
-                matrice[eventY][eventX]+=2
-                nBandiere++
-                aggiornaBandiere()
-            }
-            console.log("destro");
-
-        }
+        scelta.hidden = false
+        scelta.style.left = (eventX*pixelCasella + canvasArea.left) + "px"
+        scelta.style.top = (eventY*pixelCasella + canvasArea.top + pixelCasella) + "px"
     }
 
-    disegnaTabella()
-
-    if(controlloDiGioco())
-        fineGioco(true)
+    
 }
 
 canvas.addEventListener("contextmenu", function(event) {
     event.preventDefault(); // Previene la visualizzazione del menu contestuale
-    click(event)
+    touchend(event)
 })
 
 
@@ -430,7 +407,7 @@ vitt.hidden = true
 scon.hidden = true
 
 function fineGioco(vittoria){
-    canvas.removeEventListener("click", click)
+    canvas.removeEventListener("touchend", touchend)
     clearInterval(id)
 
     if(!vittoria){
@@ -438,13 +415,13 @@ function fineGioco(vittoria){
             for(let j=0; j<nMatx; j++){
                 if(matrice[i][j]==1)
                     matrice[i][j]+=3
-                
+
                 if(matrice[i][j]==-2 || matrice[i][j]==-1)
                     matrice[i][j]-=2
             }
         }
         disegnaTabella()
-    }
+    }        
 
     setTimeout(function (){
         
@@ -689,3 +666,120 @@ function espansione0(i, j){
     } catch (error) {}
 }
 
+/* CELLE TELEFONO */
+let scelta = document.getElementById("scelta")
+let c1 = document.getElementById("c1")
+let c2 = document.getElementById("c2")
+let c3 = document.getElementById("c3")
+
+let ctx1 = c1.getContext('2d')
+let ctx2 = c2.getContext('2d')
+let ctx3 = c3.getContext('2d')
+
+scelta.hidden = true
+
+// Disegnare il palo della bandiera
+ctx1.beginPath();
+ctx1.moveTo(15, 10);
+ctx1.lineTo(15, 40);
+ctx1.lineWidth = 3;
+ctx1.strokeStyle = 'black';
+ctx1.stroke();
+
+// Disegnare il triangolo della bandiera
+ctx1.beginPath();
+ctx1.moveTo(15, 10);
+ctx1.lineTo(35, 20);
+ctx1.lineTo(15, 30);
+ctx1.closePath();
+ctx1.fillStyle = 'red';
+ctx1.fill();
+
+ctx2.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+ctx2.beginPath();
+ctx2.arc(20, 20, 10, 0, Math.PI * 2); // Draw a circle with radius 10 at the center (20, 20)
+ctx2.fillStyle = 'rgba(0, 0, 255, 0.5)'; // Set color and transparency
+ctx2.fill();
+ctx2.closePath();
+
+// Draw the cross lines
+ctx2.beginPath();
+ctx2.moveTo(20, 0); // Vertical line
+ctx2.lineTo(20, 40);
+ctx2.moveTo(0, 20); // Horizontal line
+ctx2.lineTo(40, 20);
+ctx2.strokeStyle = 'black';
+ctx2.stroke();
+ctx2.closePath();
+
+ctx3.fillStyle = "red"
+ctx3.strokeStyle = "white"
+
+ctx3.fillRect(0, 0, 40, 40)
+
+ctx3.lineWidth = 4
+
+ctx3.beginPath()
+ctx3.moveTo(5, 5)
+ctx3.lineTo(35, 35)
+ctx3.stroke()
+
+ctx3.beginPath()
+ctx3.moveTo(35, 5)
+ctx3.lineTo(5, 35)
+ctx3.stroke()
+
+c1.addEventListener("touchend", function(){
+    const canvasArea = canvas.getBoundingClientRect()
+    let eventX = Math.floor((evento.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
+    let eventY = Math.floor((evento.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
+
+    if(matrice[eventY][eventX]>=0){
+        if(nBandiere>0){
+            matrice[eventY][eventX]-=2
+            nBandiere--
+            aggiornaBandiere()
+        }
+    } else {
+        matrice[eventY][eventX]+=2
+        nBandiere++
+        aggiornaBandiere()
+    }
+    scelta.hidden = true
+    disegnaTabella()
+
+    if(controlloDiGioco())
+        fineGioco(true)
+
+})
+
+c2.addEventListener("touchend", function(){
+    const canvasArea = canvas.getBoundingClientRect()
+    let eventX = Math.floor((evento.changedTouches[0].clientX - canvasArea.left)/pixelCasella)
+    let eventY = Math.floor((evento.changedTouches[0].clientY - canvasArea.top)/pixelCasella)
+
+    if(matrice[eventY][eventX]>-1){
+
+        matrice[eventY][eventX]+=2
+
+        if(matrice[eventY][eventX]==3)
+            fineGioco(false)
+
+        if(bombe[eventY][eventX]==0 && matrice[eventY][eventX]==2)
+            espansione0(eventY, eventX)
+    } else {
+        matrice[eventY][eventX]+=2
+        nBandiere++
+        aggiornaBandiere()
+    }
+
+    scelta.hidden = true
+    disegnaTabella()
+
+    if(controlloDiGioco())
+        fineGioco(true)
+})
+
+c3.addEventListener("touchend", function(){
+    scelta.hidden = true
+})

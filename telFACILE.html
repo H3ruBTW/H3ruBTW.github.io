@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Campo Minato</title>
-        <link href="css/PC.css" rel="stylesheet">
-        <script src="js/PCfacile.js" defer></script>
+        <link href="css/tel.css" rel="stylesheet">
+        <script src="js/telFACILE.js" defer></script>
         <script src="js/bottone.js" defer></script>
     </head>
     <body>
@@ -14,20 +14,13 @@
                 <h1 id="title">CAMPO MINATO</h1>
             </header>
 
-            <div id="content">
-                <canvas id="canvas" width="720" height="480"></canvas>
-            </div>
-
             <div id="stats">
-                <h3>Statistiche di gioco</h3>
                 <p>Tempo di Gioco: <output id="out1">NaN</output></p>
                 <p>Bandierine:     <output id="out2">NaN</output></p>
             </div>
 
-            <div id="come">
-                <h3>Come Giocare</h3>
-                <p><img src="img/sinistro.png" width="30px"> PER SCOPRIRE LA CELLA</p>
-                <p><img src="img/destro.png" width="30px"> PER PIAZZARE LA BANDIERINA</p>
+            <div id="content">
+                <canvas id="canvas" width="315" height="495"></canvas>
             </div>
 
             <footer>
@@ -37,10 +30,26 @@
 
         <div id="fineV">
             <h3>HAI VINTO!</h3>
+            <a href="telFACILE.html"><button>Nuova Partita</button></a>
         </div>
 
         <div id="fineS">
             <h3>HAI PERSO!</h3>
+            <a href="telFACILE.html"><button>Riprova</button></a>
+        </div>
+
+        <div id="scelta">
+            <table>
+                <tr>
+                    <th><canvas id="c1" width="40" height="40"></canvas></th>
+                </tr>
+                <tr>
+                    <th><canvas id="c2" width="40" height="40"></canvas></th>
+                </tr>
+                <tr>
+                    <th><canvas id="c3" width="40" height="40"></canvas></th>
+                </tr>
+            </table>
         </div>
 
         <div id="scel">
@@ -49,9 +58,9 @@
         </div>
 
         <div id="diff">
-            <a href="PCfacile.html"><button>FACILE</button></a>
-            <a href="PCmedio.html"><button>MEDIO</button></a>
-            <a href="PCdifficile.html"><button>DIFFICILE</button></a>
+            <a href="telFACILE.html"><button>FACILE</button></a>
+            <a href="telMEDIO.html"><button>MEDIO</button></a>
+            <a href="telDIFFICILE.html"><button>DIFFICILE</button></a>
         </div>
     </body>
 </html>

@@ -46,9 +46,9 @@ if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
 } else {
     if (/Mobi|Android|iPhone/i.test(userAgent) && window.innerWidth < 800){
         // Telefono
-        window.location.href = "tel.html";
+        window.location.href = "telMEDIO.html";
     } else {
         // Tablet
-        window.location.href = "tab.html";
+        window.location.href = "tabMEDIO.html";
     }
 }
