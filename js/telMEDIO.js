@@ -784,18 +784,3 @@ c2.addEventListener("touchend", function(){
 c3.addEventListener("touchend", function(){
     scelta.hidden = true
 })
-
-let scel = document.getElementById("scel")
-let attivo = false
-let diff = document.getElementById("diff")
-diff.hidden = true
-
-scel.addEventListener("touchend", function(){
-    if(attivo){
-        diff.hidden = true
-        attivo = false
-    } else {
-        diff.hidden = false
-        attivo = true
-    }
-})

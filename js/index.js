@@ -44,7 +44,7 @@ if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
     console.log("Redirecting to PCmedio.html");
     window.location.href = 'PCmedio.html';
 } else {
-    if (/iPad/.test(userAgent) || (isTouchDevice && screen.width >= 1200 && !/Mobile/.test(userAgent))) {
+    if (/iPad/.test(userAgent) || (isTouchDevice && screen.width >= 1000 && !/Mobile/.test(userAgent))) {
         // Tablet (iPad or devices with large screen width)
         console.log("Redirecting to tabMEDIO.html");
         window.location.href = "tabMEDIO.html";
