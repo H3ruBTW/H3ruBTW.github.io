@@ -44,7 +44,7 @@ if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
     console.log("Redirecting to PCmedio.html");
     window.location.href = 'PCmedio.html';
 } else {
-    if (/Mobi|Android|iPhone/i.test(userAgent) && window.innerWidth < 800){
+    if (/Mobi|Android|iPhone/i.test(userAgent)){
         // Telefono
         window.location.href = "telMEDIO.html";
     } else {
