@@ -44,8 +44,8 @@ if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
     console.log("Redirecting to PCmedio.html");
     window.location.href = 'PCmedio.html';
 } else {
-    if (/iPad/.test(userAgent)) {
-        // Tablet (iPad)
+    if (/iPad/.test(userAgent) || (isTouchDevice && screen.width >= 1200 && !/Mobile/.test(userAgent))) {
+        // Tablet (iPad or devices with large screen width)
         console.log("Redirecting to tabMEDIO.html");
         window.location.href = "tabMEDIO.html";
     } else if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|BB10|Opera Mini|IEMobile|Mobile Safari/i.test(userAgent)) {
