@@ -44,11 +44,21 @@ if (!isTouchDevice && /Win|Mac|Linux/i.test(platform)) {
     console.log("Redirecting to PCmedio.html");
     window.location.href = 'PCmedio.html';
 } else {
-    if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|BB10|Opera Mini|IEMobile|Mobile Safari/i.test(userAgent)){
+    if (/iPad/.test(userAgent)) {
+        // Tablet (iPad)
+        console.log("Redirecting to tabMEDIO.html");
+        window.location.href = "tabMEDIO.html";
+    } else if (/iPhone|iPod|Android.*Mobile|Windows Phone|BlackBerry|BB10|Opera Mini|IEMobile|Mobile Safari/i.test(userAgent)) {
         // Telefono
+        console.log("Redirecting to telMEDIO.html");
         window.location.href = "telMEDIO.html";
+    } else if (/Android|Silk/.test(userAgent)) {
+        // Tablet (Android tablets or Amazon Silk browser)
+        console.log("Redirecting to tabMEDIO.html");
+        window.location.href = "tabMEDIO.html";
     } else {
-        // Tablet
+        // Default to tablet if we can't determine
+        console.log("Redirecting to tabMEDIO.html");
         window.location.href = "tabMEDIO.html";
     }
 }
