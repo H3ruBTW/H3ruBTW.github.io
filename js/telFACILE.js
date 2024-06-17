@@ -274,7 +274,7 @@ function prePartita(){
         }
     }
 
-    console.log(matrice);
+
 
     for(let i=0; i<nMaty; i++){
         for(let j=0; j<nMatx; j++){
@@ -349,7 +349,7 @@ function prePartita(){
         }
     }
 
-    console.log(bombe);
+
 
     disegnaTabella()
 }

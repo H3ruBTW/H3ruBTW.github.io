@@ -273,8 +273,6 @@ function prePartita(){
         }
     }
 
-    console.log(matrice);
-
     for(let i=0; i<nMaty; i++){
         for(let j=0; j<nMatx; j++){
             if(matrice[i][j]==1)
@@ -347,8 +345,6 @@ function prePartita(){
             } catch (error) {}
         }
     }
-
-    console.log(bombe);
 
     disegnaTabella()
 }
