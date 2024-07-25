@@ -124,7 +124,8 @@ output {
 #fineV h3, #fineS h3 {
     font-size: 40px;
     padding: auto;
-    margin-top: 23px;
+    margin-top: 10px;
+    margin-bottom: 13px;
 }
 
 #fineV a button, #fineS a button {
@@ -139,11 +140,11 @@ output {
     
 }
 
-a button:hover {
+#fineV a button:hover, #fineS a button:hover {
     background-color: rgb(180, 180, 180);
 }
 
-a button:active {
+#fineV a button:active, #fineS a button:active {
     background-color: rgb(125, 125, 125);
 }
 
