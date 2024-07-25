@@ -139,6 +139,14 @@ output {
     
 }
 
+a button:hover {
+    background-color: rgb(180, 180, 180);
+}
+
+ a button:active {
+    background-color: rgb(125, 125, 125);
+}
+
 #come {
     position: absolute;
     right: 5vmin;
