@@ -115,7 +115,7 @@ output {
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
-    height: 2200px; 
+    height: 200px; 
     background-color: white;
     border: 2px solid black;
     text-align: center;
