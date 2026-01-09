@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/gioco.css">
+    <script src="js/gioco.js" defer></script>
+    <title>Gioco Principale</title>
+</head>
+<body>
+    <div id="header">
+        <h1>Blackjack</h1>
+    </div>
+    <div id="campo">
+        <div id="banco">
+            <div id="carte"></div>
+            <img src="carte/back.png" width="50px" id="mazzo">
+        </div>
+        <div id="giocatore">
+            <div id="importo"><br><span></span></div>
+            <div id="mano" hidden></div>
+            <div id="soldi">
+                SOLDI DISPONIBILI<br><br>
+                <span></span><br><br>
+            </div>
+            <div id="puntata">
+                <br>
+                <button id="dec_100">-100</button>
+                <button id="dec_50">-50</button>
+                <button id="dec_10">-10</button>
+                <button id="place_bet">PUNTA</button>
+                <button id="inc_10">+10</button>
+                <button id="inc_50">+50</button>
+                <button id="inc_100">+100</button>
+            </div>
+            <div id="controlli" hidden>
+                <br>
+                <button id="hit">HIT</button>
+                <button id="stand">STAND</button>
+                <button id="double">DOUBLE</button>
+                <br><br>
+            </div>
+            <div id="next_game" hidden>
+                <button>PROSSIMA PARTITA</button>
+                <br><br>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="assicurazione_overlay">
+        <div id="assicurazione_box">
+            <p>Banco ha Asso scoperto.<br>Vuoi fare assicurazione (½ della puntata)?</p>
+            <button id="assicurazione_si">SI</button>
+            <button id="assicurazione_no">NO</button>
+        </div>
+    </div>
+
+    <div id="msg_vinto" class="msg_esito">HAI VINTO!</div>
+    <div id="msg_perso" class="msg_esito">HAI PERSO!</div>
+    <div id="msg_pareggio" class="msg_esito">PAREGGIO</div>
+</body>
+</html>
