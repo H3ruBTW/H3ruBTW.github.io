@@ -333,14 +333,14 @@ function start_player(){
     double_button = resettaEventiDouble()
 
     double_button.addEventListener("click", function(){
+        hit_button.disabled = true
+        stand_button.disabled = true
+        double_button.disabled = true
+
         //Raddoppia la puntata e pesca una carta sola
         soldi -= puntata
         puntata *= 2
         aggiornaSP()
-
-        hit_button.disabled = true
-        stand_button.disabled = true
-        double_button.disabled = true
 
         do {
             let seme = Math.floor(Math.random()*4)
@@ -351,8 +351,10 @@ function start_player(){
                 if(sommaCarte(carte_giocate_g) > 21){
                     mostraPerso()
                     end_game()
+                    break
                 } else {
                     start_dealer(false)
+                    break
                 }
             }
         } while(true)
