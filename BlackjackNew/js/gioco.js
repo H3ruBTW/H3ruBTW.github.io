@@ -195,71 +195,47 @@ function animaPescata(cartaImg, destinazioneId) {
     const destinazione = document.getElementById(destinazioneId);
     const mazzo = document.getElementById('mazzo');
     
-    requestAnimationFrame(() => {
-        // VIEWPORT + SCROLL sempre
-        const mazzoRect = mazzo.getBoundingClientRect();
-        const destRect = destinazione.getBoundingClientRect();
+    const mazzoRect = mazzo.getBoundingClientRect();
+    const destRect = destinazione.getBoundingClientRect();
+    
+    const zIndex = 1000 + pescateInCorso;
+    
+    cartaImg.style.position = 'fixed';
+    cartaImg.style.left = mazzoRect.left + window.scrollX + 'px';
+    cartaImg.style.top = mazzoRect.top + window.scrollY + 'px';
+    cartaImg.style.width = '50px';
+    cartaImg.style.height = '71px';
+    cartaImg.style.opacity = '0';
+    cartaImg.style.transform = `scale(0.5) rotate(-${pescateInCorso * 2}deg)`;
+    cartaImg.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    cartaImg.style.zIndex = zIndex;
+    
+    document.body.appendChild(cartaImg);
+    
+    setTimeout(() => {
+        cartaImg.style.opacity = '1';
         
-        const scrollX = window.pageXOffset;
-        const scrollY = window.pageYOffset;
+        // CENTRO del div destinazione (non sinistra!)
+        const centroDestX = destRect.left + (destRect.width / 2) - 25; // 25 = metà carta 50px
+        const centroDestY = destRect.top + (destRect.height / 2) - 35; // 35 = metà carta 71px
         
-        const zIndex = 1000 + pescateInCorso;
-        
-        // POSIZIONE ASSOLUTA mazzo (viewport + scroll)
-        const mazzoAbsX = mazzoRect.left + scrollX;
-        const mazzoAbsY = mazzoRect.top + scrollY;
-        
-        cartaImg.style.position = 'fixed';
-        cartaImg.style.left = mazzoAbsX + 'px';
-        cartaImg.style.top = mazzoAbsY + 'px';
-        cartaImg.style.width = '50px';
-        cartaImg.style.height = '71px';
-        cartaImg.style.opacity = '0';
-        cartaImg.style.zIndex = zIndex;
+        cartaImg.style.transform = `
+            scale(1) 
+            rotate(0deg) 
+            translateX(${(centroDestX - mazzoRect.left) + pescateInCorso * 5}px) 
+            translateY(${(centroDestY - mazzoRect.top)}px)
+        `;
+    }, 100);
+    
+    setTimeout(() => {
+        destinazione.appendChild(cartaImg);
+        cartaImg.style.position = 'static';
+        cartaImg.style.transform = 'none';
         cartaImg.style.transition = 'none';
-        cartaImg.style.transform = `scale(0.6) rotate(-${pescateInCorso * 3}deg)`;
-        
-        document.body.appendChild(cartaImg);
-        
-        requestAnimationFrame(() => {
-            // POSIZIONE ASSOLUTA destinazione
-            const destAbsX = destRect.left + scrollX + (destRect.width / 2) - 25;
-            const destAbsY = destRect.top + scrollY + (destRect.height / 2) - 35.5;
-            
-            // DELTA ESATTO (assoluto - assoluto = viewport puro)
-            const deltaX = destAbsX - mazzoAbsX;
-            const deltaY = destAbsY - mazzoAbsY;
-            
-            cartaImg.style.transition = 'all 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            cartaImg.style.opacity = '1';
-            cartaImg.style.transform = `
-                scale(1) 
-                rotate(0deg) 
-                translateX(${deltaX + pescateInCorso * 8}px) 
-                translateY(${deltaY}px)
-            `;
-        });
-        
-        setTimeout(() => {
-            destinazione.appendChild(cartaImg);
-            // Reset pulito
-            cartaImg.style.cssText = `
-                position: static;
-                left: auto;
-                top: auto;
-                width: auto;
-                height: 71.28px;
-                opacity: 1;
-                transform: none;
-                transition: none;
-                zIndex: auto;
-            `;
-            pescateInCorso++;
-        }, 950);
-    });
+        cartaImg.style.zIndex = 'auto';
+        cartaImg.style.height = '';
+    }, 900);
 }
-
-
 
 function getSrcCarta(seme, numero) {
     const semi = ['spades', 'hearts', 'diamonds', 'clubs'];
@@ -307,19 +283,26 @@ let double_button = controlli_div.querySelector("button#double")
 function start_player(){
     controlli_div.hidden = false
     
+    // Riabilita tutto all'inizio del turno
+    hit_button.disabled = false
+    stand_button.disabled = false
+    double_button.disabled = false
 
     if(soldi < puntata){
         double_button.disabled = true
     }
 
-    //Black Jack
+    // Blackjack naturale
     if(sommaCarte(carte_giocate_g) == 21){
+        controlli_div.hidden = true
         start_dealer(true)
+        return; // Esci dalla funzione per sicurezza
     }
 
+    // --- HIT ---
     hit_button = resettaEventiHit()
-
     hit_button.addEventListener("click", function(){
+        // 1. BLOCCO IMMEDIATO DI TUTTO
         hit_button.disabled = true
         stand_button.disabled = true
         double_button.disabled = true
@@ -329,42 +312,58 @@ function start_player(){
             let numero = Math.floor((Math.random()*13)+1)
             if(controllaCarte(seme, numero)){
                 carte_giocate_g.push([seme, numero])
+                
+                // Usiamo un timeout per riabilitare i bottoni solo DOPO che la carta è arrivata (es. 900ms)
+                // Ma nel tuo codice usi pescaCarta che ha già animazioni.
                 pescaCarta(seme, numero, "mano")
 
-                if(sommaCarte(carte_giocate_g) > 21){
-                    mostraPerso()
-                    end_game()
-                } else {
-                    hit_button.disabled = false
-                    stand_button.disabled = false
-                    if(soldi >= puntata){
-                        double_button.disabled = false
+                // Aspettiamo l'animazione della carta (circa 1 secondo) prima di riattivare o finire
+                setTimeout(() => {
+                    if(sommaCarte(carte_giocate_g) > 21){
+                        mostraPerso()
+                        end_game()
+                    } else {
+                        // RIABILITAZIONE SICURA
+                        hit_button.disabled = false
+                        stand_button.disabled = false
+                        if(soldi >= puntata){
+                            double_button.disabled = false
+                        }
                     }
-                }
+                }, 1000); // 1000ms = tempo sufficiente per l'animazione
 
                 break;
             }
         } while(true)  
     })
 
+    // --- STAND ---
     stand_button = resettaEventiStand()
-
     stand_button.addEventListener("click", function(){
-        //Passa al banco
-        start_dealer(false)
-    })
-
-    double_button = resettaEventiDouble()
-
-    double_button.addEventListener("click", function(){
-        //Raddoppia la puntata e pesca una carta sola
-        soldi -= puntata
-        puntata *= 2
-        aggiornaSP()
-
+        // 1. BLOCCO IMMEDIATO E TOTALE
         hit_button.disabled = true
         stand_button.disabled = true
         double_button.disabled = true
+        
+        controlli_div.hidden = true; // Spariscono i bottoni
+        start_dealer(false)
+    })
+
+    // --- DOUBLE ---
+    double_button = resettaEventiDouble()
+    double_button.addEventListener("click", function(){
+        // 1. BLOCCO IMMEDIATO E TOTALE
+        hit_button.disabled = true
+        stand_button.disabled = true
+        double_button.disabled = true
+        
+        // Non nascondiamo subito i bottoni qui, aspettiamo l'animazione o la logica
+        // Ma nel tuo caso vuoi farli sparire:
+        controlli_div.hidden = true; 
+
+        soldi -= puntata
+        puntata *= 2
+        aggiornaSP()
 
         do {
             let seme = Math.floor(Math.random()*4)
@@ -372,16 +371,23 @@ function start_player(){
             if(controllaCarte(seme, numero)){
                 carte_giocate_g.push([seme, numero])
                 pescaCarta(seme, numero, "mano")
-                if(sommaCarte(carte_giocate_g) > 21){
-                    mostraPerso()
-                    end_game()
-                } else {
-                    start_dealer(false)
-                }
+                
+                // Aspettiamo l'animazione prima di passare al dealer o finire
+                setTimeout(() => {
+                    if(sommaCarte(carte_giocate_g) > 21){
+                        mostraPerso()
+                        end_game()
+                    } else {
+                        start_dealer(false)
+                    }
+                }, 1000);
+
+                break;
             }
         } while(true)
     })
 }
+
 
 function resettaEventiHit() {
     const oldBtn = controlli_div.querySelector("button#hit");

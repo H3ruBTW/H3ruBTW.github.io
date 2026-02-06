@@ -1,69 +1,182 @@
-/* Reset e base NO SCROLL */
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #145214 0%, #022b02 45%, #001400 100%);
-  color: #f5f5f5;
-  line-height: 1.5;
-  position: relative;
+/* =========================================
+   RESET E TEMA GENERALE (Condiviso)
+   ========================================= */
+body {
+    padding: 0;
+    margin: 0;
+    /* Font elegante e moderno */
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    /* Lo stesso sfondo "Casino Felt" della pagina di gioco per coerenza */
+    background: radial-gradient(circle at center, #0e5c0e 0%, #002200 100%);
+    color: whitesmoke;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* =========================================
+   HEADER (Titolo Principale)
+   ========================================= */
 div#header {
-  width: 100%;
-  background: rgba(0, 51, 102, 0.95);
-  margin: 0;
-  padding: 12px 20px;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    width: 100%;
+    /* Sfondo scuro semitrasparente per staccare dal tavolo */
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border-bottom: 2px solid #daa520; /* Linea oro */
 }
 
 h1 {
-  color: #fff;
-  margin: 0;
-  font-size: clamp(22px, 5vw, 30px);
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    color: #ffd700; /* Oro */
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin: 0;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px black;
 }
 
+/* =========================================
+   CORPO CENTRALE (Il "Cartello" di benvenuto)
+   ========================================= */
 div#body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(37, 107, 175, 0.08);
+    text-align: center;
+    /* Effetto vetro scuro/pannello informativo */
+    background-color: rgba(0, 40, 0, 0.85);
+    margin-top: 50px;
+    padding: 50px;
+    color: whitesmoke;
+    
+    /* Layout a scheda elegante */
+    width: 80%;
+    max-width: 900px;
+    border: 4px solid #daa520; /* Bordo Oro */
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8); /* Ombra profonda */
+}
+
+h2 {
+    color: #ffd700;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* =========================================
+   TESTO DESCRITTIVO
+   ========================================= */
+div#text {
+    width: 80%;
+    margin: 0 auto 40px auto;
+}
+
+div#text p {
+    font-size: 1.2em;
+    line-height: 1.8; /* Migliora la leggibilità */
+    color: #e0e0e0;
+    text-align: justify; /* Testo ordinato */
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+}
+
+/* =========================================
+   BOTTONE "GIOCARE?" (Call to Action)
+   ========================================= */
+a {
+    text-decoration: none; /* Rimuove sottolineatura link */
 }
 
 button {
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  background: linear-gradient(135deg, #4a90e2, #357abd);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+    padding: 15px 60px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    /* Stile "Pulsante Start" */
+    background: linear-gradient(180deg, #32cd32 0%, #006400 100%);
+    border: 3px solid #ffd700;
+    border-radius: 50px; /* Arrotondato */
+    color: white;
+    
+    /* Effetti luce */
+    box-shadow: 0 0 20px rgba(50, 205, 50, 0.5);
+    transition: all 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #5aa7f0, #468fcf);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.05); /* Si ingrandisce */
+    background: linear-gradient(180deg, #44e844 0%, #008000 100%);
+    box-shadow: 0 0 40px rgba(50, 205, 50, 0.8), 0 0 10px #ffd700;
+    border-color: white;
 }
 
 button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transform: scale(0.95);
+    box-shadow: inset 0 0 10px black;
+}
+
+/* =========================================
+   AGGIUNTE PER HOMEPAGE RICCA
+   ========================================= */
+
+/* Decorazione Semi (Picche, Cuori, ecc) */
+.suits {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #daa520; /* Oro */
+    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    letter-spacing: 20px;
+}
+
+.suits span:nth-child(2), .suits span:nth-child(4) {
+    color: #b22222; /* Rosso per Cuori e Quadri */
+}
+
+/* Griglia per le regole */
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    text-align: left;
+}
+
+/* Box singoli (Regole / Valori) */
+.info-box {
+    flex: 1 1 300px; /* Si adattano ma non diventano minuscoli */
+    background: rgba(0, 0, 0, 0.3); /* Più scuro dello sfondo */
+    border: 1px solid rgba(218, 165, 32, 0.3); /* Bordo oro sottile */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.info-box h3 {
+    color: #ffd700;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.info-box ul {
+    list-style-type: none; /* Toglie i pallini standard */
+    padding: 0;
+}
+
+.info-box ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ddd;
+}
+
+.info-box ul li:last-child {
+    border-bottom: none;
+}
+
+.info-box strong {
+    color: white;
 }
