@@ -1,0 +1,414 @@
+html, body {
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+div#body {
+  height: calc(100vh - 70px) !important;
+  overflow: hidden !important;
+}
+
+/* Tavolo responsive */
+div#campo {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  padding: 25px 35px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+div#campo {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 35px;
+  box-sizing: border-box;
+}
+
+/* Banco e giocatore */
+div#banco,
+div#giocatore {
+  position: relative;
+  margin: 25px auto;
+  width: 100%;
+  max-width: 750px;
+  min-height: 120px;
+  background: radial-gradient(circle at top, #1a7a1a, #0a3a0a);
+  border-radius: 16px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 25px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+}
+
+div#banco::before {
+  content: "Banco";
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+div#giocatore::before {
+  content: "Giocatore";
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+/* Mazzo */
+div#banco img#mazzo {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 65px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Carte */
+div#carte,
+div#mano {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 85px;
+}
+
+.card {
+  width: 60px;
+  height: 85px;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.card.back {
+  background: linear-gradient(135deg, #333, #555);
+  color: transparent;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Punteggio */
+span {
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Puntata fichs - CENTRATI */
+div#puntata {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  margin: 20px 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#puntata button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #ffcc66 25%, #d48806 100%);
+  color: #222;
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.55);
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div#puntata button:hover {
+  filter: brightness(1.1);
+}
+
+div#puntata button:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.6);
+}
+
+div#puntata button#place_bet {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #4cd964 25%, #118c32 100%);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div#importo {
+  width: 160px;
+  height: 65px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  margin: 12px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Controlli - SEMPRE in fila + CENTRATI */
+div#controlli {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+div#controlli::-webkit-scrollbar {
+  display: none;
+}
+
+div#controlli button {
+  min-width: 105px;
+  height: 46px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, #0f7a0f, #045a04);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div#controlli button:hover {
+  background: linear-gradient(135deg, #14a014, #059a05);
+  transform: translateY(-2px);
+}
+
+div#controlli button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.7);
+}
+
+div#next_game {
+  margin-top: 30px;
+}
+
+div#next_game button {
+  width: auto;
+  height: 50px;
+  border-radius: 12px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Assicurazione - CENTRATI */
+#assicurazione_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+#assicurazione_overlay.mostra { display: flex; }
+
+#assicurazione_box {
+  background: radial-gradient(circle at top, #066d06, #033303);
+  border-radius: 16px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  padding: 25px 30px;
+  color: #fff;
+  text-align: center;
+  min-width: 280px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+}
+
+#assicurazione_box button {
+  margin: 12px;
+  width: 100px;
+  height: 42px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Messaggi esito */
+.msg_esito {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9000;
+}
+
+#msg_vinto { background: rgba(0, 170, 0, 0.98); }
+#msg_perso { background: rgba(210, 0, 0, 0.98); }
+#msg_pareggio { background: rgba(0, 0, 180, 0.98); }
+
+.msg_esito.mostra {
+  animation: fadeEsito 2.8s forwards;
+}
+
+@keyframes fadeEsito {
+  0% { opacity: 0; transform: translate(-50%, -15px) scale(0.9); }
+  10% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  70% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -15px) scale(0.9); }
+}
+
+/* CENTRAGGIO UNIVERSALE pulsanti gioco */
+div#campo button,
+div#controlli button,
+div#puntata button,
+div#next_game button,
+#assicurazione_box button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* RESPONSIVE MOBILE/TABLET */
+@media (max-width: 768px) {
+  div#campo {
+    padding: 20px 15px;
+    margin: 10px;
+  }
+  
+  div#banco,
+  div#giocatore {
+    max-width: 95vw;
+    padding: 12px 20px;
+    margin: 20px auto;
+    min-height: 110px;
+  }
+  
+  div#carte,
+  div#mano {
+    gap: 6px;
+    min-height: 75px;
+  }
+  
+  .card {
+    width: 52px;
+    height: 75px;
+    font-size: 18px;
+  }
+  
+  div#controlli {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  
+  div#controlli button {
+    min-width: 90px;
+    height: 42px;
+    font-size: 14px;
+  }
+  
+  div#puntata {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  div#puntata button {
+    width: 60px;
+    height: 60px;
+    font-size: 15px;
+  }
+  
+  div#puntata button#place_bet {
+    width: 85px;
+    height: 85px;
+    font-size: 18px;
+  }
+  
+  div#importo {
+    width: 140px;
+    height: 58px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  div#controlli button {
+    min-width: 85px;
+    font-size: 13px;
+  }
+}
+
