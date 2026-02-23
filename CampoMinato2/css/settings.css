@@ -1,0 +1,183 @@
+/* ================================
+   VARIABILI TEMA (settings)
+================================ */
+:root {
+    --bg-overlay-dim:  rgba(0, 0, 0, 0);
+    --bg-overlay-full: rgba(0, 0, 0, 0.5);
+    --bg-settings:     #97ff97;
+    --border-settings: #4CAF50;
+    --slider-track:    #4CAF50;
+    --slider-thumb:    #3e8e41;
+    --preset-color:    #2e7d32;
+    --preset-bg-act:   #4CAF50;
+    --preset-shadow:   rgba(76, 175, 80, 0.6);
+}
+
+body.dark {
+    --bg-overlay-full: rgba(0, 0, 0, 0.75);
+    --bg-settings:     #1e2e1e;
+    --border-settings: #3a7a3a;
+    --slider-track:    #3a7a3a;
+    --slider-thumb:    #255225;
+    --preset-color:    #a5d6a7;
+    --preset-bg-act:   #2d5a2d;
+    --preset-shadow:   rgba(76, 175, 80, 0.3);
+}
+
+/* ================================
+   OVERLAY
+================================ */
+div#background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: var(--bg-overlay-dim);
+    visibility: hidden;
+    pointer-events: none;
+    transition: background-color 0.4s ease;
+    z-index: 9999;
+}
+
+div#background.visible {
+    background-color: var(--bg-overlay-full);
+    visibility: visible;
+    pointer-events: auto;
+}
+
+div#settings_overlay {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    border: var(--border-settings) solid 2px;
+    border-radius: 25px;
+    background-color: var(--bg-settings);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+div#background.visible div#settings_overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+
+/* ================================
+   SLIDER
+================================ */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 5px;
+    background: var(--slider-track);
+    outline: none;
+    margin: 10px 0 20px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--slider-thumb);
+    cursor: pointer;
+    border: 2px solid rgb(95, 95, 95);
+}
+
+#mines_val.danger {
+    color: #ff4444;
+    -webkit-text-stroke: 1px rgb(150, 0, 0);
+}
+
+/* ================================
+   PRESET
+================================ */
+#preset_bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.preset {
+    padding: 6px 14px;
+    border: 2px solid var(--border-settings);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--preset-color);
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.preset:hover {
+    background-color: var(--preset-bg-act);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.preset.active {
+    background-color: var(--preset-bg-act);
+    color: white;
+    box-shadow: 0 0 8px var(--preset-shadow);
+}
+
+/* ================================
+   TOGGLE DARK MODE
+================================ */
+.toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--preset-color);
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background-color: #ccc;
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--preset-bg-act);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(24px);
+}
+

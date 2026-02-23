@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/gioco.css">
+    <script src="js/settings.js" defer></script>
+    <script src="js/game.js" defer></script>
+    <link rel="icon" href="img/icon.ico">
+</head>
+<body>
+    <header>
+        <a href="index.html"><button id="go_back">←</button></a>
+        <button id="settings"><p>Impostazioni</p></button>
+        <h1>Campo Minato 2.0</h1>
+    </header>
+
+    <div id="content">
+        <div id="topbar">
+            <span id="bandiere">🚩 0 / 0</span>
+            <span class="separator">|</span>
+            <span id="timer">⏱️ 00:00</span>
+            <span class="separator">|</span>
+            <button id="restart">🔄</button>
+        </div>
+
+        <table id="grid"></table>
+    </div>
+    
+    <footer>
+        <p>Campo Minato 2.0 - Progetto di Programmazione Web<br>
+            Creato da: Buongallino Alessandro<br>
+            Tutti i diritti riservati &copy; 2026
+        </p>
+    </footer>
+    <div id="background" class="hidden">
+        <div id="settings_overlay">
+            <div id="settings_content">
+                <h2>Impostazioni di gioco</h2>
+
+                <div id="preset_bar">
+                    <button class="preset" data-rows="5"  data-cols="5"  data-percent="5">😊 Facile+</button>
+                    <button class="preset" data-rows="9"  data-cols="9"  data-percent="10">🙂 Facile</button>
+                    <button class="preset" data-rows="12" data-cols="22" data-percent="15">😐 Medio</button>
+                    <button class="preset" data-rows="16" data-cols="30" data-percent="20">😬 Difficile</button>
+                    <button class="preset" data-rows="20" data-cols="40" data-percent="30">😈 Incubo</button>
+                    <button class="preset" data-rows="30" data-cols="60" data-percent="40">💀 Incubo+</button>
+                </div>
+                
+                <label for="rows">Righe: <span id="rows_val">12</span></label>
+                <input type="range" id="rows" name="rows" min="5" max="30" value="12"><br><br>
+
+                <label for="cols">Colonne: <span id="cols_val">12</span></label>
+                <input type="range" id="cols" name="cols" min="5" max="60" value="12"><br><br>
+
+                <label for="mines">Percentuale mine: <span id="mines_val">10</span>%</label>
+                <input type="range" id="mines" name="mines" min="5" max="40" value="10"><br><br>
+
+                <label>
+                    🌙 Tema scuro
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dark_toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </label><br><br>
+
+                <button id="save_settings"><p>Salva impostazioni</p></button>
+                <button id="close_settings"><p>Chiudi</p></button>
+            </div>
+        </div>
+    </div>
+
+    <img id="explosion" src="img/explosion.gif" alt="Esplosione" hidden>
+
+    <div id="game_over">
+        <h1>Game Over</h1>
+        <h1 id="msg"></h1>
+    </div>
+</body>
+</html>

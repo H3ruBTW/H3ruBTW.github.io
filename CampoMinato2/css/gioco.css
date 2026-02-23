@@ -1,0 +1,236 @@
+/* ================================
+   VARIABILI TEMA (gioco)
+================================ */
+:root {
+    --cell-bg:         #6fff6f;
+    --cell-border:     #3a843c;
+    --cell-hover:      #4cd74c;
+    --cell-active:     #449b47;
+    --cell-revealed:   #e0ffe0;
+    --gameover-bg:     #73ff78e8;
+    --gameover-border: #6fff6f;
+    --gameover-title:  #6fff6f;
+    --gameover-shadow: rgba(111, 255, 111, 0.4);
+}
+
+body.dark {
+    --cell-bg:         #2d5a2d;
+    --cell-border:     #1a3a1a;
+    --cell-hover:      #3a7a3a;
+    --cell-active:     #255225;
+    --cell-revealed:   #1e2e1e;
+    --gameover-bg:     #1a3a1ae8;
+    --gameover-border: #2d5a2d;
+    --gameover-title:  #73ff78;
+    --gameover-shadow: rgba(45, 90, 45, 0.6);
+}
+
+/* ================================
+   BOTTONI NAVIGAZIONE
+================================ */
+button#go_back {
+    position: absolute;
+    top: 25px; left: 20px;
+    width: 50px; height: 50px;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+    border: 3px solid whitesmoke;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    -webkit-text-stroke: 0px !important;
+    transform: translateY(0px);
+}
+
+button#go_back:hover {
+    border: 3px solid rgb(210, 210, 210);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    transform: translateY(-3px);
+    color: rgb(210, 210, 210);
+}
+
+button#settings {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 130px; height: 60px;
+    padding: 0;
+    font-size: 16px;
+    color: white;
+    border: 3px solid whitesmoke;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    transform: translateY(0px);
+}
+
+button#settings:hover {
+    border: 3px solid rgb(210, 210, 210);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    transform: translateY(-3px);
+    color: rgb(210, 210, 210);
+}
+
+/* ================================
+   TOPBAR
+================================ */
+#topbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#topbar .separator { opacity: 0.4; }
+
+#topbar #restart {
+    background: none;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+    font-size: 18px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#topbar #restart:hover { transform: rotate(180deg); }
+
+/* ================================
+   GRIGLIA
+================================ */
+div#content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#grid { border-collapse: collapse; table-layout: fixed; }
+
+#grid td {
+    border: 1px solid var(--cell-border);
+    background-color: var(--cell-bg);
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    overflow: hidden;
+    box-sizing: border-box;
+    line-height: 1;
+    font-size: 0.8em;
+}
+
+#grid td:hover { background-color: var(--cell-hover); transition: background-color 0s; }
+#grid td:active { background-color: var(--cell-active); }
+
+#grid td.scoperta {
+    background-color: var(--cell-revealed);
+    cursor: default;
+    -webkit-text-stroke: 0px !important;
+    animation: revealCell 0.3s ease forwards;
+}
+
+#grid td.mina     { background-color: #ff4444; }
+#grid td.bandiera { background-color: #ffcc00; }
+#grid td.mina-cliccata { background-color: #ff0000 !important; }
+
+/* ================================
+   ANIMAZIONE SCOPERTA
+================================ */
+@keyframes revealCell {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ================================
+   COLORI NUMERI MINE
+================================ */
+#grid td[data-mines="1"] { color: #0000FF; }
+#grid td[data-mines="2"] { color: #008000; }
+#grid td[data-mines="3"] { color: #FF0000; }
+#grid td[data-mines="4"] { color: #000080; }
+#grid td[data-mines="5"] { color: #800000; }
+#grid td[data-mines="6"] { color: #008080; }
+#grid td[data-mines="7"] { color: #000000; }
+#grid td[data-mines="8"] { color: #808080; }
+
+/* ================================
+   ESPLOSIONE
+================================ */
+#explosion {
+    position: fixed;
+    width: 80px; height: 80px;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+}
+
+/* ================================
+   PANNELLO GAME OVER / VITTORIA
+================================ */
+div#game_over {
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 420px;
+    height: auto;
+    padding: 40px 30px;
+    background-color: var(--gameover-bg);
+    border-radius: 30px;
+    border: 3px solid var(--gameover-border);
+    color: white;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 30px var(--gameover-shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+div#game_over.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+div#game_over h1:first-child {
+    font-size: 2em;
+    color: var(--gameover-title);
+    margin-bottom: 10px;
+}
+
+div#game_over #msg {
+    font-size: 1.5em;
+    color: white;
+}
+
+div#game_over.sco {
+    background-color: rgb(190, 1, 1) !important;
+    border: #800000 solid 3px !important;
+}
+
+div#game_over.sco h1:first-child {
+    font-size: 2em;
+    color: rgb(255, 0, 0);
+    margin-bottom: 10px;
+}
+
+@keyframes shakeGrid {
+    0%   { transform: translateX(0); }
+    15%  { transform: translateX(-8px); }
+    30%  { transform: translateX(8px); }
+    45%  { transform: translateX(-6px); }
+    60%  { transform: translateX(6px); }
+    75%  { transform: translateX(-3px); }
+    90%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+}
+
+#grid.shake {
+    animation: shakeGrid 0.5s ease;
+}

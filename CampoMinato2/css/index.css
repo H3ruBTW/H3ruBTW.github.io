@@ -1,0 +1,72 @@
+/* ================================
+   VARIABILI TEMA (index)
+================================ */
+:root {
+    --bg-card:        #97ff97;
+    --border-card:    #4CAF50;
+    --border-card-h:  #45a049;
+}
+
+body.dark {
+    --bg-card:        #1e2e1e;
+    --border-card:    #3a7a3a;
+    --border-card-h:  #4CAF50;
+}
+
+/* ================================
+   CARD GIOCA / IMPOSTAZIONI
+================================ */
+div#contenitore {
+    display: flex;
+    gap: 50px;
+}
+
+div#div_gioca, div#div_impostazioni {
+    flex: 1;
+    border: var(--border-card) solid 2px;
+    border-radius: 25px;
+    padding: 40px;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-card);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+div#div_gioca:hover, div#div_impostazioni:hover {
+    border-color: var(--border-card-h);
+    transform: translateY(-4px);
+}
+
+div#div_gioca > *, div#div_impostazioni > * {
+    margin: 10px 0;
+}
+
+/* ================================
+   CARD STATISTICHE
+================================ */
+div#div_stats {
+    border: var(--border-card) solid 2px;
+    border-radius: 25px;
+    padding: 40px;
+    width: 640px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px 30px;
+    background-color: var(--bg-card);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+div#div_stats:hover {
+    border-color: var(--border-card-h);
+    transform: translateY(-4px);
+}
+
+div#div_stats p { font-size: 1em; margin: 5px 0; }

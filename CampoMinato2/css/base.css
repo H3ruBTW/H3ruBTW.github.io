@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
+/* ================================
+   VARIABILI TEMA
+================================ */
+:root {
+    --bg-body:        #e0ffe0;
+    --bg-hr:          #e4fce4;
+    --bg-header:      linear-gradient(90deg, #73ff78, #4CAF50, #73ff78);
+    --bg-btn:         #4CAF50;
+    --bg-btn-hover:   #45a049;
+    --bg-btn-active:  #3e8e41;
+    --border-btn:     rgb(95, 95, 95);
+    --color-text:     #ffffff;
+    --stroke-text:    rgb(95, 95, 95);
+}
+
+body.dark {
+    --bg-body:        #1a1a1a;
+    --bg-hr:          #2a2a2a;
+    --bg-header:      linear-gradient(90deg, #1a3a1a, #2d5a2d, #1a3a1a);
+    --bg-btn:         #2d5a2d;
+    --bg-btn-hover:   #3a7a3a;
+    --bg-btn-active:  #255225;
+    --border-btn:     rgb(60, 60, 60);
+    --color-text:     #e0e0e0;
+    --stroke-text:    rgb(30, 30, 30);
+}
+
+/* ================================
+   RESET
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================================
+   BASE
+================================ */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--color-text);
+    -webkit-text-stroke: 1px var(--stroke-text);
+}
+
+h2 { margin-bottom: 40px; }
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: var(--bg-hr);
+    margin: 20px 0;
+}
+
+/* ================================
+   LAYOUT
+================================ */
+header {
+    background: var(--bg-header);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+footer {
+    background: var(--bg-header);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+div#content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ================================
+   BOTTONI
+================================ */
+button {
+    background-color: var(--bg-btn);
+    color: white;
+    padding: 20px 30px;
+    border: 1px solid var(--border-btn);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Orbitron', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--bg-btn-hover);
+    transform: translateY(-4px);
+}
+
+button:active {
+    background-color: var(--bg-btn-active);
+    transition: none;
+}
