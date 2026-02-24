@@ -44,9 +44,6 @@ body {
     background-color: var(--bg-body);
     color: var(--color-text);
     -webkit-text-stroke: 1px var(--stroke-text);
-    -webkit-user-select: none; /* Safari / Chrome vecchi */
-    -ms-user-select: none;     /* IE 10-11 */
-    user-select: none;    
 }
 
 h2 { margin-bottom: 40px; }
@@ -56,6 +53,11 @@ hr {
     height: 2px;
     background-color: var(--bg-hr);
     margin: 20px 0;
+}
+
+::selection {
+    background: transparent;
+    color: inherit;
 }
 
 /* ================================

@@ -384,9 +384,3 @@ function avviaTimer() {
 function fermaTimer() {
   clearInterval(timerInterval);
 }
-
-
-
-document.addEventListener('mousedown', function(e) {
-  e.preventDefault();
-});
