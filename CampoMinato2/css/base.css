@@ -60,6 +60,11 @@ hr {
     color: inherit;
 }
 
+*::-moz-selection {
+    background: transparent !important;
+    color: inherit;
+}
+
 /* ================================
    LAYOUT
 ================================ */
