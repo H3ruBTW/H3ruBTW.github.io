@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scopa Online - Pagina di gioco</title>
+        <link rel="stylesheet" href="assets/styles/game_style.css">
+        <link rel="icon" href="assets/images/logo.png">
+        <script src="assets/js/game.js" defer></script>
+        <meta name="robots" content="noindex">
+    </head>
+
+    <body>
+        
+        <header class="site_header">
+            <a href="index.html" class="site_title" title="Vai alla home"><b>SCOPA</b></a>
+            <hr class="divider">
+            <nav class="nav_bar">
+                <ul class="list_reset nav_list">
+                    <li>
+                        <a href="index.html">Homepage</a>
+                    </li>
+                    <li>
+                        <a href="gioco.html">Partita Singolo</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+
+        <main id="main">
+            <div class="div_bot">
+                <div id="bot" class="bot_carte">
+                    
+                </div>
+                <div class="bot_mazzetto">
+                    <div class="mazzetto_vuoto">
+
+                    </div>
+                    <span id="counterBot">0</span>
+                </div>
+            </div>
+            <div class="div_banco">
+                <div id="banco_c" class="banco_carte">
+
+                </div>
+                <div id="banco_m" class="banco_mazzo">
+                    <img src="assets/images/carte/retro.jpg" alt="retro_carta" class="carta">
+                    <span id="counterBanco">40</span>
+                </div>
+            </div>
+            <div class="div_giocatore">
+                <div class="gioc_table">
+                    <div id="giocatore" class="gioc_carte">
+
+                    </div>
+                    <div class="gioc_mazzetto">
+                        <div class="mazzetto_vuoto">
+
+                        </div>
+                        <span id="counterG">0</span>
+                    </div>
+                </div>
+                
+                <div id="options" class="gioc_control">
+                    <button id="confirm" class="play_button" disabled>Conferma</button>
+                </div>
+            </div>
+            <div class="div_options">
+                <h2>Multiopzione</h2>
+                <p>Scegli un opzione di presa tra le seguenti:</p>
+                <div id="opzioni" class="opzioni-wrap">
+
+                </div>
+            </div>
+            <div id="scopa_g" class="div_scopa">
+                <h2>Scopa</h2>
+                <p>Hai effettuato una scopa</p>
+            </div>
+            <div id="scopa_b" class="div_scopa">
+                <h2>Scopa</h2>
+                <p>Il bot ha effettuato una scopa</p>
+            </div>
+
+            <div id="inizio" class="dissolvenza div_inizio">
+                <h2></h2>
+            </div>
+
+            <div id="endgame" class="div_end_game">
+                <h2>Partita terminata</h2>
+                <p id="vincitore" style="font-size: 1.3em;"></p>
+
+                <div class="points">
+                    <div id="pointsg">
+                    <p><b>I tuoi punti</b></p>
+                    </div>
+                    <div id="pointsb">
+                    <p><b>Punti computer</b></p>
+                    </div>
+                </div>
+
+                <div id="storico-mani"></div>
+                <div id="endgame-actions"></div>
+            </div>
+        </main>
+            
+
+        <footer class="site_footer">
+            <div>
+                <p>&copy; 2026 Buongallino Alessandro <br>All rights reserved.</p>
+            </div>
+            <hr class="divider">
+            <div>
+                <ul class="list_reset">
+                <li>
+                    <a href="index.html">Homepage</a>
+                </li>
+                <li>
+                    <a href="gioco.html">Gioco Singolo</a>
+                </li>
+            </ul>
+            </div>
+            <div>
+                
+            </div>
+        </footer>
+        
+    </body>
+
+</html>

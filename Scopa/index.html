@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scopa Online - Homepage</title>
+    <meta name="description" content="Gioca a Scopa online gratis contro il bot. Scopri le regole, prova la modalità partita singola o match a 11 punti e usa l'anteprima delle prese per pianificare ogni mossa.">
+    <link rel="stylesheet" href="assets/styles/home_style.css">
+    <link rel="icon" href="assets/images/logo.png">
+</head>
+
+<body>
+    <header class="site_header">
+        <a href="index.html" class="site_title" title="Vai alla home"><b>SCOPA</b></a>
+        <hr class="divider">
+        <nav class="nav_bar">
+            <ul class="list_reset nav_list">
+                <li>
+                    <a href="index.html" title="Pagina Home">Homepage</a>
+                </li>
+                <li>
+                    <a href="gioco.html" title="Pagina di gioco">Partita Singolo</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="under_header">
+        <ul class="list_reset under_nav_list">
+            <li>
+                <a href="#introduzione" title="Scorre verso l'introduzione">Introduzione</a>
+            </li>
+            <li>
+                <a href="#regole" title="Scorre verso le regole">Regole</a>
+            </li>
+            <li>
+                <a href="#funzionalita" title="Scorre verso le funzionalità">Funzionalità</a>
+            </li>
+            <li>
+                <a href="#gioca" title="Scorre verso il pulsante gioca">Gioca</a>
+            </li>
+        </ul>
+    </div>
+
+    <main>
+        <h1 class="main-title">La scopa On-Line</h1>
+
+        <section id="introduzione" class="sections">
+            <h2>Cos'è la Scopa?</h2>
+            <p>
+                La Scopa è uno dei giochi di carte più antichi e amati della tradizione italiana.
+                Nata nel Settecento a Napoli, si gioca con un mazzo da 40 carte diviso in quattro semi:
+                denari, coppe, spade e bastoni.
+            </p>
+            <p>
+                L'obiettivo è raccogliere più punti possibile catturando le carte sul tavolo,
+                puntando in particolare al <strong>settebello</strong> — il 7 di denari —
+                e cercando di fare <strong>scopa</strong>: svuotare il tavolo con una sola mossa.
+            </p>
+        </section>
+
+        <section id="regole" class="sections">
+            <h2>Regole del gioco</h2>
+
+            <h3>Distribuzione</h3>
+            <p>
+                All'inizio vengono distribuite 3 carte a ciascun giocatore e 4 carte vengono
+                posizionate scoperte sul tavolo. Quando entrambi i giocatori esauriscono le carte
+                in mano, ne vengono distribuite altre 3 a testa, fino a terminare il mazzo da 40.
+            </p>
+
+            <h3>Come si prende</h3>
+            <p>
+                A turno, ogni giocatore gioca una carta dalla propria mano. Se sul tavolo esiste
+                una carta con lo stesso valore, la si cattura. Se non c'è una corrispondenza diretta,
+                si può prendere una combinazione di carte il cui valore sommato è uguale alla carta
+                giocata. Se non è possibile prendere nulla, la carta giocata rimane sul tavolo.
+            </p>
+
+            <h3>La Scopa</h3>
+            <p>
+                Se una giocata svuota completamente il tavolo, si realizza una <strong>scopa</strong>,
+                che vale 1 punto bonus. Le carte rimaste sul tavolo alla fine della partita
+                vanno al giocatore che ha effettuato l'ultima presa.
+            </p>
+
+            <h3>Come si calcolano i punti</h3>
+            <ul>
+                <li><strong>Scope</strong> — 1 punto per ogni scopa realizzata</li>
+                <li><strong>Carte</strong> — 1 punto a chi ha raccolto più di 20 carte</li>
+                <li><strong>Denari</strong> — 1 punto a chi ha più di 5 carte di denari</li>
+                <li><strong>Settebello</strong> — 1 punto a chi ha il 7 di denari</li>
+                <li><strong>Primiera</strong> — 1 punto a chi ha la miglior combinazione di una carta per seme</li>
+                <li><strong>Napoleone</strong> — punti bonus se raccogli una sequenza di denari a partire da asso, due e tre</li>
+            </ul>
+        </section>
+
+        <section id="funzionalita" class="sections">
+            <h2>Funzionalità del gioco</h2>
+
+            <h3>Modalità disponibili</h3>
+            <p>
+                Puoi giocare una partita singola oppure affrontare un match a più mani con obiettivo
+                di punteggio, così da rendere la sfida più lunga e strategica.
+            </p>
+
+            <h3>Anteprima prese</h3>
+            <p>
+                Quando selezioni una carta, il gioco evidenzia le prese disponibili sul tavolo.
+                Se esistono più combinazioni, l'anteprima ti aiuta a capire subito le alternative possibili.
+            </p>
+
+            <h3>Storico e riepilogo</h3>
+            <p>
+                Alla fine di ogni mano puoi consultare il riepilogo dei punti e lo storico del match,
+                con andamento mano per mano e totale cumulativo contro il bot.
+            </p>
+
+            <h3>Bot strategico</h3>
+            <p>
+                Il bot non gioca in modo casuale: valuta prese, denari, settebello, primiera,
+                scope e gestione delle carte per scegliere la mossa più vantaggiosa.
+            </p>
+        </section>
+
+        <section id="gioca" class="sections">
+            <h2>Inizia a giocare</h2>
+            <p>
+                Sfida il bot e metti alla prova la tua strategia. Puoi scegliere una partita veloce
+                oppure un match più lungo, controllare i punteggi di ogni mano e sfruttare
+                l'anteprima delle prese per pianificare meglio le tue mosse.
+            </p>
+            <a href="gioco.html" class="button_center">
+                <button class="play_button">Gioca Ora</button>
+            </a>
+        </section>
+    </main>
+
+    <footer class="site_footer">
+        <div>
+            <p>&copy; 2026 Buongallino Alessandro <br>All rights reserved.</p>
+        </div>
+        <hr class="divider">
+        <div>
+            <ul class="list_reset">
+                <li>
+                    <a href="#introduzione">Introduzione</a>
+                </li>
+                <li>
+                    <a href="#regole">Regole</a>
+                </li>
+                <li>
+                    <a href="#funzionalita">Funzionalità</a>
+                </li>
+                <li>
+                    <a href="gioco.html">Gioca</a>
+                </li>
+            </ul>
+        </div>
+        <div></div>
+    </footer>
+</body>
+</html>

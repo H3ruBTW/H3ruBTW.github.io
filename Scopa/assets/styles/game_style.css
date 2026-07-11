@@ -1,0 +1,594 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    background: linear-gradient(90deg, #1a3d1a 0%, #2d6a2d 50%, #1a3d1a 100%);
+    color: white;
+    font-family: 'Cinzel', sans-serif;
+    touch-action: manipulation;
+}
+
+.site_header {
+    width: 100%;
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 40%, #4CAF50 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
+    justify-content: space-between;
+    gap: 1.5em;
+}
+
+.divider {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ffffff;
+    margin: 0;
+}
+
+.site_title {
+    font-size: 2em;
+    text-decoration: none !important;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:active {
+    color: rgb(153, 152, 152);
+    text-decoration: underline; 
+}
+
+.nav_list{
+    display: flex;
+    gap:2em;
+    font-size: 1.2em;
+    justify-content: space-between;
+}
+
+.list_reset {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site_footer {
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 40%, #1b5e20 100%);
+    flex-direction: column;
+    gap:1em;
+} 
+
+
+@media screen and (min-width: 640px){
+
+    .site_footer .divider {
+        display: none;
+    }
+
+    .site_footer {
+        flex-direction: row;
+        padding: 2em;
+        height: 10em;
+        align-items: flex-start;
+    }
+
+    .site_footer div{
+        flex: 1 1 calc(33% - 2em);
+        margin: 0;
+    }
+
+    
+    .site_footer ~ p {
+        margin: 0;
+    }
+
+    .div_end_game {
+        width: 600px !important;
+    }
+
+    .points {
+        flex-direction: row !important;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .points > * {
+        width: 45%;
+        text-align: left;
+    }
+
+    .win #points_g {
+        border-right: 3px solid #409243;
+        border-bottom: 0px !important;
+    }
+
+    .lose #points_g {
+        border-right: 3px solid rgb(117, 0, 0);
+        border-bottom: 0px !important;
+    }
+
+    .draw #points_g {
+        border-right: 3px solid #484848;
+        border-bottom: 0px !important;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 980px) {
+    
+    
+}
+
+/*CON MOUSE*/
+@media screen and (min-width: 640px) and (hover: hover) and (pointer: fine) {
+
+    a:hover{
+        color: rgb(185, 185, 185);
+        text-decoration: underline; 
+        cursor: pointer;
+    }
+
+    .play_button:hover:enabled {
+        background-color: #d3d3d3 !important;
+        color:#4CAF50 !important;
+    }
+
+    .lose button:hover {
+        background-color: rgb(117, 0, 0) !important;
+    }
+
+    .draw button:hover {
+        background-color: #484848 !important;
+    }
+}
+
+main {
+    position: relative;
+}
+
+.carta {
+    width: 50px;
+    height: calc(50px*35/22);
+    border-radius: 5px;
+    
+}
+
+.toanimate {
+    position: absolute;
+}
+
+.toplay {
+    cursor: pointer;
+}
+
+.selected {
+    border: 2px solid #00fbff;
+}
+
+.highlighted {
+    border: 2px solid gold;
+}
+
+.div_bot {
+    width: 95vw;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid #2e7d32;
+    border-bottom: transparent;
+    background-color: rgba(255,255,255,0.1);
+    height: 120px;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bot_carte {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    min-width: 170px;
+    justify-content: end;
+}
+
+.bot_mazzetto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.div_banco {
+    width: 95vw;
+    border: 1px solid #2e7d32;
+    background-color: rgba(255,255,255,0.1);
+    border-top: transparent;
+    border-bottom: transparent;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.banco_carte {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-left: 5px;
+    min-width: 230px;
+}
+
+.banco_mazzo {
+    display: flex;
+    align-items: center;
+    padding-right: 5px;
+    gap: 5px;
+}
+
+.div_giocatore {
+    width: 95vw;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid #2e7d32;
+    border-top: transparent;
+    background-color: rgba(255,255,255,0.1);
+    height: 204px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.gioc_carte {
+    display: flex;
+    justify-content: end;
+    gap: 10px;  
+    min-width: 170px;
+}
+
+.gioc_table {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gioc_mazzetto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.mazzetto_vuoto {
+    width: 50px;
+    height: calc(50px*35/22);
+    border-radius: 5px;
+    background-color: rgba(255,255,255,0.1);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    margin: 1em
+}
+
+.play_button {
+    padding: 0.75em 1.5em;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: "cinzel", sans-serif;
+    background-color: #b8b8b8;
+    border: white 1px solid;
+}
+
+.play_button:enabled{
+    background-color: #4CAF50;
+}
+
+.play_button:disabled {
+    background-color: #b8b8b8;
+    cursor: not-allowed;
+}
+
+.play_button:enabled:active {
+    background-color: #b8b8b8;
+}
+
+.div_options {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 300px;
+    min-height: 400px;
+    align-items: center;
+    text-align: center;
+    visibility: hidden;
+}
+
+.opzioni-wrap {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.div_inizio {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 300px;
+    min-height: 200px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.div_scopa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 300px;
+    min-height: 200px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.div_scopa#scopa_g {
+    background-color: #4CAF50;
+}
+
+.div_scopa#scopa_b {
+    background-color: rgb(164, 0, 0);
+}
+
+@keyframes dissolvenza {
+    0% {opacity: 1;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.dissolvenza {
+    animation: dissolvenza ease 3s;
+}
+
+.div_end_game {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: min(92vw, 900px);
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: stretch;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.win {
+    background-color:#4CAF50 !important;
+}
+
+.lose {
+    background-color: rgb(164, 0, 0) !important;
+}
+
+.draw {
+    background-color: #606060 !important;
+}
+
+#points_g {
+    padding-bottom: 10px;
+}
+
+.win #points_g {
+    border-bottom: 3px solid #409243;
+}
+
+.lose #points_g {
+    border-bottom: 3px solid rgb(117, 0, 0);
+}
+
+.draw #points_g {
+    border-bottom: 3px solid #484848;
+}
+
+.lose button {
+    background-color: rgb(125, 0, 0) !important;
+}
+
+.lose button:active {
+    background-color: rgb(99, 0, 0) !important;
+}
+
+.draw button {
+    background-color: #535353 !important;
+}
+
+.draw button:active {
+    background-color: #3f3f3f !important;
+}
+
+.fadein {
+    animation: fadein ease-out 1s forwards;
+    pointer-events: all;
+}
+
+@keyframes fadein {
+    0% {opacity: 0;}
+    50% {opacity: 0.75;}
+    100% {opacity: 1;}
+}
+
+/*
+.points {
+    display: flex;
+    justify-content: space-evenly;
+    gap:10px;
+    width: inherit;
+    padding: 10px;
+}
+
+.points > * {
+    width: 45%;
+    text-align: left;
+}*/
+
+.points {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 10px;
+    width: 100%;
+}
+
+.points > * {
+    min-width: 0;
+}
+
+#pointsg,
+#pointsb,
+#storico-mani,
+.riepilogo-dettaglio,
+.storico-item,
+.storico-colonna {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+#endgame-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.points h3 {
+    margin-bottom: 0.5em;
+    padding-bottom: 0.25em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    font-size: 1.2em;
+}
+
+@keyframes volaAlBanco {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(var(--tx), var(--ty)); }
+}
+
+.vola-al-banco {
+    position: absolute;
+    animation: volaAlBanco 1s ease-out forwards;
+}
+
+@keyframes volaAllaMano {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(var(--tx), var(--ty)); }
+}
+
+.vola-alla-mano {
+    position: absolute;
+    animation: volaAllaMano 0.5s ease-in-out forwards;
+}
+
+.riepilogo-dettaglio p {
+    margin: 6px 0;
+}
+
+.storico-item {
+    margin: 16px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.storico-dettagli {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.storico-colonna {
+    flex: 1;
+}
+
+.storico-colonna p {
+    margin: 4px 0;
+}
+
+.highlight-cycle {
+    outline: 3px solid #ffd54a;
+    box-shadow: 0 0 10px rgba(255, 213, 74, 0.9);
+    transform: translateY(-4px);
+    transition: all 0.25s ease;
+    animation: pulseHighlight 0.9s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+    from {
+        box-shadow: 0 0 6px rgba(255, 213, 74, 0.5);
+    }
+    to {
+        box-shadow: 0 0 16px rgba(255, 213, 74, 1);
+    }
+}
