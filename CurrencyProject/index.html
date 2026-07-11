@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="App React per il cambio valuta con preferiti"
+        />
+        <meta name="theme-color" content="#14181c" />
+
+        <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="./apple-touch-icon.png"
+        />
+        <link
+            rel="mask-icon"
+            href="./mask-icon.svg"
+            color="#14181c"
+        />
+
+        <title>Currency Exchange</title>
+    </head>
+    <body>
+        <span id="preferred-theme" hidden></span>
+        <div id="root"></div>
+
+        <script>
+            (function () {
+                let preferred = "light";
+
+                if (
+                    window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                    preferred = "dark";
+                }
+
+                document.getElementById("preferred-theme").textContent = preferred;
+            })();
+        </script>
+
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
+</html>
