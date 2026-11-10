@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Completa alla Programmazione Java</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252526;
+            --bg-code: #1e1e1e;
+            --text-primary: #d4d4d4;
+            --text-secondary: #9cdcfe;
+            --accent: #4ec9b0;
+            --border: #3e3e42;
+            --keyword: #569cd6;
+            --string: #ce9178;
+            --comment: #6a9955;
+            --number: #b5cea8;
+            --function: #dcdcaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--accent);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: var(--accent);
+            margin: 50px 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: var(--text-secondary);
+            margin: 35px 0 20px 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        em {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 30px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .code-block {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 25px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-header {
+            background: var(--bg-secondary);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-header::before {
+            content: "☕";
+            font-size: 1.2em;
+        }
+
+        pre {
+            margin: 0;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        p code, li code {
+            background: var(--bg-secondary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--string);
+            font-size: 0.9em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        th {
+            background: var(--bg-code);
+            color: var(--accent);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: var(--bg-code);
+        }
+
+        .note {
+            background: rgba(78, 201, 176, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: var(--accent);
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .toc ul {
+            margin-left: 20px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        /* Syntax highlighting personalizzato */
+        .hljs {
+            background: var(--bg-code);
+            color: var(--text-primary);
+        }
+
+        .hljs-keyword {
+            color: var(--keyword);
+            font-weight: bold;
+        }
+
+        .hljs-string {
+            color: var(--string);
+        }
+
+        .hljs-comment {
+            color: var(--comment);
+            font-style: italic;
+        }
+
+        .hljs-number {
+            color: var(--number);
+        }
+
+        .hljs-title.function_ {
+            color: var(--function);
+        }
+
+        .hljs-built_in {
+            color: var(--text-secondary);
+        }
+
+        .hljs-type {
+            color: var(--accent);
+        }
+
+        .hljs-variable {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            pre {
+                padding: 15px;
+                font-size: 0.85em;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>☕ Guida Completa alla Programmazione Java</h1>
+            <p class="subtitle">Appunti del corso - ITS Angelo Rizzoli</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="toc">
+            <h3>📚 Indice dei Contenuti</h3>
+            <ul>
+                <li><a href="#intro">1. Introduzione a Java e Ambiente di Sviluppo</a></li>
+                <li><a href="#basi">2. Basi di Java: Tipi, Variabili e Operatori</a></li>
+                <li><a href="#controllo">3. Controllo di Flusso: Condizioni e Cicli</a></li>
+                <li><a href="#strutture">4. Strutture Dati</a></li>
+                <li><a href="#oop">5. Fondamenti della Programmazione Orientata agli Oggetti</a></li>
+                <li><a href="#interfacce">6. Interfacce, Classi Astratte e Classi Annidate</a></li>
+                <li><a href="#eccezioni">7. Gestione delle Eccezioni e Debugging</a></li>
+                <li><a href="#package">8. Package e Maven</a></li>
+                <li><a href="#generics">9. Generics e Iterator</a></li>
+                <li><a href="#io">10. Input/Output</a></li>
+            </ul>
+        </div>
+
+        <section id="intro" class="section">
+            <h2>1. Introduzione a Java e Ambiente di Sviluppo</h2>
+            
+            <h3>Cos'è la Programmazione</h3>
+            <p>La <strong>programmazione</strong> è il processo di ideazione, progettazione e costruzione di programmi informatici volti alla risoluzione di problemi o allo svolgimento di computazioni. La programmazione comprende diverse fasi:</p>
+            <ul>
+                <li>Analisi del problema</li>
+                <li>Generazione di algoritmi</li>
+                <li>Studio dell'accuratezza e del consumo di risorse</li>
+                <li>Implementazione (fase nota come <strong>coding</strong>)</li>
+            </ul>
+
+            <h3>Paradigmi di Programmazione</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paradigma</th>
+                        <th>Caratteristiche</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Procedurale</td>
+                        <td>Sequenze di istruzioni e funzioni che operano su dati</td>
+                    </tr>
+                    <tr>
+                        <td>Object Oriented (OOP)</td>
+                        <td>Organizza il codice in oggetti con stato e comportamento</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Java: Caratteristiche Principali</h3>
+            <p>Java è un linguaggio di programmazione:</p>
+            <ul>
+                <li><strong>Alto livello</strong>: sintassi comprensibile e astratta dall'hardware</li>
+                <li><strong>Orientato agli oggetti</strong>: modella il software tramite classi e oggetti</li>
+                <li><strong>Tipizzazione statica</strong>: i tipi vengono controllati a compile-time</li>
+            </ul>
+
+            <h4>Storia di Java</h4>
+            <ul>
+                <li>Creato da James Gosling alla Stanford University agli inizi degli anni '90</li>
+                <li>1992: nasce il linguaggio <strong>Oak</strong> (quercia) sviluppato da Sun Microsystems</li>
+                <li>Nome successivamente cambiato in <strong>Java</strong> (varietà di caffè indonesiana)</li>
+                <li>2010: Sun Microsystems acquisita da Oracle</li>
+            </ul>
+
+            <h4>Vantaggi di Java</h4>
+            <ul>
+                <li><strong>Portabilità</strong>: esegue su diverse piattaforme senza modifiche</li>
+                <li><strong>Sicurezza</strong>: gestione della memoria e controlli di tipo avanzati</li>
+                <li><strong>Gestione errori</strong>: sistema di eccezioni robusto</li>
+                <li><strong>Popolarità</strong>: uno dei linguaggi più usati per applicazioni enterprise</li>
+                <li><strong>Versatilità</strong>: sviluppo desktop, mobile (Android), web, server</li>
+            </ul>
+
+            <h3>Bytecode e Compilazione</h3>
+            <p>Il <strong>bytecode</strong> è il linguaggio intermedio tra il codice sorgente Java e la JVM:</p>
+            <ul>
+                <li>File <code>.java</code> → compilatore <code>javac</code> → <strong>bytecode</strong> (file <code>.class</code>)</li>
+                <li>Viene eseguito dalla JVM su qualsiasi piattaforma</li>
+                <li>Consente la portabilità del codice (<em>"Write Once, Run Anywhere"</em>)</li>
+            </ul>
+
+            <h3>Java Virtual Machine (JVM)</h3>
+            <p>La JVM è il cuore dell'ecosistema Java:</p>
+            <ul>
+                <li><strong>Interpreta ed esegue</strong> il bytecode</li>
+                <li>Gestisce la memoria dinamica con la <strong>Garbage Collection</strong></li>
+                <li>Rimuove automaticamente oggetti inutilizzati dalla memoria</li>
+                <li>Garantisce la portabilità del codice Java</li>
+                <li>Supporta altri linguaggi (Kotlin, Scala, Groovy)</li>
+            </ul>
+
+            <h3>Compilatore, Interprete e JIT</h3>
+            <p>Java utilizza un approccio <strong>ibrido</strong>:</p>
+            <ol>
+                <li><strong>Compilazione</strong>: il codice sorgente viene compilato in bytecode</li>
+                <li><strong>Interpretazione</strong>: la JVM interpreta il bytecode riga per riga</li>
+                <li><strong>JIT (Just-In-Time) Compiler</strong>: compila "a caldo" le parti di bytecode più utilizzate in codice nativo ottimizzato per massimizzare le performance</li>
+            </ol>
+            <p>Questo approccio combina la portabilità dell'interpretazione con le prestazioni della compilazione nativa.</p>
+
+            <h3>Componenti dell'Ecosistema Java</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Descrizione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>JVM</td>
+                        <td>Macchina virtuale che esegue il bytecode</td>
+                    </tr>
+                    <tr>
+                        <td>JRE</td>
+                        <td>JVM + librerie standard, sufficiente per eseguire programmi</td>
+                    </tr>
+                    <tr>
+                        <td>JDK</td>
+                        <td>JRE + strumenti di sviluppo (javac, debugger, ecc.)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>JVM (Java Virtual Machine)</h4>
+            <p>La macchina virtuale che esegue bytecode.</p>
+
+            <h4>JRE (Java Runtime Environment)</h4>
+            <ul>
+                <li>JVM + librerie standard di Java</li>
+                <li>File di supporto necessari per eseguire il codice</li>
+                <li><strong>Sufficiente per l'utente finale</strong> che vuole solo eseguire programmi</li>
+                <li>Non include strumenti per sviluppare nuove applicazioni</li>
+            </ul>
+
+            <h4>JDK (Java Development Kit)</h4>
+            <ul>
+                <li>JRE + strumenti di sviluppo completi</li>
+                <li>Compilatore (<code>javac</code>), debugger, strumenti di profiling</li>
+                <li><strong>Necessario per gli sviluppatori</strong> che vogliono creare applicazioni</li>
+                <li>Permette di scrivere, compilare ed eseguire codice Java</li>
+            </ul>
+
+            <h3>Oracle JDK vs OpenJDK</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Caratteristica</th>
+                        <th>OpenJDK</th>
+                        <th>Oracle JDK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Licenza</td>
+                        <td>GPL (open source)</td>
+                        <td>Commerciale</td>
+                    </tr>
+                    <tr>
+                        <td>Costo</td>
+                        <td>Gratuito per qualsiasi uso</td>
+                        <td>Gratuito solo per dev/test</td>
+                    </tr>
+                    <tr>
+                        <td>Supporto</td>
+                        <td>Community</td>
+                        <td>Commerciale Oracle</td>
+                    </tr>
+                    <tr>
+                        <td>Aggiornamenti</td>
+                        <td>Community</td>
+                        <td>Contratti di supporto</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">Esempio: Hello World</div>
+                <pre><code class="language-java">public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Benvenuto in Java!");
+    }
+}</code></pre>
+            </div>
+
+            <h3>Introduzione al Debugging</h3>
+            <p>Il <strong>debugging</strong> è il processo di identificazione e risoluzione dei bug (errori nel codice che causano comportamenti inattesi).</p>
+
+            <h4>Strumenti Principali</h4>
+            <ol>
+                <li><code>System.out.println()</code> per debugging basilare</li>
+                <li>Debugger integrato nell'IDE</li>
+                <li>Logger per applicazioni complesse</li>
+            </ol>
+
+            <h3>Debugging in IntelliJ IDEA</h3>
+
+            <h4>1. Impostare Breakpoint</h4>
+            <ul>
+                <li>Click sul margine sinistro della linea di codice (appare un punto rosso)</li>
+                <li>Shortcut: <code>Ctrl+F8</code> (Windows/Linux) o <code>Cmd+F8</code> (Mac)</li>
+                <li>Click destro sul breakpoint per condizioni avanzate</li>
+            </ul>
+
+            <h4>2. Avviare il Debug</h4>
+            <ul>
+                <li>Click sull'icona del bug verde (o seleziona "Debug" invece di "Run")</li>
+                <li>Shortcut: <code>Shift+F9</code> (Windows/Linux) o <code>Ctrl+D</code> (Mac)</li>
+            </ul>
+
+            <h4>3. Controlli di Esecuzione</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Step Over (<code>F8</code>)</td>
+                        <td>Esegue la linea corrente</td>
+                    </tr>
+                    <tr>
+                        <td>Step Into (<code>F7</code>)</td>
+                        <td>Entra nel metodo</td>
+                    </tr>
+                    <tr>
+                        <td>Step Out (<code>Shift+F8</code>)</td>
+                        <td>Esce dal metodo corrente</td>
+                    </tr>
+                    <tr>
+                        <td>Resume (<code>F9</code>)</td>
+                        <td>Continua fino al prossimo breakpoint</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>4. Ispezione Variabili</h4>
+            <p>Durante il debug è possibile:</p>
+            <ul>
+                <li>Visualizzare lo <strong>stack di chiamate</strong></li>
+                <li>Ispezionare i <strong>valori delle variabili</strong></li>
+                <li>Valutare <strong>espressioni</strong> al volo</li>
+                <li>Modificare valori durante l'esecuzione</li>
+            </ul>
+        </section>
+
+        <section id="basi" class="section">
+            <h2>2. Basi di Java: Tipi, Variabili e Operatori</h2>
+            
+            <h3>Tipi di Dato Primitivi</h3>
+            <p>I tipi primitivi sono i mattoni fondamentali di Java. Non sono oggetti e risiedono nello <strong>stack</strong> per massima efficienza.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Dimensione</th>
+                        <th>Range</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>byte</code></td>
+                        <td>8 bit</td>
+                        <td>-128 a 127</td>
+                    </tr>
+                    <tr>
+                        <td><code>short</code></td>
+                        <td>16 bit</td>
+                        <td>-32,768 a 32,767</td>
+                    </tr>
+                    <tr>
+                        <td><code>int</code></td>
+                        <td>32 bit</td>
+                        <td>-2,147,483,648 a 2,147,483,647</td>
+                    </tr>
+                    <tr>
+                        <td><code>long</code></td>
+                        <td>64 bit</td>
+                        <td>±9 × 10<sup>18</sup> circa</td>
+                    </tr>
+                    <tr>
+                        <td><code>float</code></td>
+                        <td>32 bit</td>
+                        <td>Singola precisione (7 cifre)</td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td>64 bit</td>
+                        <td>Doppia precisione (15 cifre)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">Dichiarazione di variabili</div>
+                <pre><code class="language-java">// Tipi numerici
+int numero = 10;
+float decimale = 3.14f;
+double precisione = 3.14159265359;
+long grande = 9223372036854775807L;
+
+// Altri tipi
+boolean flag = true;
+char carattere = 'C';
+String testo = "Hello World";
+
+// Auto-boxing
+Integer oggetto = 42;       // int → Integer
+int primitivo = oggetto;    // Integer → int</code></pre>
+            </div>
+
+            <h3>Conversioni tra Tipi</h3>
+            <h4>Auto-boxing</h4>
+            <p>Conversione automatica tra tipi primitivi e <strong>wrapper classes</strong> (classi involucro):</p>
+            <div class="code-block">
+                <div class="code-header">Auto-boxing e unboxing</div>
+                <pre><code class="language-java">int primitivo = 42;
+Integer oggetto = primitivo;       // auto-boxing: int → Integer
+int nuovoPrimitivo = oggetto;      // unboxing: Integer → int</code></pre>
+            </div>
+
+            <h4>Casting Esplicito</h4>
+            <p>Conversione forzata tra tipi compatibili:</p>
+            <div class="code-block">
+                <div class="code-header">Casting</div>
+                <pre><code class="language-java">double decimale = 3.14;
+int intero = (int) decimale;       // casting: 3.14 → 3 (troncamento)</code></pre>
+            </div>
+
+            <h3>Variabili</h3>
+            <p>Le variabili sono contenitori per dati che hanno un <strong>tipo</strong>, un <strong>nome</strong> e un <strong>valore</strong>.</p>
+
+            <h4>Regole di Naming</h4>
+            <ol>
+                <li>Devono iniziare con una lettera (o <code>_</code> o <code>$</code>)</li>
+                <li>Possono contenere lettere, numeri e underscore</li>
+                <li>Sono <strong>case-sensitive</strong>: <code>nome</code> ≠ <code>Nome</code></li>
+                <li>Non possono essere parole riservate di Java (<code>int</code>, <code>class</code>, <code>public</code>, ecc.)</li>
+            </ol>
+
+            <h3>Operatori</h3>
+            <h4>Operatori Aritmetici</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operatore</th>
+                        <th>Operazione</th>
+                        <th>Esempio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>+</code></td>
+                        <td>Somma</td>
+                        <td><code>5 + 3</code> → <code>8</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-</code></td>
+                        <td>Sottrazione</td>
+                        <td><code>5 - 3</code> → <code>2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Moltiplicazione</td>
+                        <td><code>5 * 3</code> → <code>15</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Divisione</td>
+                        <td><code>5 / 3</code> → <code>1</code> (intera)</td>
+                    </tr>
+                    <tr>
+                        <td><code>%</code></td>
+                        <td>Modulo (resto)</td>
+                        <td><code>5 % 3</code> → <code>2</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">Esempi di operatori</div>
+                <pre><code class="language-java">int a = 10, b = 3;
+
+int somma = a + b;          // 13
+int differenza = a - b;     // 7
+int prodotto = a * b;       // 30
+int quoziente = a / b;      // 3 (divisione intera)
+int resto = a % b;          // 1 (modulo)
+
+// Operatori di incremento/decremento
+int x = 5;
+x++;                        // x = 6 (post-incremento)
+++x;                        // x = 7 (pre-incremento)
+x--;                        // x = 6 (post-decremento)
+--x;                        // x = 5 (pre-decremento)</code></pre>
+            </div>
+
+            <h4>Operatori di Confronto</h4>
+            <p>Ritornano sempre un valore <strong>boolean</strong> (<code>true</code> o <code>false</code>):</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operatore</th>
+                        <th>Significato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>==</code></td>
+                        <td>Uguale</td>
+                    </tr>
+                    <tr>
+                        <td><code>!=</code></td>
+                        <td>Diverso</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;</code></td>
+                        <td>Minore</td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;</code></td>
+                        <td>Maggiore</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;=</code></td>
+                        <td>Minore o uguale</td>
+                    </tr>
+                    <tr>
+                        <td><code>&gt;=</code></td>
+                        <td>Maggiore o uguale</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">Esempio confronto</div>
+                <pre><code class="language-java">boolean confronto = (10 > 5);      // true</code></pre>
+            </div>
+
+            <h4>Operatori Logici</h4>
+            <p>Utilizzati per combinare espressioni booleane:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Operatore</th>
+                        <th>Significato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&amp;&amp;</code></td>
+                        <td>AND (vero se entrambi veri)</td>
+                    </tr>
+                    <tr>
+                        <td><code>||</code></td>
+                        <td>OR (vero se almeno uno vero)</td>
+                    </tr>
+                    <tr>
+                        <td><code>!</code></td>
+                        <td>NOT (inverte il valore)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-block">
+                <div class="code-header">Esempio operatori logici</div>
+                <pre><code class="language-java">boolean risultato = (5 > 3) && (2 < 4);    // true</code></pre>
+            </div>
+
+            <h3>Input e Output</h3>
+            <h4>Output</h4>
+            <p>Per stampare output sulla console:</p>
+            <div class="code-block">
+                <div class="code-header">System.out</div>
+                <pre><code class="language-java">System.out.println("Testo con a capo");
+System.out.print("Testo senza a capo");</code></pre>
+            </div>
+
+            <h4>Input con Scanner</h4>
+            <p>La classe <code>Scanner</code> permette di leggere input dall'utente:</p>
+            <div class="code-block">
+                <div class="code-header">Lettura input da tastiera</div>
+                <pre><code class="language-java">import java.util.Scanner;
+
+public class InputExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Inserisci il tuo nome:");
+        String nome = scanner.nextLine();
+        
+        System.out.println("Inserisci la tua età:");
+        int eta = scanner.nextInt();
+        
+        System.out.println("Ciao " + nome + "! Hai " + eta + " anni.");
+        
+        scanner.close();
+    }
+}</code></pre>
+            </div>
+
+            <h3>Struttura Base di un Progetto Java</h3>
+            <div class="note">
+                <pre style="background: rgba(0,0,0,0.2); padding: 15px; margin: 10px 0; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">src/
+├── main/
+│   ├── java/          # Codice sorgente
+│   ├── resources/     # File di configurazione, properties
+│   └── webapp/        # File web (per applicazioni web)
+└── test/
+    └── java/          # Test unitari</pre>
+            </div>
+
+            <h3>Maven</h3>
+            <p><strong>Maven</strong> è uno strumento di build automation e gestione delle dipendenze creato da Apache. Il nome "Maven" viene dall'Yiddish e significa "accumulatore di conoscenza".</p>
+
+            <h4>Caratteristiche Principali</h4>
+            <ul>
+                <li>Gestione automatica delle dipendenze</li>
+                <li>Build automation con ciclo di vita standard</li>
+                <li>Struttura di progetto convenzionale</li>
+                <li>Repository centrale per librerie</li>
+                <li>File di configurazione <code>pom.xml</code></li>
+            </ul>
+
+            <h4>Struttura Progetto Maven</h4>
+            <div class="note">
+                <strong>Nota:</strong> È buona pratica chiudere lo <code>Scanner</code> con <code>close()</code> per liberare risorse, ma attenzione a non chiudere <code>System.in</code> in applicazioni complesse.
+            </div>
+        </section>
+
+        <section id="controllo" class="section">
+            <h2>3. Controllo di Flusso: Condizioni e Cicli</h2>
+            
+            <h3>Istruzioni Condizionali</h3>
+            
+            <h4>if</h4>
+            <p>Esegue un blocco di codice solo se la condizione è <code>true</code>:</p>
+            <div class="code-block">
+                <div class="code-header">if semplice</div>
+                <pre><code class="language-java">int numero = 5;
+
+if (numero > 0) {
+    System.out.println("Il numero è positivo");
+}</code></pre>
+            </div>
+
+            <h4>if-else</h4>
+            <p>Gestisce due percorsi di esecuzione mutuamente esclusivi:</p>
+            <div class="code-block">
+                <div class="code-header">if-else</div>
+                <pre><code class="language-java">int numero = -3;
+
+if (numero >= 0) {
+    System.out.println("Non è negativo");
+} else {
+    System.out.println("Il numero è negativo");
+}</code></pre>
+            </div>
+
+            <h4>if-else if-else</h4>
+            <p>Gestisce più casi ordinati. <strong>L'ordine delle condizioni è critico</strong>: la prima condizione <code>true</code> viene eseguita, le altre vengono saltate.</p>
+            <div class="code-block">
+                <div class="code-header">if-else-if</div>
+                <pre><code class="language-java">int numero = 25;
+
+if (numero > 0) {
+    System.out.println("Positivo");
+} else if (numero < 0) {
+    System.out.println("Negativo");
+} else {
+    System.out.println("Zero");
+}
+
+// Operatore ternario
+String risultato = (numero % 2 == 0) ? "Pari" : "Dispari";
+System.out.println(risultato);</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Attenzione all'ordine:</strong>
+                <div class="code-block" style="margin-top: 10px;">
+                    <div class="code-header">Ordine scorretto</div>
+                    <pre><code class="language-java">int numero = 25;
+
+if (numero >= 0) {
+    System.out.println("Poco");      // Eseguito per 25!
+} else if (numero > 20) {
+    System.out.println("Tanto");     // Mai raggiunto
+} else {
+    System.out.println("Negativo");
+}</code></pre>
+                </div>
+            </div>
+
+            <h4>switch-case</h4>
+            <p>Alternativa più leggibile a catene di <code>if</code> su valori discreti:</p>
+            <div class="code-block">
+                <div class="code-header">switch-case</div>
+                <pre><code class="language-java">int giorno = 3;
+
+switch (giorno) {
+    case 1:
+        System.out.println("Lunedì");
+        break;
+    case 2:
+        System.out.println("Martedì");
+        break;
+    case 3:
+        System.out.println("Mercoledì");
+        break;
+    case 4:
+        System.out.println("Giovedì");
+        break;
+    case 5:
+        System.out.println("Venerdì");
+        break;
+    default:
+        System.out.println("Weekend!");
+}</code></pre>
+            </div>
+
+            <p><strong>Importante:</strong> il <code>break</code> è fondamentale per evitare il <em>fall-through</em> (esecuzione dei case successivi).</p>
+
+            <h3>Blocchi di Codice e Scope</h3>
+            <p>Un blocco di codice è delimitato da parentesi graffe <code>{ }</code>:</p>
+            <ul>
+                <li>Introduce uno <strong>scope</strong>: variabili dichiarate nel blocco sono visibili solo lì</li>
+                <li>Previene collisioni di nomi</li>
+                <li>Aiuta l'incapsulamento a livello di metodo</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">Scope esempio</div>
+                <pre><code class="language-java">if (true) {
+    int numero = 42;
+    System.out.println(numero);        // Visibile
+}
+
+// System.out.println(numero);        // ERRORE: numero non visibile</code></pre>
+            </div>
+
+            <h3>Nesting di Strutture</h3>
+            <p>È possibile annidare <code>if</code>, cicli e <code>switch</code> dentro altri blocchi:</p>
+
+            <div class="code-block">
+                <div class="code-header">Nesting</div>
+                <pre><code class="language-java">int numero = 10;
+
+if (numero > 0) {
+    if (numero % 2 == 0) {
+        System.out.println("Numero positivo e pari");
+    }
+}</code></pre>
+            </div>
+
+            <p><strong>Best practice:</strong></p>
+            <ul>
+                <li>Mantieni il codice leggibile con adeguata indentazione</li>
+                <li>Evita livelli di nesting troppo profondi</li>
+                <li>Considera l'estrazione di metodi ausiliari se il nesting diventa eccessivo</li>
+            </ul>
+
+            <h3>Cicli</h3>
+            
+            <h4>Ciclo for</h4>
+            <p>Usato quando si conosce il numero di iterazioni:</p>
+            <div class="code-block">
+                <div class="code-header">for loop</div>
+                <pre><code class="language-java">for (int i = 0; i < 5; i++) {
+    System.out.println("Iterazione: " + i);
+}</code></pre>
+            </div>
+
+            <p>Struttura:</p>
+            <ul>
+                <li><strong>Inizializzazione</strong>: <code>int i = 0</code></li>
+                <li><strong>Condizione</strong>: <code>i &lt; 5</code></li>
+                <li><strong>Incremento</strong>: <code>i++</code></li>
+            </ul>
+
+            <h4>Ciclo while</h4>
+            <p>Esegue finché la condizione è <code>true</code>, controllandola <strong>prima</strong> di ogni iterazione:</p>
+            <div class="code-block">
+                <div class="code-header">while loop</div>
+                <pre><code class="language-java">int i = 0;
+
+while (i < 5) {
+    System.out.println("Iterazione: " + i);
+    i++;
+}</code></pre>
+            </div>
+
+            <h4>Ciclo do-while</h4>
+            <p>Garantisce <strong>almeno un'esecuzione</strong> del corpo, controllando la condizione in coda:</p>
+            <div class="code-block">
+                <div class="code-header">do-while loop</div>
+                <pre><code class="language-java">int i = 0;
+
+do {
+    System.out.println("Iterazione: " + i);
+    i++;
+} while (i < 5);</code></pre>
+            </div>
+
+            <h3>break e continue</h3>
+            
+            <h4>break</h4>
+            <p>Esce <strong>immediatamente</strong> dal ciclo corrente:</p>
+            <div class="code-block">
+                <div class="code-header">for, while, do-while</div>
+                <pre><code class="language-java">// Ciclo for
+for (int i = 0; i < 5; i++) {
+    System.out.println("Iterazione: " + i);
+}
+
+// Ciclo while
+int i = 0;
+while (i < 5) {
+    System.out.println("Iterazione: " + i);
+    i++;
+}
+
+// Ciclo do-while (esegue almeno una volta)
+int j = 0;
+do {
+    System.out.println("Iterazione: " + j);
+    j++;
+} while (j < 5);
+
+// break e continue
+for (int k = 0; k < 10; k++) {
+    if (k == 4) continue;    // Salta il 4
+    if (k == 8) break;       // Esce al 8
+    System.out.println(k);
+}</code></pre>
+            </div>
+
+            <h4>continue</h4>
+            <p>Salta all'<strong>iterazione successiva</strong>, eseguendo subito l'aggiornamento/controllo del ciclo:</p>
+            <div class="code-block">
+                <div class="code-header">continue</div>
+                <pre><code class="language-java">int i = 0;
+while (i < 10) {
+    if (i == 4) {
+        i++;
+        continue;                      // Salta la stampa di 4
+    }
+    System.out.println(i);
+    i++;
+}
+// Output: 0, 1, 2, 3, 5, 6, 7, 8, 9</code></pre>
+            </div>
+
+            <h3>Cicli Annidati e Complessità</h3>
+            <p>Esempio di ciclo annidato:</p>
+
+            <div class="code-block">
+                <div class="code-header">Cicli annidati</div>
+                <pre><code class="language-java">for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 2; j++) {
+        System.out.println("i: " + i + ", j: " + j);
+    }
+}</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Attenzione alla complessità computazionale:</strong> cicli annidati portano spesso a complessità O(n²) o superiore. Va bene per dataset piccoli, ma può diventare problematico su quelli grandi.
+            </div>
+        </section>
+
+        <section id="strutture" class="section">
+            <h2>4. Strutture Dati</h2>
+            
+            <h3>Array</h3>
+            <p>Un array è una struttura dati che memorizza una raccolta di elementi dello stesso tipo.</p>
+
+            <h4>Proprietà Principali</h4>
+            <ol>
+                <li><strong>Dimensione fissa</strong>: definita alla creazione, non modificabile</li>
+                <li><strong>Tipi omogenei</strong>: tutti gli elementi dello stesso tipo</li>
+                <li><strong>Indicizzazione</strong>: accesso tramite indice da 0 a <code>lunghezza - 1</code></li>
+                <li><strong>Accesso diretto</strong>: tempo O(1) per accedere a qualsiasi elemento</li>
+            </ol>
+
+            <h4>Dichiarazione e Inizializzazione</h4>
+            <div class="code-block">
+                <div class="code-header">Uso degli array</div>
+                <pre><code class="language-java">// Dichiarazione e inizializzazione
+int[] numeri = {1, 2, 3, 4, 5};
+String[] nomi = new String[3];
+
+// Accesso agli elementi
+System.out.println(numeri[0]);     // Primo elemento
+numeri[1] = 42;                    // Modifica
+System.out.println(numeri.length); // Lunghezza: 5
+
+// Scorrere un array
+for (int i = 0; i < numeri.length; i++) {
+    System.out.println(numeri[i]);
+}
+
+// For-each (solo lettura)
+for (int numero : numeri) {
+    System.out.println(numero);
+}
+
+// Array multidimensionali
+int[][] matrice = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+System.out.println(matrice[1][2]); // Output: 6</code></pre>
+            </div>
+
+            <h4>Scorrere un Array</h4>
+            <p><strong>Ciclo for classico</strong> (può modificare elementi):</p>
+
+            <div class="code-block">
+                <div class="code-header">for con indice</div>
+                <pre><code class="language-java">int[] numeri = {10, 20, 30};
+
+for (int i = 0; i < numeri.length; i++) {
+    numeri[i] = numeri[i] * 2;     // Modifica effettiva
+    System.out.println(numeri[i]);
+}</code></pre>
+            </div>
+
+            <p><strong>Ciclo for-each</strong> (solo lettura):</p>
+
+            <div class="code-block">
+                <div class="code-header">for-each</div>
+                <pre><code class="language-java">for (int numero : numeri) {
+    numero *= 2;                   // NON modifica l'array originale (lavora su copia)
+    System.out.println(numero);
+}</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Importante:</strong> il for-each lavora su una <strong>copia del valore</strong> (passato per valore, non per riferimento), quindi le modifiche non hanno effetto sull'array originale.
+            </div>
+
+            <h3>ArrayList</h3>
+            <p>Le collezioni come <code>ArrayList</code> offrono flessibilità rispetto agli array tradizionali.</p>
+
+            <h4>Vantaggi</h4>
+            <ul>
+                <li><strong>Dimensione dinamica</strong>: cresce automaticamente</li>
+                <li><strong>Metodi utili</strong>: <code>add</code>, <code>remove</code>, <code>get</code>, <code>size</code>, <code>contains</code></li>
+            </ul>
+
+            <h4>Svantaggio</h4>
+            <ul>
+                <li>Leggermente meno efficiente degli array (overhead di gestione dinamica)</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-header">Liste dinamiche</div>
+                <pre><code class="language-java">import java.util.ArrayList;
+
+ArrayList&lt;String&gt; nomi = new ArrayList&lt;&gt;();
+
+// Aggiunta elementi
+nomi.add("Anna");
+nomi.add("Luca");
+nomi.add("Marco");
+
+// Accesso
+String primo = nomi.get(0);
+int dimensione = nomi.size();
+
+// Rimozione
+nomi.remove("Anna");
+nomi.remove(0);
+
+// Verifica presenza
+boolean contiene = nomi.contains("Luca");
+
+// Iterazione
+for (String nome : nomi) {
+    System.out.println(nome);
+}</code></pre>
+            </div>
+
+            <h3>LinkedList</h3>
+            <p>Una lista <strong>doppiamente collegata</strong>: ogni nodo ha riferimenti al successivo e al precedente.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li>Inserimento/rimozione in testa/coda molto veloce: O(1)</li>
+                <li>Accesso per indice più lento di ArrayList: O(n) (deve scorrere i nodi)</li>
+            </ul>
+
+            <h4>Utilizzo</h4>
+            <div class="code-block">
+                <div class="code-header">LinkedList</div>
+                <pre><code class="language-java">import java.util.LinkedList;
+
+LinkedList&lt;String&gt; lista = new LinkedList&lt;&gt;();
+
+lista.add("A");
+lista.add("B");
+lista.addFirst("Inizio");          // Aggiunge in testa
+lista.removeFirst();               // Rimuove il primo elemento</code></pre>
+            </div>
+
+            <h3>Set (HashSet, TreeSet)</h3>
+            <p>Una collezione che <strong>non consente elementi duplicati</strong>.</p>
+
+            <h4>Tipologie Principali</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Caratteristiche</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>HashSet</code></td>
+                        <td>Hash table, nessun ordine, operazioni O(1) mediamente</td>
+                    </tr>
+                    <tr>
+                        <td><code>TreeSet</code></td>
+                        <td>Albero bilanciato, elementi ordinati, operazioni O(log n)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Esempio HashSet</h4>
+            <div class="code-block">
+                <div class="code-header">HashSet</div>
+                <pre><code class="language-java">import java.util.HashSet;
+
+HashSet&lt;String&gt; set = new HashSet&lt;&gt;();
+
+set.add("A");
+set.add("B");
+set.add("A");                      // Ignorato (duplicato)
+
+System.out.println(set.size());    // Output: 2</code></pre>
+            </div>
+
+            <h3>Map (HashMap, TreeMap)</h3>
+            <p>Una collezione che associa <strong>chiavi</strong> a <strong>valori</strong> (dizionario).</p>
+
+            <h4>Tipologie Principali</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Caratteristiche</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>HashMap</code></td>
+                        <td>Chiavi non ordinate, accesso O(1) mediamente</td>
+                    </tr>
+                    <tr>
+                        <td><code>TreeMap</code></td>
+                        <td>Chiavi ordinate, operazioni O(log n)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Esempio HashMap</h4>
+            <div class="code-block">
+                <div class="code-header">Mappe chiave-valore</div>
+                <pre><code class="language-java">import java.util.HashMap;
+
+HashMap&lt;String, Integer&gt; voti = new HashMap&lt;&gt;();
+
+// Inserimento
+voti.put("Mario", 28);
+voti.put("Laura", 30);
+voti.put("Giuseppe", 25);
+
+// Accesso
+int votoMario = voti.get("Mario");
+
+// Verifica chiave
+boolean presente = voti.containsKey("Laura");
+
+// Iterazione
+for (String nome : voti.keySet()) {
+    System.out.println(nome + ": " + voti.get(nome));
+}
+
+// Rimozione
+voti.remove("Giuseppe");</code></pre>
+            </div>
+
+            <h3>Stack</h3>
+            <p>Struttura <strong>LIFO</strong> (Last-In-First-Out): l'ultimo elemento inserito è il primo ad essere estratto.</p>
+
+            <h4>Operazioni Principali</h4>
+            <ul>
+                <li><code>push()</code>: inserisce in cima</li>
+                <li><code>pop()</code>: rimuove dalla cima</li>
+                <li><code>peek()</code>: legge la cima senza rimuovere</li>
+            </ul>
+
+            <h4>Utilizzo</h4>
+            <div class="code-block">
+                <div class="code-header">Stack</div>
+                <pre><code class="language-java">import java.util.Stack;
+
+Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();
+
+stack.push(1);
+stack.push(2);
+stack.push(3);
+
+System.out.println(stack.pop());       // Output: 3
+System.out.println(stack.peek());      // Output: 2 (non rimuove)</code></pre>
+            </div>
+
+            <p><strong>Applicazioni:</strong> backtracking, parsing, gestione chiamate ricorsive (call stack).</p>
+
+            <h3>Queue</h3>
+            <p>Struttura <strong>FIFO</strong> (First-In-First-Out): il primo elemento inserito è il primo ad essere estratto.</p>
+
+            <h4>Operazioni Principali</h4>
+            <ul>
+                <li><code>add()</code>/<code>offer()</code>: inserisce (enqueue)</li>
+                <li><code>poll()</code>/<code>remove()</code>: estrae (dequeue)</li>
+                <li><code>peek()</code>: legge il primo senza rimuovere</li>
+            </ul>
+
+            <h4>Utilizzo</h4>
+            <div class="code-block">
+                <div class="code-header">Queue</div>
+                <pre><code class="language-java">import java.util.LinkedList;
+import java.util.Queue;
+
+Queue&lt;String&gt; queue = new LinkedList&lt;&gt;();
+
+queue.add("A");
+queue.add("B");
+queue.add("C");
+
+System.out.println(queue.poll());      // Output: A
+System.out.println(queue.peek());      // Output: B</code></pre>
+            </div>
+
+            <p><strong>Applicazioni:</strong> gestione task, buffer, BFS (Breadth-First Search).</p>
+        </section>
+
+        <section id="oop" class="section">
+            <h2>5. Fondamenti della Programmazione Orientata agli Oggetti</h2>
+            
+            <h3>Cos'è la OOP</h3>
+            <p>La <strong>Programmazione Orientata agli Oggetti</strong> (OOP) è un paradigma che organizza il codice in "oggetti":</p>
+            <ul>
+                <li>Gli oggetti contengono sia <strong>dati</strong> (attributi) che <strong>codice</strong> (metodi)</li>
+                <li>Il software è una collezione di oggetti che interagiscono tra loro</li>
+                <li>La OOP riflette il mondo reale: oggetti con caratteristiche e comportamenti</li>
+            </ul>
+
+            <h4>Pilastri della OOP</h4>
+            <ol>
+                <li><strong>Incapsulamento</strong>: nascondere i dettagli implementativi</li>
+                <li><strong>Ereditarietà</strong>: riutilizzo del codice tramite gerarchie</li>
+                <li><strong>Polimorfismo</strong>: comportamenti diversi con stessa interfaccia</li>
+            </ol>
+
+            <h3>Classe vs Oggetto</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Classe</th>
+                        <th>Oggetto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Template/modello per creare oggetti</td>
+                        <td>Istanza concreta di una classe</td>
+                    </tr>
+                    <tr>
+                        <td>Definisce attributi e comportamenti</td>
+                        <td>Ha uno stato specifico</td>
+                    </tr>
+                    <tr>
+                        <td>Tipo di dato astratto</td>
+                        <td>Occupa memoria</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Entità concreta</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Attributi</h3>
+            <p>Gli attributi (o campi) rappresentano lo <strong>stato</strong> di un oggetto.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li>Sono variabili dichiarate nella classe</li>
+                <li>Possono avere diversi tipi (primitivi o riferimenti)</li>
+                <li>Hanno valori di default se non inizializzati</li>
+                <li>Possono avere modificatori di accesso</li>
+            </ul>
+
+            <h4>Valori di Default</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Valore Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Numerici interi</td>
+                        <td><code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td>Numerici decimali</td>
+                        <td><code>0.0</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boolean</code></td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td>Riferimenti (oggetti)</td>
+                        <td><code>null</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Metodi</h3>
+            <p>I metodi rappresentano il <strong>comportamento</strong> di un oggetto.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li>Sono funzioni definite nella classe</li>
+                <li>Hanno una <strong>firma</strong>: nome + parametri + tipo di ritorno</li>
+                <li>Possono accedere agli attributi della classe</li>
+                <li>Possono essere pubblici o privati</li>
+            </ul>
+
+            <h3>Costruttori</h3>
+            <p>I costruttori sono metodi speciali per <strong>inizializzare</strong> oggetti quando vengono creati.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li>Hanno lo <strong>stesso nome della classe</strong></li>
+                <li><strong>Non hanno tipo di ritorno</strong></li>
+                <li>Vengono chiamati con l'operatore <code>new</code></li>
+                <li>Possono essere multipli (<strong>overloading</strong>)</li>
+                <li>Se non definiti, Java fornisce un costruttore di default senza parametri</li>
+            </ul>
+
+            <h3>Il Riferimento this</h3>
+            <p>Il riferimento <code>this</code> punta all'<strong>istanza corrente</strong> dell'oggetto.</p>
+
+            <h4>Utilizzi</h4>
+            <ol>
+                <li><strong>Disambiguare</strong> tra attributi e parametri</li>
+                <li><strong>Chiamare altri costruttori</strong> della stessa classe</li>
+                <li><strong>Passare l'oggetto corrente</strong> come parametro</li>
+            </ol>
+
+            <h3>Modificatori di Accesso</h3>
+            <p>I modificatori di accesso controllano la <strong>visibilità</strong> di classi, metodi e attributi.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Modificatore</th>
+                        <th>Stessa classe</th>
+                        <th>Stesso package</th>
+                        <th>Sottoclasse</th>
+                        <th>Ovunque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>private</code></td>
+                        <td>✓</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                    </tr>
+                    <tr>
+                        <td><em>default</em></td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✗</td>
+                        <td>✗</td>
+                    </tr>
+                    <tr>
+                        <td><code>protected</code></td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✗</td>
+                    </tr>
+                    <tr>
+                        <td><code>public</code></td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Descrizione</h4>
+            <ul>
+                <li><code>public</code>: accessibile da qualsiasi classe</li>
+                <li><code>private</code>: accessibile solo dalla classe stessa</li>
+                <li><code>protected</code>: accessibile dal package e dalle sottoclassi</li>
+                <li><em>default</em> (nessun modificatore): accessibile solo dal package</li>
+            </ul>
+
+            <h3>Incapsulamento</h3>
+            <p>L'incapsulamento è un principio fondamentale della OOP.</p>
+
+            <h4>Obiettivi</h4>
+            <ul>
+                <li>Nascondere i dettagli implementativi</li>
+                <li>Combinare dati e metodi che li manipolano</li>
+                <li>Proteggere l'integrità dei dati</li>
+                <li>Fornire un'interfaccia controllata</li>
+            </ul>
+
+            <h4>Best Practices</h4>
+            <ol>
+                <li>Attributi <code>private</code></li>
+                <li>Metodi pubblici <strong>getter/setter</strong> per accesso controllato</li>
+                <li><strong>Validazione</strong> nei setter</li>
+            </ol>
+
+            <div class="code-block">
+                <div class="code-header">Definizione di una classe</div>
+                <pre><code class="language-java">public class Car {
+    // Attributi (stato)
+    private String brand;
+    private String model;
+    private int year;
+    private double speed;
+    
+    // Costruttore
+    public Car(String brand, String model, int year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.speed = 0.0;
+    }
+    
+    // Costruttore con overloading
+    public Car(String brand, String model) {
+        this(brand, model, 2024);
+    }
+    
+    // Metodi (comportamento)
+    public void accelerate(double increment) {
+        this.speed += increment;
+        System.out.println("Velocità attuale: " + speed + " km/h");
+    }
+    
+    public void brake(double decrement) {
+        this.speed = Math.max(0, this.speed - decrement);
+        System.out.println("Velocità attuale: " + speed + " km/h");
+    }
+    
+    // Getter e Setter
+    public String getBrand() {
+        return brand;
+    }
+    
+    public void setBrand(String brand) {
+        if (brand != null && !brand.isEmpty()) {
+            this.brand = brand;
+        }
+    }
+    
+    public double getSpeed() {
+        return speed;
+    }
+    
+    // Metodo toString
+    @Override
+    public String toString() {
+        return brand + " " + model + " (" + year + ")";
+    }
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Uso della classe</div>
+                <pre><code class="language-java">public class Main {
+    public static void main(String[] args) {
+        // Creazione oggetti
+        Car car1 = new Car("Ferrari", "F8", 2023);
+        Car car2 = new Car("Lamborghini", "Huracán");
+        
+        // Chiamata metodi
+        car1.accelerate(50);
+        car1.accelerate(30);
+        car1.brake(20);
+        
+        // Accesso tramite getter
+        System.out.println("Marca: " + car1.getBrand());
+        System.out.println("Velocità: " + car1.getSpeed() + " km/h");
+        
+        // toString
+        System.out.println(car1);
+    }
+}</code></pre>
+            </div>
+
+            <h3>Incapsulamento</h3>
+            <div class="code-block">
+                <div class="code-header">Esempio di incapsulamento</div>
+                <pre><code class="language-java">public class BankAccount {
+    private String accountNumber;
+    private double balance;
+    private String owner;
+    
+    public BankAccount(String accountNumber, String owner) {
+        this.accountNumber = accountNumber;
+        this.owner = owner;
+        this.balance = 0.0;
+    }
+    
+    // Deposito con validazione
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Depositati: €" + amount);
+        } else {
+            System.out.println("Importo non valido");
+        }
+    }
+    
+    // Prelievo con validazione
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Prelevati: €" + amount);
+            return true;
+        } else {
+            System.out.println("Fondi insufficienti o importo non valido");
+            return false;
+        }
+    }
+    
+    // Getter (no setter per il saldo - solo tramite deposit/withdraw)
+    public double getBalance() {
+        return balance;
+    }
+    
+    public String getOwner() {
+        return owner;
+    }
+    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+}</code></pre>
+            </div>
+
+            <h3>Iterator</h3>
+            <p>Gli <strong>Iterator</strong> sono oggetti che permettono di attraversare una collezione di elementi.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li><strong>Standardizzato</strong>: funziona su tutte le collezioni</li>
+                <li><strong>Unidirezionale</strong>: scorre dall'inizio alla fine</li>
+                <li><strong>Rimozione sicura</strong>: permette di rimuovere elementi durante l'iterazione senza errori</li>
+            </ul>
+
+            <h4>Metodi Principali</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metodo</th>
+                        <th>Descrizione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>hasNext()</code></td>
+                        <td>Verifica se ci sono altri elementi</td>
+                    </tr>
+                    <tr>
+                        <td><code>next()</code></td>
+                        <td>Restituisce il prossimo elemento</td>
+                    </tr>
+                    <tr>
+                        <td><code>remove()</code></td>
+                        <td>Rimuove l'ultimo elemento restituito</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <section id="interfacce" class="section">
+            <h2>6. Interfacce, Classi Astratte e Classi Annidate</h2>
+            
+            <h3>Metodi Default nelle Interfacce</h3>
+            <p>Da Java 8, le interfacce possono contenere <strong>metodi con implementazione</strong> usando la parola chiave <code>default</code>.</p>
+
+            <h4>Vantaggi</h4>
+            <ul>
+                <li>Permettono di aggiungere nuovi metodi senza rompere le classi esistenti</li>
+                <li>Non richiedono override obbligatorio</li>
+                <li>Possono accedere ad altri metodi dell'interfaccia</li>
+                <li>Non possono accedere a variabili di stato</li>
+            </ul>
+
+            <h3>Interfacce</h3>
+            <div class="code-block">
+                <div class="code-header">Definizione e implementazione</div>
+                <pre><code class="language-java">// Interfaccia
+public interface Animal {
+    // Metodi astratti (implicitamente public abstract)
+    void makeSound();
+    void eat();
+    
+    // Metodo default (Java 8+)
+    default void sleep() {
+        System.out.println("L'animale sta dormendo...");
+    }
+    
+    // Metodo statico
+    static void info() {
+        System.out.println("Interfaccia Animal");
+    }
+}
+
+// Implementazione
+public class Dog implements Animal {
+    private String name;
+    
+    public Dog(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public void makeSound() {
+        System.out.println(name + " dice: Bau Bau!");
+    }
+    
+    @Override
+    public void eat() {
+        System.out.println(name + " sta mangiando crocchette");
+    }
+    
+    // sleep() è ereditato (override opzionale)
+}
+
+// Uso
+Dog dog = new Dog("Rex");
+dog.makeSound();
+dog.eat();
+dog.sleep();
+Animal.info();</code></pre>
+            </div>
+
+            <h3>Interfacce vs Classi Astratte</h3>
+
+            <h4>Quando Usare Interfacce</h4>
+            <ul>
+                <li>Vuoi definire un <strong>contratto</strong> (cosa fare, non come)</li>
+                <li>Classi non correlate devono avere comportamenti comuni</li>
+                <li>Serve <strong>ereditarietà multipla</strong> di tipo</li>
+                <li>Definisci solo comportamenti senza stato</li>
+            </ul>
+
+            <h4>Quando Usare Classi Astratte</h4>
+            <ul>
+                <li>Hai <strong>codice comune</strong> da condividere tra sottoclassi</li>
+                <li>Vuoi uno <strong>stato comune</strong> nelle sottoclassi</li>
+                <li>Hai una <strong>gerarchia</strong> di classi correlate</li>
+                <li>Vuoi fornire un'implementazione base parziale</li>
+            </ul>
+
+            <h4>Tabella Comparativa</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Caratteristica</th>
+                        <th>Interface</th>
+                        <th>Abstract Class</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Costruttori</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Campi static</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Campi non-static</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Campi final</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Campi non-final</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Metodi private</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Metodi protected</td>
+                        <td>✗</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Metodi astratti</td>
+                        <td>✓</td>
+                        <td>✓</td>
+                    </tr>
+                    <tr>
+                        <td>Metodi default</td>
+                        <td>✓</td>
+                        <td>✗</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Classi Astratte</h3>
+            <div class="code-block">
+                <div class="code-header">Abstract class</div>
+                <pre><code class="language-java">public abstract class Shape {
+    protected String color;
+    
+    // Costruttore
+    public Shape(String color) {
+        this.color = color;
+    }
+    
+    // Metodo astratto (da implementare nelle sottoclassi)
+    public abstract double getArea();
+    public abstract double getPerimeter();
+    
+    // Metodo concreto
+    public void displayColor() {
+        System.out.println("Colore: " + color);
+    }
+}
+
+// Sottoclasse concreta
+public class Circle extends Shape {
+    private double radius;
+    
+    public Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+    
+    @Override
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+    
+    @Override
+    public double getPerimeter() {
+        return 2 * Math.PI * radius;
+    }
+}
+
+// Uso
+Circle circle = new Circle("Rosso", 5.0);
+circle.displayColor();
+System.out.println("Area: " + circle.getArea());
+System.out.println("Perimetro: " + circle.getPerimeter());</code></pre>
+            </div>
+
+            <h3>Altre Tipologie di Classi</h3>
+
+            <h4>Static Nested Classes (Classi Statiche Nidificate)</h4>
+            <ul>
+                <li>Dichiarate <code>static</code> dentro un'altra classe</li>
+                <li>Non hanno accesso ai membri di istanza della classe esterna</li>
+                <li>Usate per raggruppare logicamente classi correlate</li>
+                <li>Utili per pattern come il Builder</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">Static nested class</div>
+                <pre><code class="language-java">public class OuterClass {
+    private static String msg = "Hello";
+    private String instanceMsg = "World";
+    
+    // Static nested class
+    public static class StaticNested {
+        public void display() {
+            System.out.println(msg);           // OK
+            // System.out.println(instanceMsg); // ERRORE!
+        }
+    }
+}
+
+// Uso:
+OuterClass.StaticNested nested = new OuterClass.StaticNested();
+nested.display();</code></pre>
+            </div>
+
+            <h4>Inner Classes (Classi Interne)</h4>
+            <ul>
+                <li>Non static, dichiarate dentro una classe</li>
+                <li>Hanno accesso a <strong>tutti</strong> i membri della classe esterna (anche private)</li>
+                <li>Usate quando la classe è strettamente legata all'outer class</li>
+                <li>Utili per gestione eventi</li>
+            </ul>
+
+            <h3>Classi Annidate</h3>
+            <div class="code-block">
+                <div class="code-header">Inner classes</div>
+                <pre><code class="language-java">public class OuterClass {
+    private String outerField = "Outer";
+    private static String staticField = "Static";
+    
+    // Inner class (non-static)
+    public class InnerClass {
+        public void display() {
+            // Accede ai membri della classe esterna
+            System.out.println("Outer field: " + outerField);
+        }
+    }
+    
+    // Static nested class
+    public static class StaticNested {
+        public void display() {
+            // Può accedere solo ai membri static
+            System.out.println("Static field: " + staticField);
+            // System.out.println(outerField); // ERRORE!
+        }
+    }
+    
+    public void createInner() {
+        InnerClass inner = new InnerClass();
+        inner.display();
+    }
+}
+
+// Uso
+OuterClass outer = new OuterClass();
+outer.createInner();
+
+// Creazione static nested
+OuterClass.StaticNested nested = new OuterClass.StaticNested();
+nested.display();</code></pre>
+            </div>
+
+            <h4>Local Classes (Classi Locali)</h4>
+            <ul>
+                <li>Definite all'interno di un metodo</li>
+                <li>Visibili solo in quel metodo</li>
+                <li>Hanno accesso a membri della classe e variabili locali del metodo</li>
+                <li>Utili per validazione dati o logica specifica del metodo</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">Local class</div>
+                <pre><code class="language-java">public class UIComponent {
+    public void createButton(String text) {
+        // Classe locale definita dentro il metodo
+        class Button {
+            private String buttonText;
+            
+            public Button(String text) {
+                this.buttonText = text;
+            }
+            
+            public void click() {
+                System.out.println("Button " + buttonText + " clicked");
+            }
+        }
+        
+        Button button = new Button(text);
+        button.click();
+    }
+}</code></pre>
+            </div>
+
+            <h4>Anonymous Classes (Classi Anonime)</h4>
+            <ul>
+                <li>Classe senza nome</li>
+                <li>Definita e istanziata contemporaneamente</li>
+                <li>Spesso usate per implementazioni "usa e getta"</li>
+                <li>Utili per Strategy Pattern</li>
+                <li>Oggi spesso sostituite da espressioni lambda</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">Anonymous class</div>
+                <pre><code class="language-java">@FunctionalInterface
+public interface Calculator {
+    int operate(int a, int b);
+}
+
+public class MathOperations {
+    public static void main(String[] args) {
+        // Implementazione con classe anonima
+        Calculator add = new Calculator() {
+            @Override
+            public int operate(int a, int b) {
+                return a + b;
+            }
+        };
+        
+        // Implementazione con lambda (più compatta)
+        Calculator multiply = (a, b) -> a * b;
+        
+        System.out.println(add.operate(5, 3));        // 8
+        System.out.println(multiply.operate(5, 3));   // 15
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="eccezioni" class="section">
+            <h2>7. Gestione delle Eccezioni e Debugging</h2>
+            
+            <h3>Introduzione alle Eccezioni</h3>
+            <p>Un'<strong>eccezione</strong> è un evento che interrompe il normale flusso di esecuzione di un programma. In Java, le eccezioni sono oggetti che ereditano dalla classe <code>Throwable</code>.</p>
+
+            <h3>Gerarchia delle Eccezioni</h3>
+            <div class="code-block">
+                <div class="code-header">Gerarchia</div>
+                <pre><code>Object
+  └── Throwable
+        ├── Error (unchecked)
+        │     ├── OutOfMemoryError
+        │     └── StackOverflowError
+        └── Exception
+              ├── RuntimeException (unchecked)
+              │     ├── NullPointerException
+              │     ├── IllegalArgumentException
+              │     ├── ArithmeticException
+              │     └── IndexOutOfBoundsException
+              └── Other Exceptions (checked)
+                    ├── IOException
+                    ├── FileNotFoundException
+                    ├── SQLException
+                    └── ClassNotFoundException</code></pre>
+            </div>
+
+            <h4>Categorie Principali</h4>
+            <ol>
+                <li><strong>Error</strong>: problemi gravi a livello di sistema (non gestibili dall'applicazione)</li>
+                <li><strong>Exception</strong>: problemi recuperabili (gestibili dal programmatore)</li>
+                <li><strong>RuntimeException</strong>: errori di programmazione (unchecked)</li>
+            </ol>
+
+            <h3>Checked vs Unchecked Exceptions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Checked Exceptions</th>
+                        <th>Unchecked Exceptions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Devono essere gestite obbligatoriamente</td>
+                        <td>Non richiedono gestione obbligatoria</td>
+                    </tr>
+                    <tr>
+                        <td><code>try-catch</code> o <code>throws</code> richiesto</td>
+                        <td>Possono propagare liberamente</td>
+                    </tr>
+                    <tr>
+                        <td>Controllate dal compilatore</td>
+                        <td>Non controllate dal compilatore</td>
+                    </tr>
+                    <tr>
+                        <td>Es: <code>IOException</code>, <code>SQLException</code></td>
+                        <td>Es: <code>RuntimeException</code> e sottoclassi</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>NullPointerException</code></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>ArrayIndexOutOfBoundsException</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Gestire le Eccezioni con try-catch</h3>
+            <div class="code-block">
+                <div class="code-header">Gestione eccezioni</div>
+                <pre><code class="language-java">import java.io.*;
+
+public class ExceptionExample {
+    public static void main(String[] args) {
+        // Try-catch base
+        try {
+            int result = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Errore: divisione per zero!");
+        }
+        
+        // Try-catch multipli
+        try {
+            String text = null;
+            System.out.println(text.length());
+        } catch (NullPointerException e) {
+            System.out.println("Riferimento nullo!");
+        } catch (Exception e) {
+            System.out.println("Errore generico: " + e.getMessage());
+        }
+        
+        // Try-with-resources (Java 7+)
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("file.txt"))) {
+            String line = reader.readLine();
+            System.out.println(line);
+        } catch (IOException e) {
+            System.out.println("Errore I/O: " + e.getMessage());
+        }
+        // reader.close() chiamato automaticamente
+    }
+}</code></pre>
+            </div>
+
+            <h3>Il Blocco finally</h3>
+            <p>Il blocco <code>finally</code> viene eseguito <strong>sempre</strong>, anche in caso di eccezione o <code>return</code>.</p>
+
+            <div class="code-block">
+                <div class="code-header">finally</div>
+                <pre><code class="language-java">FileReader fr = null;
+try {
+    fr = new FileReader("test.txt");
+    // Operazioni sul file
+} catch (IOException e) {
+    System.out.println("Errore: " + e.getMessage());
+} finally {
+    // Viene eseguito SEMPRE
+    if (fr != null) {
+        try {
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h3>throw vs throws</h3>
+
+            <h4>throw (nel corpo del metodo)</h4>
+            <ul>
+                <li>Lancia un'eccezione in un punto specifico</li>
+                <li>Crea una nuova istanza dell'eccezione</li>
+                <li>Interrompe l'esecuzione del metodo</li>
+                <li>Passa il controllo al blocco catch più vicino</li>
+            </ul>
+
+            <h4>throws (nella firma del metodo)</h4>
+            <ul>
+                <li>Dichiara che il metodo può generare quell'eccezione</li>
+                <li>Obbliga il chiamante a gestire l'eccezione (solo per checked exceptions)</li>
+                <li>Documentazione delle eccezioni possibili</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-header">Lanciare eccezioni</div>
+                <pre><code class="language-java">public class CustomException {
+    // throws nella firma
+    public static void validateAge(int age) throws IllegalArgumentException {
+        if (age < 0) {
+            // throw nel corpo
+            throw new IllegalArgumentException(
+                "L'età non può essere negativa: " + age
+            );
+        }
+        if (age < 18) {
+            throw new IllegalArgumentException(
+                "Devi avere almeno 18 anni!"
+            );
+        }
+        System.out.println("Età valida: " + age);
+    }
+    
+    public static void main(String[] args) {
+        try {
+            validateAge(15);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Eccezione catturata: " + e.getMessage());
+        }
+        
+        try {
+            validateAge(25);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Non dovrebbe arrivare qui");
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h3>Eccezioni Custom</h3>
+            <div class="code-block">
+                <div class="code-header">Creare eccezioni personalizzate</div>
+                <pre><code class="language-java">// Eccezione custom checked
+public class InsufficientFundsException extends Exception {
+    private double amount;
+    
+    public InsufficientFundsException(double amount) {
+        super("Fondi insufficienti. Richiesto: €" + amount);
+        this.amount = amount;
+    }
+    
+    public double getAmount() {
+        return amount;
+    }
+}
+
+// Uso dell'eccezione custom
+public class BankAccount {
+    private double balance;
+    
+    public void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException(amount);
+        }
+        balance -= amount;
+        System.out.println("Prelevati: €" + amount);
+    }
+    
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.balance = 100.0;
+        
+        try {
+            account.withdraw(150.0);
+        } catch (InsufficientFundsException e) {
+            System.out.println("Errore: " + e.getMessage());
+            System.out.println("Importo richiesto: €" + e.getAmount());
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="package" class="section">
+            <h2>8. Package e Maven</h2>
+            
+            <h3>Package</h3>
+            <p>Un <strong>package</strong> è un contenitore per organizzare classi correlate.</p>
+
+            <h4>Vantaggi</h4>
+            <ul>
+                <li>Previene conflitti di nomi tra classi</li>
+                <li>Fornisce protezione degli accessi (package-private)</li>
+                <li>Facilita la gestione di progetti complessi</li>
+                <li>Organizzazione logica del codice</li>
+            </ul>
+
+            <h4>Convenzioni di Naming</h4>
+            <ul>
+                <li>Tutti caratteri minuscoli</li>
+                <li>Nomi separati da punti</li>
+                <li>Pattern comune: <strong>dominio inverso</strong></li>
+            </ul>
+
+            <p>Esempi:</p>
+            <div class="code-block">
+                <div class="code-header">Naming convention</div>
+                <pre><code class="language-java">com.azienda.progetto.modulo
+org.example.application.util</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Organizzazione in package</div>
+                <pre><code class="language-java">// File: com/example/project/model/User.java
+package com.example.project.model;
+
+public class User {
+    private String name;
+    private String email;
+    
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+    
+    // getter e setter...
+}
+
+// File: com/example/project/service/UserService.java
+package com.example.project.service;
+
+import com.example.project.model.User;
+
+public class UserService {
+    public void createUser(String name, String email) {
+        User user = new User(name, email);
+        System.out.println("Utente creato: " + name);
+    }
+}
+
+// File: com/example/project/Main.java
+package com.example.project;
+
+import com.example.project.service.UserService;
+
+public class Main {
+    public static void main(String[] args) {
+        UserService service = new UserService();
+        service.createUser("Mario", "mario@email.com");
+    }
+}</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Struttura progetto Maven:</strong>
+                <pre style="background: rgba(0,0,0,0.2); padding: 15px; margin-top: 10px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em;">my-project/
+├── src/
+│   ├── main/
+│   │   ├── java/          # Codice sorgente
+│   │   └── resources/     # File di configurazione
+│   └── test/
+│       ├── java/          # Test unitari
+│       └── resources/     # Risorse per i test
+├── target/                # Output compilato
+└── pom.xml               # Project Object Model</pre>
+            </div>
+
+            <h4>Esempio di pom.xml</h4>
+            <div class="code-block">
+                <div class="code-header">pom.xml</div>
+                <pre><code class="language-java">&lt;project&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;my-project&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.13.2&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/project&gt;</code></pre>
+            </div>
+
+            <h4>Comandi Maven Essenziali</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Azione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>mvn clean</code></td>
+                        <td>Pulisce la directory target</td>
+                    </tr>
+                    <tr>
+                        <td><code>mvn compile</code></td>
+                        <td>Compila il codice sorgente</td>
+                    </tr>
+                    <tr>
+                        <td><code>mvn test</code></td>
+                        <td>Esegue i test</td>
+                    </tr>
+                    <tr>
+                        <td><code>mvn package</code></td>
+                        <td>Crea il JAR/WAR</td>
+                    </tr>
+                    <tr>
+                        <td><code>mvn install</code></td>
+                        <td>Installa nel repository locale</td>
+                    </tr>
+                    <tr>
+                        <td><code>mvn deploy</code></td>
+                        <td>Pubblica nel repository remoto</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Gradle</h3>
+            <p><strong>Gradle</strong> è un'alternativa moderna a Maven.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li>Basato su script Groovy o Kotlin (invece di XML)</li>
+                <li>Più flessibile di Maven</li>
+                <li>Build incrementali intelligenti</li>
+                <li>Performance migliori su progetti grandi</li>
+                <li>Molto usato in Android</li>
+            </ul>
+
+            <h4>Maven vs Gradle</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Caratteristica</th>
+                        <th>Maven</th>
+                        <th>Gradle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Configurazione</td>
+                        <td>XML rigido (<code>pom.xml</code>)</td>
+                        <td>Script dinamici (Groovy/Kotlin)</td>
+                    </tr>
+                    <tr>
+                        <td>Velocità</td>
+                        <td>Più lento su build complesse</td>
+                        <td>Più veloce (build incrementali)</td>
+                    </tr>
+                    <tr>
+                        <td>Curva di apprendimento</td>
+                        <td>Facile</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr>
+                        <td>Flessibilità</td>
+                        <td>Meno flessibile</td>
+                        <td>Molto flessibile</td>
+                    </tr>
+                    <tr>
+                        <td>Progetti multi-modulo</td>
+                        <td>Gestione decente</td>
+                        <td>Gestione eccellente</td>
+                    </tr>
+                    <tr>
+                        <td>Community</td>
+                        <td>Molto vasta</td>
+                        <td>Crescente</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Versioning Semantico</h3>
+            <p>Le versioni seguono il formato <strong>MAJOR.MINOR.PATCH</strong>:</p>
+            <ul>
+                <li><strong>MAJOR</strong>: cambiamenti incompatibili (breaking changes)</li>
+                <li><strong>MINOR</strong>: nuove funzionalità compatibili</li>
+                <li><strong>PATCH</strong>: correzioni bug compatibili</li>
+            </ul>
+
+            <p>Esempio: versione <code>2.5.3</code></p>
+            <ul>
+                <li>Major: 2</li>
+                <li>Minor: 5 (feature set)</li>
+                <li>Patch: 3 (bugfix)</li>
+            </ul>
+
+            <h3>Librerie Comuni</h3>
+
+            <h4>JUnit (Testing)</h4>
+            <div class="code-block">
+                <div class="code-header">JUnit dependency</div>
+                <pre><code class="language-java">&lt;dependency&gt;
+    &lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt;
+    &lt;artifactId&gt;junit-jupiter&lt;/artifactId&gt;
+    &lt;version&gt;5.10.1&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">Test esempio</div>
+                <pre><code class="language-java">@Test
+void testUserRegistration() {
+    User user = new User("test@email.com", "password");
+    UserService service = new UserService();
+    
+    User savedUser = service.register(user);
+    
+    assertNotNull(savedUser.getId());
+    assertEquals("test@email.com", savedUser.getEmail());
+}</code></pre>
+            </div>
+
+            <h4>Log4j (Logging)</h4>
+            <div class="code-block">
+                <div class="code-header">Log4j usage</div>
+                <pre><code class="language-java">import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class UserService {
+    private static final Logger logger = 
+        LogManager.getLogger(UserService.class);
+    
+    public void processUser(User user) {
+        logger.info("Processing user: {}", user.getId());
+        try {
+            // business logic
+        } catch (Exception e) {
+            logger.error("Error processing user: {}", 
+                user.getId(), e);
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h4>Jackson (JSON)</h4>
+            <div class="code-block">
+                <div class="code-header">Jackson usage</div>
+                <pre><code class="language-java">ObjectMapper mapper = new ObjectMapper();
+
+// Serializzazione
+User user = new User("John", "john@email.com");
+String json = mapper.writeValueAsString(user);
+
+// Deserializzazione
+User user = mapper.readValue(jsonString, User.class);
+
+// Lettura da file
+User user = mapper.readValue(new File("user.json"), User.class);</code></pre>
+            </div>
+        </section>
+
+        <section id="generics" class="section">
+            <h2>9. Generics e Iterator</h2>
+            
+            <h3>Introduzione ai Generics</h3>
+            <p>I <strong>Generics</strong> sono stati introdotti in Java 5 per fornire type-safety a compile-time.</p>
+
+            <h4>Vantaggi</h4>
+            <ul>
+                <li>Permettono di creare classi, interfacce e metodi parametrizzati sul tipo</li>
+                <li><strong>Type-safety</strong> in fase di compilazione</li>
+                <li>Eliminano la necessità di casting esplicito</li>
+                <li>Riutilizzo del codice con tipi diversi</li>
+                <li>Maggiore leggibilità e manutenibilità</li>
+            </ul>
+
+            <h3>Generics</h3>
+            <div class="code-block">
+                <div class="code-header">Classi e metodi generici</div>
+                <pre><code class="language-java">// Classe generica
+public class Box&lt;T&gt; {
+    private T content;
+    
+    public void set(T content) {
+        this.content = content;
+    }
+    
+    public T get() {
+        return content;
+    }
+}
+
+// Metodo generico
+public class Utils {
+    public static &lt;T&gt; void printArray(T[] array) {
+        for (T element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+}
+
+// Uso
+Box&lt;String&gt; stringBox = new Box&lt;&gt;();
+stringBox.set("Hello");
+String str = stringBox.get();  // No cast!
+
+Box&lt;Integer&gt; intBox = new Box&lt;&gt;();
+intBox.set(42);
+Integer num = intBox.get();
+
+Integer[] numbers = {1, 2, 3, 4, 5};
+Utils.printArray(numbers);</code></pre>
+            </div>
+
+            <h3>Wildcard in Java Generics</h3>
+            <p>Le <strong>wildcard</strong> sono simboli speciali (<code>?</code>) usati nei generics per rappresentare un tipo sconosciuto. Permettono di creare metodi e classi più flessibili.</p>
+
+            <h4>Il Problema dell'Invarianza</h4>
+            <p>I generics in Java sono <strong>invarianti</strong>: anche se <code>Integer</code> estende <code>Number</code>, <code>List&lt;Integer&gt;</code> <strong>non</strong> è un sottotipo di <code>List&lt;Number&gt;</code>.</p>
+
+            <div class="code-block">
+                <div class="code-header">Invarianza</div>
+                <pre><code class="language-java">List&lt;Integer&gt; ints = new ArrayList&lt;&gt;();
+// List&lt;Number&gt; nums = ints;      // ERRORE di compilazione</code></pre>
+            </div>
+
+            <p>Se fosse permesso, potremmo avere problemi di type-safety:</p>
+            <div class="code-block">
+                <div class="code-header">Problema type-safety</div>
+                <pre><code class="language-java">nums.add(3.14);                    // Metteremmo un Double in una List&lt;Integer&gt;!</code></pre>
+            </div>
+
+            <p>Le wildcard risolvono questo problema con regole precise su lettura e scrittura.</p>
+
+            <h4>Principio PECS</h4>
+            <p><strong>Producer Extends, Consumer Super</strong>:</p>
+            <ul>
+                <li><strong>Producer Extends</strong>: se la struttura produce valori per te → usa <code>? extends T</code></li>
+                <li><strong>Consumer Super</strong>: se la struttura consuma valori da te → usa <code>? super T</code></li>
+            </ul>
+
+            <h3>Tipi di Wildcard</h3>
+
+            <h4>1. Wildcard Senza Limiti (<code>?</code>)</h4>
+            <p>Rappresenta una lista di <strong>qualsiasi tipo</strong>.</p>
+
+            <div class="code-block">
+                <div class="code-header">Wildcard illimitata</div>
+                <pre><code class="language-java">public void printList(List&lt;?&gt; list) {
+    for (Object obj : list) {
+        System.out.println(obj);
+    }
+}</code></pre>
+            </div>
+
+            <p><strong>Cosa puoi fare</strong>:</p>
+            <ul>
+                <li><strong>Leggere</strong>: solo come <code>Object</code></li>
+                <li><strong>Scrivere</strong>: praticamente no (eccetto <code>null</code>)</li>
+            </ul>
+
+            <p><strong>Quando usarla</strong>: quando non ti interessa il tipo concreto, vuoi solo leggere/iterare senza modificare.</p>
+
+            <h4>2. Upper Bound (<code>? extends T</code>)</h4>
+            <p>Rappresenta una lista di <strong>qualsiasi tipo che sia T o sottoclasse di T</strong>.</p>
+
+            <div class="code-block">
+                <div class="code-header">Upper bound</div>
+                <pre><code class="language-java">public void processList(List&lt;? extends Number&gt; list) {
+    for (Number number : list) {
+        System.out.println(number.doubleValue());
+    }
+}</code></pre>
+            </div>
+
+            <p><strong>Accetta</strong>: <code>List&lt;Number&gt;</code>, <code>List&lt;Integer&gt;</code>, <code>List&lt;Double&gt;</code>, ecc.</p>
+
+            <p><strong>Cosa puoi fare</strong>:</p>
+            <ul>
+                <li><strong>Leggere</strong>: sì, come <code>T</code> (o <code>Object</code>)</li>
+                <li><strong>Scrivere</strong>: NO (tranne <code>null</code>)</li>
+            </ul>
+
+            <p><strong>Perché NON puoi scrivere</strong>:</p>
+            <p>Immagina di chiamare il metodo con <code>List&lt;Double&gt;</code>. Se potessi fare <code>list.add(42)</code> (che è <code>Integer</code>), staresti mettendo un <code>Integer</code> in una <code>List&lt;Double&gt;</code> → type safety violata!</p>
+
+            <p><strong>Regola</strong>: con <code>? extends T</code> la lista è un <strong>producer</strong> (produce valori di tipo T), non un <strong>consumer</strong>.</p>
+
+            <h4>3. Lower Bound (<code>? super T</code>)</h4>
+            <p>Rappresenta una lista di <strong>qualsiasi tipo che sia superclasse di T</strong>.</p>
+
+            <div class="code-block">
+                <div class="code-header">Lower bound</div>
+                <pre><code class="language-java">public void addToList(List&lt;? super Integer&gt; list) {
+    list.add(42);
+    list.add(new Integer(7));
+}</code></pre>
+            </div>
+
+            <p><strong>Accetta</strong>: <code>List&lt;Integer&gt;</code>, <code>List&lt;Number&gt;</code>, <code>List&lt;Object&gt;</code>.</p>
+
+            <p><strong>Cosa puoi fare</strong>:</p>
+            <ul>
+                <li><strong>Scrivere</strong>: sì, puoi aggiungere <code>T</code> (e sottotipi)</li>
+                <li><strong>Leggere</strong>: solo come <code>Object</code></li>
+            </ul>
+
+            <p><strong>Perché puoi scrivere</strong>:</p>
+            <p>È sempre sicuro aggiungere un <code>Integer</code>:</p>
+            <ul>
+                <li>Se è <code>List&lt;Integer&gt;</code> → perfetto</li>
+                <li>Se è <code>List&lt;Number&gt;</code> → un <code>Integer</code> è un <code>Number</code></li>
+                <li>Se è <code>List&lt;Object&gt;</code> → un <code>Integer</code> è un <code>Object</code></li>
+            </ul>
+
+            <p><strong>Regola</strong>: con <code>? super T</code> la lista è un <strong>consumer</strong> (consuma valori di tipo T), non un <strong>producer tipizzato</strong>.</p>
+
+            <h3>Schema Riassuntivo</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Forma</th>
+                        <th>Accetta</th>
+                        <th>Leggere come</th>
+                        <th>Scrivere</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>List&lt;?&gt;</code></td>
+                        <td>Qualsiasi tipo</td>
+                        <td><code>Object</code></td>
+                        <td>Solo <code>null</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>List&lt;? extends T&gt;</code></td>
+                        <td><code>T</code> e sottotipi</td>
+                        <td><code>T</code></td>
+                        <td>Solo <code>null</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>List&lt;? super T&gt;</code></td>
+                        <td><code>T</code> e supertipi</td>
+                        <td><code>Object</code></td>
+                        <td><code>T</code> e sottotipi</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Quando Usare Cosa</h4>
+            <ul>
+                <li><strong>Metodo che solo legge</strong> da una lista → <code>List&lt;? extends T&gt;</code> o <code>List&lt;?&gt;</code></li>
+                <li><strong>Metodo che solo aggiunge</strong> elementi di tipo T → <code>List&lt;? super T&gt;</code></li>
+                <li><strong>Metodo che legge e scrive</strong> con lo stesso tipo → <code>List&lt;T&gt;</code> con parametro di tipo normale</li>
+            </ul>
+
+            <p>Esempio combinato:</p>
+
+            <div class="code-block">
+                <div class="code-header">Esempio combinato</div>
+                <pre><code class="language-java">&lt;T&gt; void copy(List&lt;? extends T&gt; src, List&lt;? super T&gt; dest) {
+    for (T item : src) {
+        dest.add(item);
+    }
+}</code></pre>
+            </div>
+
+            <h3>Wildcard</h3>
+            <div class="code-block">
+                <div class="code-header">Upper e Lower Bound</div>
+                <pre><code class="language-java">import java.util.*;
+
+public class WildcardExample {
+    // Upper bound (? extends T)
+    // Può LEGGERE come Number, NON può scrivere
+    public static void printNumbers(List&lt;? extends Number&gt; list) {
+        for (Number num : list) {
+            System.out.println(num.doubleValue());
+        }
+        // list.add(42);  // ERRORE di compilazione!
+    }
+    
+    // Lower bound (? super T)
+    // Può SCRIVERE Integer, legge solo come Object
+    public static void addIntegers(List&lt;? super Integer&gt; list) {
+        list.add(42);
+        list.add(100);
+        // Integer num = list.get(0);  // ERRORE!
+        Object obj = list.get(0);      // OK
+    }
+    
+    // Wildcard senza limiti
+    public static void printList(List&lt;?&gt; list) {
+        for (Object obj : list) {
+            System.out.println(obj);
+        }
+    }
+    
+    public static void main(String[] args) {
+        List&lt;Integer&gt; integers = Arrays.asList(1, 2, 3);
+        List&lt;Double&gt; doubles = Arrays.asList(1.1, 2.2, 3.3);
+        
+        printNumbers(integers);  // OK
+        printNumbers(doubles);   // OK
+        
+        List&lt;Number&gt; numbers = new ArrayList&lt;&gt;();
+        addIntegers(numbers);    // OK
+    }
+}</code></pre>
+            </div>
+
+            <h3>Iterator</h3>
+            <div class="code-block">
+                <div class="code-header">Iterazione su collezioni</div>
+                <pre><code class="language-java">import java.util.*;
+
+public class IteratorExample {
+    public static void main(String[] args) {
+        List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+        
+        // Uso dell'Iterator
+        Iterator&lt;String&gt; iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String element = iterator.next();
+            System.out.println(element);
+            
+            // Rimozione sicura durante iterazione
+            if (element.equals("B")) {
+                iterator.remove();
+            }
+        }
+        
+        System.out.println("Dopo rimozione: " + list);
+        // Output: [A, C, D]
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="io" class="section">
+            <h2>10. Input/Output</h2>
+            
+            <h3>Introduzione agli Stream di I/O</h3>
+            <p>Uno <strong>stream</strong> è un flusso sequenziale di dati.</p>
+
+            <h4>Caratteristiche</h4>
+            <ul>
+                <li><strong>Unidirezionali</strong>: input o output, non entrambi</li>
+                <li><strong>Sequenziali</strong>: i dati vengono letti/scritti in ordine</li>
+                <li>Possono essere <strong>bufferizzati</strong> o non bufferizzati</li>
+            </ul>
+
+            <h4>Tipi Principali</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Uso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>InputStream</code> / <code>OutputStream</code></td>
+                        <td>Dati binari (byte)</td>
+                    </tr>
+                    <tr>
+                        <td><code>Reader</code> / <code>Writer</code></td>
+                        <td>Dati testuali (caratteri)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Lettura di File di Testo</h3>
+
+            <h4>Con FileReader</h4>
+            <div class="code-block">
+                <div class="code-header">FileReader</div>
+                <pre><code class="language-java">// Lettura carattere per carattere
+try (FileReader reader = new FileReader("file.txt")) {
+    int character;
+    while ((character = reader.read()) != -1) {
+        System.out.print((char) character);
+    }
+}</code></pre>
+            </div>
+
+            <h4>Con BufferedReader (più efficiente)</h4>
+            <div class="code-block">
+                <div class="code-header">BufferedReader</div>
+                <pre><code class="language-java">try (BufferedReader reader = 
+        new BufferedReader(new FileReader("file.txt"))) {
+    String line;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+}</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Nota:</strong> Il <code>try-with-resources</code> chiude automaticamente le risorse.
+            </div>
+
+            <h3>Scrittura di File di Testo</h3>
+
+            <h4>Con FileWriter</h4>
+            <div class="code-block">
+                <div class="code-header">FileWriter</div>
+                <pre><code class="language-java">try (FileWriter writer = new FileWriter("output.txt")) {
+    writer.write("Hello, World!\n");
+    writer.write("Seconda linea");
+}</code></pre>
+            </div>
+
+            <h4>Con BufferedWriter</h4>
+            <div class="code-block">
+                <div class="code-header">BufferedReader e BufferedWriter</div>
+                <pre><code class="language-java">import java.io.*;
+
+public class FileIOExample {
+    public static void main(String[] args) {
+        // Scrittura
+        try (BufferedWriter writer = new BufferedWriter(
+                new FileWriter("output.txt"))) {
+            writer.write("Prima riga");
+            writer.newLine();
+            writer.write("Seconda riga");
+            writer.newLine();
+            writer.write("Terza riga");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Lettura
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("output.txt"))) {
+            String line;
+            int lineNumber = 1;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(lineNumber + ": " + line);
+                lineNumber++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="note">
+                <strong>Importante:</strong> gli elementi rimangono nel buffer di memoria fino al <code>flush()</code>.
+            </div>
+
+            <h3>File Binari</h3>
+
+            <h4>Scrittura di Dati Binari</h4>
+            <div class="code-block">
+                <div class="code-header">DataOutputStream</div>
+                <pre><code class="language-java">try (FileOutputStream fos = new FileOutputStream("data.bin");
+     DataOutputStream dos = new DataOutputStream(fos)) {
+    dos.writeInt(42);
+    dos.writeDouble(3.14);
+    dos.writeUTF("Hello");
+}</code></pre>
+            </div>
+
+            <h4>Lettura di Dati Binari</h4>
+            <div class="code-block">
+                <div class="code-header">DataInputStream</div>
+                <pre><code class="language-java">try (FileInputStream fis = new FileInputStream("data.bin");
+     DataInputStream dis = new DataInputStream(fis)) {
+    int number = dis.readInt();
+    double pi = dis.readDouble();
+    String text = dis.readUTF();
+    
+    System.out.println("Int: " + number);
+    System.out.println("Double: " + pi);
+    System.out.println("String: " + text);
+}</code></pre>
+            </div>
+
+            <h3>Serializzazione degli Oggetti</h3>
+            <p>La <strong>serializzazione</strong> è il processo di conversione di un oggetto in uno stream di byte.</p>
+
+            <h4>Utilizzi</h4>
+            <ul>
+                <li><strong>Persistenza</strong> degli oggetti su disco</li>
+                <li><strong>Trasmissione</strong> in rete</li>
+                <li><strong>Deep cloning</strong> di oggetti</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-header">Salvare e caricare oggetti</div>
+                <pre><code class="language-java">import java.io.*;
+
+// Classe serializzabile
+class Person implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private int age;
+    
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    
+    public String getName() { return name; }
+    public int getAge() { return age; }
+}
+
+public class SerializationExample {
+    public static void main(String[] args) {
+        Person person = new Person("Mario Rossi", 30);
+        
+        // Serializzazione
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream("person.ser"))) {
+            oos.writeObject(person);
+            System.out.println("Oggetto salvato");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Deserializzazione
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream("person.ser"))) {
+            Person loaded = (Person) ois.readObject();
+            System.out.println("Nome: " + loaded.getName());
+            System.out.println("Età: " + loaded.getAge());
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h3>Java NIO (New Input/Output)</h3>
+            <p>Java NIO è un insieme di API introdotte come alternativa al tradizionale sistema di I/O basato su stream.</p>
+
+            <h4>Vantaggi</h4>
+            <ul>
+                <li>Miglioramenti in <strong>performance</strong> e <strong>flessibilità</strong></li>
+                <li>Gestione <strong>non bloccante</strong></li>
+                <li>Operazioni su file più semplici</li>
+                <li>Integrazione con Stream API</li>
+            </ul>
+
+            <h4>Lettura e Scrittura con NIO</h4>
+            <div class="code-block">
+                <div class="code-header">Files API</div>
+                <pre><code class="language-java">import java.nio.file.*;
+
+// Lettura di un file completo
+byte[] fileData = Files.readAllBytes(Paths.get("file.txt"));
+List&lt;String&gt; lines = Files.readAllLines(Paths.get("file.txt"));
+
+// Scrittura di un file
+Files.write(Paths.get("output.txt"),
+            "Hello, World!".getBytes(),
+            StandardOpenOption.CREATE);
+
+// Streaming di linee
+try (Stream&lt;String&gt; stream = Files.lines(Paths.get("file.txt"))) {
+    stream.forEach(System.out::println);
+}</code></pre>
+            </div>
+
+            <h3>Java NIO</h3>
+            <div class="code-block">
+                <div class="code-header">Modern I/O con Files e Paths</div>
+                <pre><code class="language-java">import java.nio.file.*;
+import java.io.IOException;
+import java.util.List;
+
+public class NIOExample {
+    public static void main(String[] args) {
+        try {
+            // Scrittura semplice
+            String content = "Contenuto del file\nSeconda riga\nTerza riga";
+            Path path = Paths.get("nio_output.txt");
+            Files.write(path, content.getBytes());
+            
+            // Lettura completa
+            List&lt;String&gt; lines = Files.readAllLines(path);
+            System.out.println("Numero di righe: " + lines.size());
+            
+            // Lettura con stream
+            Files.lines(path).forEach(System.out::println);
+            
+            // Informazioni sul file
+            System.out.println("Esiste: " + Files.exists(path));
+            System.out.println("Dimensione: " + Files.size(path) + " byte");
+            System.out.println("Leggibile: " + Files.isReadable(path));
+            
+            // Copia e spostamento
+            Path copy = Paths.get("nio_copy.txt");
+            Files.copy(path, copy, StandardCopyOption.REPLACE_EXISTING);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h4>Operazioni su Path e Files</h4>
+            <div class="code-block">
+                <div class="code-header">Path operations</div>
+                <pre><code class="language-java">// Creazione di Path
+Path path = Paths.get("directory/file.txt");
+Path absolutePath = path.toAbsolutePath();
+
+// Operazioni comuni
+Files.exists(path);
+Files.isDirectory(path);
+Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+Files.move(source, target);
+Files.delete(path);</code></pre>
+            </div>
+
+            <h4>Vantaggi di NIO</h4>
+            <ul>
+                <li>Codice più conciso e leggibile</li>
+                <li>Gestione automatica delle eccezioni di chiusura</li>
+                <li>Performance migliori per operazioni massive</li>
+                <li>Integrazione con le moderne API Java</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Conclusione</h2>
+            <p>Questa guida copre tutti gli argomenti fondamentali della programmazione Java, dalle basi fino ai concetti avanzati come generics, I/O e gestione delle dipendenze con Maven.</p>
+            
+            <h3>Punti Chiave da Ricordare</h3>
+            <ul>
+                <li><strong>Ambiente Java</strong>: JVM, bytecode, JIT per portabilità e performance</li>
+                <li><strong>OOP</strong>: incapsulamento, ereditarietà, polimorfismo</li>
+                <li><strong>Collezioni</strong>: scegli la struttura dati adatta al problema</li>
+                <li><strong>Eccezioni</strong>: gestione robusta degli errori</li>
+                <li><strong>Generics</strong>: type-safety e riutilizzo del codice</li>
+                <li><strong>Maven</strong>: gestione dipendenze e build automation</li>
+            </ul>
+
+            <div class="note">
+                <strong>Prossimi Passi:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Pratica con progetti reali</li>
+                    <li>Studia pattern di design (Singleton, Factory, Observer)</li>
+                    <li>Approfondisci Stream API e programmazione funzionale</li>
+                    <li>Esplora framework enterprise (Spring, Hibernate)</li>
+                    <li>Contribuisci a progetti open source</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; font-size: 1.3em; margin-top: 40px; color: var(--accent);">
+                <strong>☕ Buono studio e buona programmazione in Java!</strong>
+            </p>
+        </section>
+    </div>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Inizializza highlight.js
+        hljs.highlightAll();
+
+        // Scroll to top button
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll per i link dell'indice
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
