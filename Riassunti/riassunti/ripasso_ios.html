@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Progettazione e Sviluppo di iOS - Ripasso rapido</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--tx:#1d1d1f;--ac:#0a84ff;--code:#1f1f24}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.55}
+header{background:linear-gradient(135deg,#0a84ff,#5e5ce6);color:#fff;padding:40px 20px;text-align:center}
+header h1{margin:0;font-size:2rem} header p{margin:8px 0 0;opacity:.85}
+nav{position:sticky;top:0;z-index:5;background:#fffd;backdrop-filter:blur(8px);display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:10px;border-bottom:1px solid #ddd}
+nav a{text-decoration:none;color:var(--ac);font-size:.85rem;padding:4px 10px;border-radius:14px;background:#e8f2ff}
+main{max-width:900px;margin:0 auto;padding:20px}
+h2{margin:36px 0 12px;padding-bottom:6px;border-bottom:3px solid var(--ac)}
+article{background:var(--card);border-radius:12px;padding:16px 18px;margin:14px 0;box-shadow:0 1px 4px #0001}
+h3{margin:0 0 6px;color:var(--ac)}
+ul{margin:0 0 12px;padding-left:20px}
+code{font-family:SFMono-Regular,Menlo,Consolas,monospace}
+li code{background:#eef0f4;padding:1px 5px;border-radius:4px;font-size:.88em}
+.xc{background:var(--code);border-radius:10px;overflow:hidden}
+.bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:#2c2c32}
+.bar i{width:11px;height:11px;border-radius:50%;background:#ff5f57}
+.bar i:nth-child(2){background:#febc2e} .bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:auto;color:#9a9aa3;font-size:.75rem}
+pre{margin:0;padding:14px;overflow-x:auto;color:#dfdfe0;font-size:.85rem;line-height:1.5;tab-size:4}
+.k{color:#fc5fa3;font-weight:600} .s{color:#fc6a5d} .c{color:#6c7986;font-style:italic}
+.a{color:#fd8f3f} .t{color:#5dd8ff} .n{color:#d0bf69}
+</style></head><body>
+<header><h1>Progettazione e Sviluppo di iOS</h1><p>Ripasso rapido: Swift e SwiftUI</p></header>
+<nav><a href="#s0">1. Fondamenti di Swift</a><a href="#s1">2. Strutture Dati e OOP</a><a href="#s2">3. Gestione Errori</a><a href="#s3">4. SwiftUI Basi</a><a href="#s4">5. Gestione dello Stato</a><a href="#s5">6. UI e Navigazione</a><a href="#s6">7. Servizi Web e Mappe</a><a href="#s7">8. Persistenza</a></nav><main><section id="s0"><h2>1. Fondamenti di Swift</h2><article><h3>let / var</h3><ul><li class="sp"><code>let</code> crea una <b>costante</b>, <code>var</code> una <b>variabile</b>. Il tipo è dedotto dal compilatore (<b>type inference</b>) e si può indicare con <code>: Tipo</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">let</span> pi = <span class="n">3.14159</span>          <span class="c">// costante</span>
+<span class="k">var</span> eta: <span class="t">Int</span> = <span class="n">30</span>         <span class="c">// variabile con tipo esplicito</span>
+eta += <span class="n">1</span></code></pre></div></article><article><h3>if let / guard let</h3><ul><li class="sp">Servono per l&#x27;<b>unwrapping sicuro</b> di un Optional. <code>if let</code> esegue il blocco solo se il valore esiste, <code>guard let</code> <b>esce subito</b> dalla funzione se manca.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">var</span> nome: <span class="t">String</span>? = <span class="s">&quot;Mario&quot;</span>
+<span class="k">if</span> <span class="k">let</span> nome {                     <span class="c">// qui nome è String</span>
+    print(<span class="s">&quot;Ciao \(nome)&quot;</span>)
+} <span class="k">else</span> {
+    print(<span class="s">&quot;Nessun nome&quot;</span>)
+}
+<span class="k">func</span> saluta(_ n: <span class="t">String</span>?) {
+    <span class="k">guard</span> <span class="k">let</span> n <span class="k">else</span> { <span class="k">return</span> }   <span class="c">// esce se nil</span>
+    print(n)
+}</code></pre></div></article><article><h3>Optionals e operatore ??</h3><ul><li class="sp">Un <b>Optional</b> (<code>Tipo?</code>) contiene un valore oppure <code>nil</code>; è un <b>enum</b> con <code>.none</code> e <code>.some</code>. L&#x27;operatore <code>??</code> fornisce un <b>valore di default</b> se è <code>nil</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">let</span> nickname: <span class="t">String</span>? = <span class="k">nil</span>
+print(nickname ?? <span class="s">&quot;ospite&quot;</span>)   <span class="c">// &quot;ospite&quot;</span>
+<span class="k">let</span> n = nickname?.count       <span class="c">// optional chaining -&gt; Int?</span>
+<span class="c">// nickname!  -&gt; crash se nil: da evitare</span></code></pre></div></article><article><h3>switch</h3><ul><li class="sp">Funziona con <b>qualsiasi tipo</b> e deve essere <b>esaustivo</b> (serve <code>default</code>). Ammette più valori per caso e la clausola <code>where</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">let</span> v = <span class="s">&quot;red pepper&quot;</span>
+<span class="k">switch</span> v {
+<span class="k">case</span> <span class="s">&quot;celery&quot;</span>: print(<span class="s">&quot;Uvetta&quot;</span>)
+<span class="k">case</span> <span class="s">&quot;cucumber&quot;</span>, <span class="s">&quot;watercress&quot;</span>: print(<span class="s">&quot;Tramezzino&quot;</span>)
+<span class="k">case</span> <span class="k">let</span> x <span class="k">where</span> x.hasSuffix(<span class="s">&quot;pepper&quot;</span>): print(<span class="s">&quot;Piccante: \(x)&quot;</span>)
+<span class="k">default</span>: print(<span class="s">&quot;Zuppa&quot;</span>)
+}</code></pre></div></article><article><h3>for-in</h3><ul><li class="sp">Scorre <b>array, dizionari e intervalli</b>. <code>0..&lt;4</code> <b>esclude</b> l&#x27;estremo superiore, <code>0...4</code> lo <b>include</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">for</span> i <span class="k">in</span> <span class="n">0</span>..&lt;<span class="n">4</span> { print(i) }              <span class="c">// 0 1 2 3</span>
+<span class="k">for</span> (chiave, valori) <span class="k">in</span> [<span class="s">&quot;a&quot;</span>: [<span class="n">1</span>, <span class="n">2</span>]] {  <span class="c">// dizionario</span>
+    print(chiave, valori)
+}</code></pre></div></article><article><h3>while / repeat-while</h3><ul><li class="sp"><code>while</code> controlla la condizione <b>prima</b>, <code>repeat-while</code> <b>dopo</b>: il blocco gira almeno una volta.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">var</span> n = <span class="n">2</span>
+<span class="k">while</span> n &lt; <span class="n">100</span> { n *= <span class="n">2</span> }          <span class="c">// 128</span>
+<span class="k">repeat</span> { n *= <span class="n">2</span> } <span class="k">while</span> n &lt; <span class="n">100</span>   <span class="c">// esegue almeno una volta</span></code></pre></div></article></section><section id="s1"><h2>2. Strutture Dati e OOP</h2><article><h3>Classi e oggetti</h3><ul><li class="sp">La <code>class</code> è un tipo <b>per riferimento</b>: due variabili possono puntare allo <b>stesso oggetto</b>. Non serve <code>new</code>, si chiama direttamente l&#x27;inizializzatore.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">class</span> <span class="t">Shape</span> {
+    <span class="k">var</span> name: <span class="t">String</span>
+    <span class="k">init</span>(name: <span class="t">String</span>) { <span class="k">self</span>.name = name }   <span class="c">// costruttore</span>
+    <span class="k">func</span> area() -&gt; <span class="t">Double</span> { <span class="n">0</span> }
+}
+<span class="k">let</span> s = <span class="t">Shape</span>(name: <span class="s">&quot;Forma&quot;</span>)                  <span class="c">// niente &#x27;new&#x27;</span></code></pre></div></article><article><h3>init</h3><ul><li class="sp">Imposta le <b>proprietà iniziali</b> e usa <code>self</code> per distinguerle dai parametri. <code>deinit</code> fa la pulizia prima della deallocazione.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">class</span> <span class="t">Persona</span> {
+    <span class="k">var</span> nome: <span class="t">String</span>
+    <span class="k">var</span> eta = <span class="n">0</span>                         <span class="c">// valore di default</span>
+    <span class="k">init</span>(nome: <span class="t">String</span>) { <span class="k">self</span>.nome = nome }
+    <span class="k">deinit</span> { print(<span class="s">&quot;Persona rilasciata&quot;</span>) }
+}</code></pre></div></article><article><h3>Ereditarietà e override</h3><ul><li class="sp">Si eredita con <code>:</code> e ogni metodo ridefinito richiede <b>override</b>. Nell&#x27;init della sottoclasse prima si assegnano le proprietà proprie, poi si chiama <b>super.init</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">class</span> <span class="t">Square</span>: <span class="t">Shape</span> {
+    <span class="k">var</span> side: <span class="t">Double</span>
+    <span class="k">init</span>(side: <span class="t">Double</span>) {
+        <span class="k">self</span>.side = side              <span class="c">// 1. proprietà proprie</span>
+        <span class="k">super</span>.<span class="k">init</span>(name: <span class="s">&quot;Quadrato&quot;</span>)  <span class="c">// 2. superclasse</span>
+    }
+    <span class="k">override</span> <span class="k">func</span> area() -&gt; <span class="t">Double</span> { side * side }
+}</code></pre></div></article><article><h3>struct</h3><ul><li class="sp">Tipo <b>per valore</b>: viene <b>copiata</b> a ogni assegnazione. Ha un init <b>memberwise</b> automatico e i metodi che modificano le proprietà sono <code>mutating</code>. Le view SwiftUI sono struct.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Punto</span> {
+    <span class="k">var</span> x: <span class="t">Int</span>
+    <span class="k">var</span> y: <span class="t">Int</span>
+    <span class="k">mutating</span> <span class="k">func</span> sposta(dx: <span class="t">Int</span>) { x += dx }
+}
+<span class="k">var</span> a = <span class="t">Punto</span>(x: <span class="n">1</span>, y: <span class="n">2</span>)
+<span class="k">var</span> b = a        <span class="c">// copia</span>
+b.x = <span class="n">99</span>         <span class="c">// a.x resta 1</span></code></pre></div></article><article><h3>enum</h3><ul><li class="sp">Definisce un <b>insieme chiuso di casi</b>, anche con <b>valori associati</b>. <code>CaseIterable</code> fornisce <code>allCases</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">enum</span> <span class="t">Pagamento</span> {
+    <span class="k">case</span> contanti
+    <span class="k">case</span> carta(numero: <span class="t">String</span>)      <span class="c">// valore associato</span>
+}
+<span class="k">switch</span> <span class="t">Pagamento</span>.carta(numero: <span class="s">&quot;1234&quot;</span>) {
+<span class="k">case</span> .contanti: print(<span class="s">&quot;Contanti&quot;</span>)
+<span class="k">case</span> .carta(<span class="k">let</span> n): print(n)
+}</code></pre></div></article><article><h3>Protocolli</h3><ul><li class="sp">Equivalente delle <b>interface Java</b>: elencano i requisiti che un tipo deve implementare. Con <code>extension</code> si aggiunge la <b>conformità</b> anche a tipi esistenti come <code>Int</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">protocol</span> <span class="t">Descrivibile</span> {
+    <span class="k">var</span> descrizione: <span class="t">String</span> { get }
+}
+<span class="k">extension</span> <span class="t">Int</span>: <span class="t">Descrivibile</span> {
+    <span class="k">var</span> descrizione: <span class="t">String</span> { <span class="s">&quot;Il numero \(self)&quot;</span> }
+}
+print(<span class="n">7</span>.descrizione)</code></pre></div></article><article><h3>Closure</h3><ul><li class="sp">Un <b>blocco di codice</b> salvabile in una variabile o passabile come parametro. <code>$0</code> è il primo argomento; la <b>trailing closure</b> si scrive fuori dalle parentesi.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">let</span> somma: (<span class="t">Int</span>, <span class="t">Int</span>) -&gt; <span class="t">Int</span> = { a, b <span class="k">in</span> a + b }
+<span class="k">let</span> quadrati = [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>]
+    .filter { $<span class="n">0</span> % <span class="n">2</span> == <span class="n">0</span> }   <span class="c">// [2, 4]</span>
+    .map { $<span class="n">0</span> * $<span class="n">0</span> }          <span class="c">// [4, 16]</span></code></pre></div></article></section><section id="s2"><h2>3. Gestione Errori</h2><article><h3>throw</h3><ul><li class="sp">Un errore è un tipo (di solito un <b>enum</b>) che conforma a <code>Error</code>. La funzione che può fallire si marca con <b>throws</b> e segnala l&#x27;errore con <code>throw</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">enum</span> <span class="t">ErroreLogin</span>: <span class="t">Error</span> { <span class="k">case</span> passwordCorta, utenteVuoto }
+
+<span class="k">func</span> login(user: <span class="t">String</span>, pwd: <span class="t">String</span>) <span class="k">throws</span> -&gt; <span class="t">String</span> {
+    <span class="k">guard</span> !user.isEmpty <span class="k">else</span> { <span class="k">throw</span> <span class="t">ErroreLogin</span>.utenteVuoto }
+    <span class="k">guard</span> pwd.count &gt;= <span class="n">6</span> <span class="k">else</span> { <span class="k">throw</span> <span class="t">ErroreLogin</span>.passwordCorta }
+    <span class="k">return</span> <span class="s">&quot;Benvenuto \(user)&quot;</span>
+}</code></pre></div></article><article><h3>do-catch</h3><ul><li class="sp">Si chiama la funzione con <b>try</b> dentro <code>do</code> e si gestisce ogni errore nei blocchi <code>catch</code>. L&#x27;ultimo <code>catch</code> generico riceve <code>error</code> in automatico.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">do</span> {
+    print(<span class="k">try</span> login(user: <span class="s">&quot;Mario&quot;</span>, pwd: <span class="s">&quot;abc&quot;</span>))
+} <span class="k">catch</span> <span class="t">ErroreLogin</span>.passwordCorta {
+    print(<span class="s">&quot;Password corta&quot;</span>)
+} <span class="k">catch</span> {
+    print(<span class="s">&quot;Altro: \(error)&quot;</span>)
+}</code></pre></div></article><article><h3>try?</h3><ul><li class="sp">Trasforma l&#x27;errore in <b>nil</b> e il risultato in Optional, utile quando i dettagli dell&#x27;errore non servono. <code>try!</code> invece va in crash.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">let</span> esito = <span class="k">try</span>? login(user: <span class="s">&quot;Mario&quot;</span>, pwd: <span class="s">&quot;segreta&quot;</span>)
+print(esito ?? <span class="s">&quot;Login fallito&quot;</span>)</code></pre></div></article></section><section id="s3"><h2>4. SwiftUI Basi</h2><article><h3>@main, App e WindowGroup</h3><ul><li class="sp"><code>@main</code> marca il <b>punto d&#x27;ingresso</b>; la struct conforma ad <b>App</b> e il suo <code>body</code> è una <b>Scene</b>. Il <b>WindowGroup</b> contiene la prima vista. Sostituisce l&#x27;AppDelegate usato prima di iOS 14.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@main</span>
+<span class="k">struct</span> <span class="t">MiaApp</span>: <span class="t">App</span> {
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">Scene</span> {
+        <span class="t">WindowGroup</span> { <span class="t">ContentView</span>() }
+    }
+}</code></pre></div></article><article><h3>some View</h3><ul><li class="sp">Ogni vista è una struct che conforma a <b>View</b>; il <code>body</code> restituisce <b>some View</b> (tipo opaco). Al posto dei cicli di vita UIKit si usano <b>.onAppear</b> e <b>.onDisappear</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">ContentView</span>: <span class="t">View</span> {
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Text</span>(<span class="s">&quot;Ciao&quot;</span>)
+            .onAppear { print(<span class="s">&quot;Apparsa&quot;</span>) }
+    }
+}</code></pre></div></article><article><h3>Modificatori base</h3><ul><li class="sp">Sono metodi che restituiscono una <b>nuova vista</b>, quindi l&#x27;<b>ordine conta</b>: <code>.padding()</code> prima di <code>.background()</code> colora anche il margine. <code>.layoutPriority</code> decide chi viene troncato per ultimo.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">Text</span>(<span class="s">&quot;Titolo&quot;</span>)
+    .font(.largeTitle)
+    .padding()
+    .background(<span class="t">Color</span>.yellow)   <span class="c">// colora anche il padding</span>
+    .layoutPriority(<span class="n">1</span>)          <span class="c">// priorità alta: si tronca per ultimo</span></code></pre></div></article><article><h3>VStack, HStack, ZStack</h3><ul><li class="sp"><b>VStack</b> impila in verticale, <b>HStack</b> in orizzontale, <b>ZStack</b> sovrappone le viste dal fondo verso l&#x27;alto. Accettano <code>alignment</code> e <code>spacing</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">VStack</span>(alignment: .leading, spacing: <span class="n">8</span>) {
+    <span class="t">HStack</span> { <span class="t">Text</span>(<span class="s">&quot;A&quot;</span>); <span class="t">Text</span>(<span class="s">&quot;B&quot;</span>) }
+    <span class="t">ZStack</span> {
+        <span class="t">RoundedRectangle</span>(cornerRadius: <span class="n">12</span>).fill(.blue)
+        <span class="t">Text</span>(<span class="s">&quot;Sopra&quot;</span>).foregroundStyle(.white)
+    }
+    .frame(height: <span class="n">80</span>)
+}</code></pre></div></article></section><section id="s4"><h2>5. Gestione dello Stato</h2><article><h3>@State</h3><ul><li class="sp"><b>Stato locale</b> posseduto dalla vista: quando cambia, la UI si <b>ridisegna</b>. Va dichiarato <code>private</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Contatore</span>: <span class="t">View</span> {
+    <span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> n = <span class="n">0</span>
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Button</span>(<span class="s">&quot;Tap: \(n)&quot;</span>) { n += <span class="n">1</span> }
+    }
+}</code></pre></div></article><article><h3>@Binding</h3><ul><li class="sp"><b>Riferimento in lettura e scrittura</b> a uno stato posseduto da un&#x27;altra vista. Il padre lo passa con il prefisso <b>$</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Padre</span>: <span class="t">View</span> {
+    <span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> acceso = <span class="k">false</span>
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> { <span class="t">Figlio</span>(isOn: $acceso) }   <span class="c">// passa il binding</span>
+}
+<span class="k">struct</span> <span class="t">Figlio</span>: <span class="t">View</span> {
+    <span class="a">@Binding</span> <span class="k">var</span> isOn: <span class="t">Bool</span>
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> { <span class="t">Button</span>(<span class="s">&quot;Toggle&quot;</span>) { isOn.toggle() } }
+}</code></pre></div></article><article><h3>@Environment</h3><ul><li class="sp">Legge <b>valori di sistema</b> tramite key path: dark mode, size class, <code>dismiss</code>, <code>modelContext</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Tema</span>: <span class="t">View</span> {
+    <span class="a">@Environment</span>(\.colorScheme) <span class="k">private</span> <span class="k">var</span> scheme
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Text</span>(scheme == .dark ? <span class="s">&quot;Dark&quot;</span> : <span class="s">&quot;Light&quot;</span>)
+    }
+}</code></pre></div></article><article><h3>@EnvironmentObject</h3><ul><li class="sp">Inietta un <b>tuo oggetto condiviso</b> a tutta la gerarchia. Deve conformare a <b>ObservableObject</b> e usare <b>@Published</b> per notificare i cambiamenti.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">class</span> <span class="t">Carrello</span>: <span class="t">ObservableObject</span> {
+    <span class="a">@Published</span> <span class="k">var</span> articoli: [<span class="t">String</span>] = []
+}
+<span class="k">struct</span> <span class="t">Shop</span>: <span class="t">View</span> {
+    <span class="a">@EnvironmentObject</span> <span class="k">var</span> carrello: <span class="t">Carrello</span>
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Button</span>(<span class="s">&quot;Aggiungi&quot;</span>) { carrello.articoli.append(<span class="s">&quot;Pizza&quot;</span>) }
+    }
+}
+<span class="c">// Alla radice: Shop().environmentObject(Carrello())</span></code></pre></div></article><article><h3>Differenze pratiche</h3><ul><li class="sp"><b>@State</b> = dato mio. <b>@Binding</b> = dato del padre che posso modificare. <b>@Environment</b> = valore di sistema. <b>@EnvironmentObject</b> = oggetto mio condiviso ovunque.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> testo = <span class="s">&quot;&quot;</span>                 <span class="c">// lo possiedo io</span>
+<span class="a">@Binding</span> <span class="k">var</span> testo: <span class="t">String</span>                    <span class="c">// appartiene al padre</span>
+<span class="a">@Environment</span>(\.dismiss) <span class="k">var</span> dismiss           <span class="c">// valore di sistema</span>
+<span class="a">@EnvironmentObject</span> <span class="k">var</span> carrello: <span class="t">Carrello</span>     <span class="c">// oggetto condiviso</span></code></pre></div></article></section><section id="s5"><h2>6. UI e Navigazione</h2><article><h3>Pulsanti personalizzati</h3><ul><li class="sp">Si creano con un <b>ButtonStyle</b> riutilizzabile o con una vista nell&#x27;etichetta del <code>Button</code>. <code>configuration.isPressed</code> permette di reagire alla pressione.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">PrimaryStyle</span>: <span class="t">ButtonStyle</span> {
+    <span class="k">func</span> makeBody(configuration: <span class="t">Configuration</span>) -&gt; <span class="k">some</span> <span class="t">View</span> {
+        configuration.label
+            .padding()
+            .background(<span class="t">Color</span>.purple)
+            .foregroundStyle(.white)
+            .clipShape(<span class="t">RoundedRectangle</span>(cornerRadius: <span class="n">10</span>))
+            .opacity(configuration.isPressed ? <span class="n">0.7</span> : <span class="n">1</span>)
+    }
+}
+<span class="c">// Button(&quot;Salva&quot;) { }.buttonStyle(PrimaryStyle())</span></code></pre></div></article><article><h3>TextField e SecureField</h3><ul><li class="sp">Leggono e scrivono il testo tramite un <b>binding</b> (<code>$var</code>). <b>SecureField</b> nasconde i caratteri ed è pensato per le <b>password</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> user = <span class="s">&quot;&quot;</span>
+<span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> pwd = <span class="s">&quot;&quot;</span>
+<span class="c">// nel body:</span>
+<span class="t">TextField</span>(<span class="s">&quot;Username&quot;</span>, text: $user)
+<span class="t">SecureField</span>(<span class="s">&quot;Password&quot;</span>, text: $pwd)</code></pre></div></article><article><h3>Toggle, Slider, Stepper</h3><ul><li class="sp">Tre controlli collegati a un <b>binding</b>: <b>Toggle</b> per i booleani, <b>Slider</b> per un intervallo continuo, <b>Stepper</b> per incrementi discreti.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> on = <span class="k">true</span>
+<span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> vol = <span class="n">50.0</span>
+<span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> q = <span class="n">1</span>
+<span class="c">// nel body:</span>
+<span class="t">Toggle</span>(<span class="s">&quot;Notifiche&quot;</span>, isOn: $on)
+<span class="t">Slider</span>(value: $vol, <span class="k">in</span>: <span class="n">0</span>...<span class="n">100</span>)
+<span class="t">Stepper</span>(<span class="s">&quot;Quantità: \(q)&quot;</span>, value: $q, <span class="k">in</span>: <span class="n">1</span>...<span class="n">10</span>)</code></pre></div></article><article><h3>Picker</h3><ul><li class="sp">Offre una scelta tra opzioni e salva la selezione in un <b>binding</b>. Stili: menu (default), <b>.wheel</b>, <b>.segmented</b>. Dentro un Form richiede una <b>NavigationStack</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> tema = <span class="n">0</span>
+<span class="t">Picker</span>(<span class="s">&quot;Tema&quot;</span>, selection: $tema) {
+    <span class="t">Text</span>(<span class="s">&quot;Chiaro&quot;</span>).tag(<span class="n">0</span>)
+    <span class="t">Text</span>(<span class="s">&quot;Scuro&quot;</span>).tag(<span class="n">1</span>)
+}
+.pickerStyle(.segmented)</code></pre></div></article><article><h3>Form</h3><ul><li class="sp">Contenitore che raggruppa i <b>controlli di input</b> in <code>Section</code>, con stile da impostazioni e scroll integrato.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">NavigationStack</span> {
+    <span class="t">Form</span> {
+        <span class="t">Section</span>(<span class="s">&quot;Account&quot;</span>) {
+            <span class="t">TextField</span>(<span class="s">&quot;Nome&quot;</span>, text: $user)
+        }
+    }
+    .navigationTitle(<span class="s">&quot;Impostazioni&quot;</span>)
+}</code></pre></div></article><article><h3>List con ForEach e .onDelete</h3><ul><li class="sp"><b>List</b> mostra righe scorrevoli. <b>.onDelete</b> e <b>.onMove</b> funzionano solo su <b>ForEach</b> (conforme a DynamicViewContent). Per il riordino serve <code>EditButton</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> cose = [<span class="s">&quot;Studiare&quot;</span>, <span class="s">&quot;Spesa&quot;</span>, <span class="s">&quot;Cucinare&quot;</span>]
+<span class="t">List</span> {
+    <span class="t">ForEach</span>(cose, id: \.<span class="k">self</span>) { <span class="t">Text</span>($<span class="n">0</span>) }
+        .onDelete { cose.remove(atOffsets: $<span class="n">0</span>) }
+        .onMove { cose.move(fromOffsets: $<span class="n">0</span>, toOffset: $<span class="n">1</span>) }
+}
+.toolbar { <span class="t">EditButton</span>() }</code></pre></div></article><article><h3>TabView</h3><ul><li class="sp">Crea la <b>barra a schede</b> in basso. Ogni scheda è una vista con il modificatore <b>.tabItem</b>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">TabView</span> {
+    <span class="t">Text</span>(<span class="s">&quot;Home&quot;</span>).tabItem { <span class="t">Label</span>(<span class="s">&quot;Home&quot;</span>, systemImage: <span class="s">&quot;house.fill&quot;</span>) }
+    <span class="t">Text</span>(<span class="s">&quot;Profilo&quot;</span>).tabItem { <span class="t">Label</span>(<span class="s">&quot;Profilo&quot;</span>, systemImage: <span class="s">&quot;person&quot;</span>) }
+}</code></pre></div></article><article><h3>ScrollView</h3><ul><li class="sp">Rende <b>scorrevole</b> qualsiasi contenuto. Con <b>ScrollViewReader</b> si scorre in modo programmatico a una vista con un certo <code>id</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">ScrollViewReader</span> { proxy <span class="k">in</span>
+    <span class="t">ScrollView</span> {
+        <span class="t">Button</span>(<span class="s">&quot;Vai in fondo&quot;</span>) { proxy.scrollTo(<span class="n">99</span>) }
+        <span class="t">ForEach</span>(<span class="n">0</span>..&lt;<span class="n">100</span>, id: \.<span class="k">self</span>) { <span class="t">Text</span>(<span class="s">&quot;Riga \($0)&quot;</span>).id($<span class="n">0</span>) }
+    }
+}</code></pre></div></article><article><h3>NavigationStack e NavigationLink</h3><ul><li class="sp"><b>NavigationStack</b> gestisce la navigazione a pila, <b>NavigationLink</b> apre la schermata di destinazione. In una <code>List</code> il tipo <b>Identifiable</b> evita di passare <code>id:</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Ristorante</span>: <span class="t">Identifiable</span> {
+    <span class="k">let</span> id = <span class="t">UUID</span>()
+    <span class="k">let</span> nome: <span class="t">String</span>
+}
+<span class="t">NavigationStack</span> {
+    <span class="t">List</span>(lista) { r <span class="k">in</span>
+        <span class="t">NavigationLink</span>(r.nome) { <span class="t">Text</span>(<span class="s">&quot;Dettaglio \(r.nome)&quot;</span>) }
+    }
+    .navigationTitle(<span class="s">&quot;Ristoranti&quot;</span>)
+}</code></pre></div></article></section><section id="s6"><h2>7. Servizi Web e Mappe</h2><article><h3>URLSession, Codable, Identifiable</h3><ul><li class="sp">Il modello conforma a <b>Codable</b> (JSON ↔ oggetto) e <b>Identifiable</b> (id univoco per le liste). <code>URLSession</code> è <b>asincrona</b>: oggi si usa <b>async/await</b> con <code>.task</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">Book</span>: <span class="t">Codable</span>, <span class="t">Identifiable</span> {
+    <span class="k">let</span> id: <span class="t">Int</span>
+    <span class="k">let</span> title: <span class="t">String</span>
+}
+<span class="a">@MainActor</span>
+<span class="k">class</span> <span class="t">BookService</span>: <span class="t">ObservableObject</span> {
+    <span class="a">@Published</span> <span class="k">var</span> books: [<span class="t">Book</span>] = []
+    <span class="k">func</span> load() <span class="k">async</span> {
+        <span class="k">guard</span> <span class="k">let</span> url = <span class="t">URL</span>(string: <span class="s">&quot;https://www.mysite.com/books.json&quot;</span>) <span class="k">else</span> { <span class="k">return</span> }
+        <span class="k">do</span> {
+            <span class="k">let</span> (data, _) = <span class="k">try</span> <span class="k">await</span> <span class="t">URLSession</span>.shared.data(from: url)
+            books = <span class="k">try</span> <span class="t">JSONDecoder</span>().decode([<span class="t">Book</span>].<span class="k">self</span>, from: data)
+        } <span class="k">catch</span> { print(error) }
+    }
+}
+<span class="c">// Nella vista: List(service.books) { Text($0.title) }.task { await service.load() }</span></code></pre></div></article><article><h3>AsyncImage</h3><ul><li class="sp"><b>Scarica e mostra</b> un&#x27;immagine da URL, con un <b>placeholder</b> durante il caricamento. La versione con <code>phase</code> gestisce anche l&#x27;errore.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="t">AsyncImage</span>(url: <span class="t">URL</span>(string: <span class="s">&quot;https://picsum.photos/400&quot;</span>)) { phase <span class="k">in</span>
+    <span class="k">switch</span> phase {
+    <span class="k">case</span> .success(<span class="k">let</span> img): img.resizable().scaledToFit()
+    <span class="k">case</span> .failure: <span class="t">Image</span>(systemName: <span class="s">&quot;photo.badge.exclamationmark&quot;</span>)
+    <span class="k">default</span>: <span class="t">ProgressView</span>()          <span class="c">// in caricamento</span>
+    }
+}
+.frame(width: <span class="n">300</span>, height: <span class="n">300</span>)</code></pre></div></article><article><h3>Mappe interattive con MapKit</h3><ul><li class="sp"><b>Map</b> mostra un&#x27;area interattiva, <b>marker</b> e <b>posizione utente</b>. Serve la chiave <code>NSLocationWhenInUseUsageDescription</code> nell&#x27;<b>Info.plist</b>. <code>Map(coordinateRegion:)</code> è deprecato da iOS 17: qui la versione moderna.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">import</span> <span class="t">MapKit</span>
+
+<span class="k">struct</span> <span class="t">MappaView</span>: <span class="t">View</span> {
+    <span class="a">@State</span> <span class="k">private</span> <span class="k">var</span> camera: <span class="t">MapCameraPosition</span> = .region(
+        <span class="t">MKCoordinateRegion</span>(
+            center: .<span class="k">init</span>(latitude: <span class="n">45.4642</span>, longitude: <span class="n">9.19</span>),
+            span: .<span class="k">init</span>(latitudeDelta: <span class="n">0.05</span>, longitudeDelta: <span class="n">0.05</span>)))
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Map</span>(position: $camera) {
+            <span class="t">UserAnnotation</span>()                      <span class="c">// posizione utente</span>
+            <span class="t">Marker</span>(<span class="s">&quot;Duomo&quot;</span>, systemImage: <span class="s">&quot;star.fill&quot;</span>,
+                   coordinate: .<span class="k">init</span>(latitude: <span class="n">45.4641</span>, longitude: <span class="n">9.1919</span>))
+        }
+        .mapControls { <span class="t">MapUserLocationButton</span>() }
+    }
+}</code></pre></div></article></section><section id="s7"><h2>8. Persistenza</h2><article><h3>UserDefaults e @AppStorage</h3><ul><li class="sp"><b>UserDefaults</b> salva <b>piccole preferenze</b> in un plist caricato all&#x27;avvio: oltre circa <b>512 KB</b> l&#x27;app rallenta. <b>@AppStorage</b> è il wrapper SwiftUI che salva e aggiorna la UI da solo.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">TapView</span>: <span class="t">View</span> {
+    <span class="a">@AppStorage</span>(<span class="s">&quot;tapCount&quot;</span>) <span class="k">private</span> <span class="k">var</span> tapCount = <span class="n">0</span>   <span class="c">// chiave + default</span>
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">Button</span>(<span class="s">&quot;Tap: \(tapCount)&quot;</span>) { tapCount += <span class="n">1</span> }   <span class="c">// persiste da solo</span>
+    }
+}
+<span class="c">// Basso livello: UserDefaults.standard.set(5, forKey: &quot;tapCount&quot;)</span></code></pre></div></article><article><h3>SwiftData e @Model</h3><ul><li class="sp">Framework dichiarativo introdotto con <b>iOS 17</b>. <b>@Model</b> rende una classe <b>persistente</b>; le relazioni si esprimono con proprietà come <code>[Person]</code>.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">import</span> <span class="t">SwiftData</span>
+
+<span class="a">@Model</span>
+<span class="k">class</span> <span class="t">Person</span> {
+    <span class="k">var</span> name: <span class="t">String</span>
+    <span class="k">var</span> age: <span class="t">Int</span>
+    <span class="k">init</span>(name: <span class="t">String</span>, age: <span class="t">Int</span>) { <span class="k">self</span>.name = name; <span class="k">self</span>.age = age }
+}
+<span class="a">@Model</span>
+<span class="k">class</span> <span class="t">Company</span> {
+    <span class="k">var</span> name: <span class="t">String</span>
+    <span class="k">var</span> employees: [<span class="t">Person</span>] = []     <span class="c">// relazione uno-a-molti</span>
+    <span class="k">init</span>(name: <span class="t">String</span>) { <span class="k">self</span>.name = name }
+}</code></pre></div></article><article><h3>.modelContainer</h3><ul><li class="sp">Configura il <b>database</b> all&#x27;avvio e dichiara quali modelli gestire. Si applica alla scena o alla vista radice.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="a">@main</span>
+<span class="k">struct</span> <span class="t">PersoneApp</span>: <span class="t">App</span> {
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">Scene</span> {
+        <span class="t">WindowGroup</span> { <span class="t">PersoneView</span>() }
+            .modelContainer(<span class="k">for</span>: <span class="t">Person</span>.<span class="k">self</span>)   <span class="c">// crea il database</span>
+    }
+}</code></pre></div></article><article><h3>@Query e .insert()</h3><ul><li class="sp"><b>@Query</b> legge i dati e <b>aggiorna la vista</b> a ogni modifica. Per scrivere si prende il contesto da <code>@Environment(\.modelContext)</code> e si chiama <b>insert()</b>; <code>save()</code> è facoltativo.</li></ul><div class="xc"><div class="bar"><i></i><i></i><i></i><span>Swift</span></div><pre><code><span class="k">struct</span> <span class="t">PersoneView</span>: <span class="t">View</span> {
+    <span class="a">@Environment</span>(\.modelContext) <span class="k">private</span> <span class="k">var</span> context
+    <span class="a">@Query</span>(sort: \<span class="t">Person</span>.name) <span class="k">private</span> <span class="k">var</span> people: [<span class="t">Person</span>]   <span class="c">// lista reattiva</span>
+
+    <span class="k">var</span> body: <span class="k">some</span> <span class="t">View</span> {
+        <span class="t">List</span>(people) { <span class="t">Text</span>(<span class="s">&quot;\($0.name), \($0.age) anni&quot;</span>) }
+        <span class="t">Button</span>(<span class="s">&quot;Aggiungi&quot;</span>) {
+            context.insert(<span class="t">Person</span>(name: <span class="s">&quot;Mario&quot;</span>, age: <span class="n">30</span>))    <span class="c">// inserimento</span>
+            <span class="k">try</span>? context.save()
+        }
+    }
+}</code></pre></div></article></section></main></body></html>

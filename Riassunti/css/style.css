@@ -1,0 +1,130 @@
+:root {
+    --bg-1: #0b1020;
+    --bg-2: #1a2548;
+    --panel: rgba(255, 255, 255, 0.08);
+    --panel-border: rgba(255, 255, 255, 0.18);
+    --text-soft: #d3def7;
+    --accent: #00b894;
+    --accent-strong: #00916f;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    color: white;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(0, 184, 148, 0.2), transparent 40%),
+        radial-gradient(circle at 85% 0%, rgba(50, 130, 255, 0.25), transparent 45%),
+        linear-gradient(150deg, var(--bg-1), var(--bg-2));
+    padding: 70px 20px 40px;
+}
+
+.page-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    text-decoration: none;
+    color: white;
+    background: var(--accent);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    background: var(--accent-strong);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.28);
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1px;
+}
+
+.page-header p {
+    margin-top: 12px;
+    color: var(--text-soft);
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    text-decoration: none;
+    color: white;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 18px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 184, 148, 0.6);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+}
+
+.summary-card h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.summary-card p {
+    margin-top: 10px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    flex-grow: 1;
+}
+
+.summary-cta {
+    margin-top: 16px;
+    background: var(--accent);
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding-top: 84px;
+    }
+
+    .summary-card {
+        min-height: 190px;
+    }
+}
